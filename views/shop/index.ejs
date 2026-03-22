@@ -10,6 +10,40 @@
     </div>
 </section>
 
+<!-- 品牌故事章节 -->
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div class="order-2 md:order-1">
+                <h2 class="text-3xl serif tracking-widest mb-8"><%= __('home.craft_title') %></h2>
+                <div class="prose prose-lg max-w-none text-gray-500 leading-loose font-light">
+                    <% if (lang === 'zh') { %>
+                        <p>CC点心诞生的初衷，是为了找回消失在工业化生产中的“手工温度”。我们相信，每一只饺子都应有它独特的灵魂。</p>
+                        <p>在CC点心，我们坚持：</p>
+                        <ul class="list-none p-0 space-y-4">
+                            <li><span class="text-[#D4B483] mr-2">1.</span> 现包现做，冷链直达：职人当日手工包制，专业冷链极速送达，锁住鲜美。</li>
+                            <li><span class="text-[#D4B483] mr-2">2.</span> 私人订制，专属口味：支持自定义馅料，为您还原记忆中的味道或实现独特创意。</li>
+                            <li><span class="text-[#D4B483] mr-2">3.</span> 选料精良，源头把控：严选高品质食材，从源头确保每一口都安心、地道。</li>
+                        </ul>
+                    <% } else { %>
+                        <p>CC点心が誕生したきっかけは、工業化の中で失われつつある「手仕事の温もり」を取り戻すことでした。一つ一つの餃子には独自の魂が宿ると信じています。</p>
+                        <p>CC点心では、以下のことを約束します：</p>
+                        <ul class="list-none p-0 space-y-4">
+                            <li><span class="text-[#D4B483] mr-2">1.</span> 手包み、冷温配送：職人が当日に包み、プロの冷温物流で新鮮なままお届けします。</li>
+                            <li><span class="text-[#D4B483] mr-2">2.</span> オーダーメイド、独自の味：餡のカスタマイズが可能。思い出の味やアイデアを形にします。</li>
+                            <li><span class="text-[#D4B483] mr-2">3.</span> 厳選素材、品質管理：素材を厳選し、徹底した管理で安心の味わいをお届けします。</li>
+                        </ul>
+                    <% } %>
+                </div>
+            </div>
+            <div class="order-1 md:order-2 aspect-[4/5] overflow-hidden">
+                <img src="/assets/story-jiaozi.png" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 时令推荐 (动态产品) -->
 <section class="py-20 max-w-7xl mx-auto px-6">
     <div class="text-center mb-16">
         <h2 class="text-3xl serif tracking-widest mb-4"><%= __('home.seasonal_title') %></h2>
@@ -31,6 +65,9 @@
                 <button onclick="addToCart('<%= product._id %>', '<%= product.name[lang] %>', <%= product.price %>)" class="text-xs tracking-widest border-b border-gray-200 pb-1 hover:border-[#D4B483] transition-colors"><%= __('cart.add_to_cart') %></button>
             </div>
         <% }) %>
+    </div>
+    <div class="text-center mt-16">
+        <a href="/menu" class="text-xs tracking-[0.2em] border border-gray-200 px-12 py-4 hover:bg-black hover:text-white transition-all duration-500 uppercase"><%= __('nav.menu') %></a>
     </div>
 </section>
 
