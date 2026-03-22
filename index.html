@@ -8,20 +8,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --brand-beige: #FCFAF7; /* 更亮的米白 */
+            --brand-beige: #FCFAF7;
             --brand-dark: #2D2D2D;
-            --brand-gold: #D4B483; /* 更明亮的金色 */
+            --brand-gold: #D4B483;
         }
         body {
             font-family: 'Noto Sans SC', sans-serif;
             background-color: var(--brand-beige);
             color: var(--brand-dark);
+            overflow-x: hidden;
         }
         .serif {
             font-family: 'Noto Serif SC', serif;
         }
         .hero-bg {
             background: radial-gradient(circle at 70% 50%, #ffffff 0%, var(--brand-beige) 100%);
+        }
+        @media (max-width: 768px) {
+            .hero-bg {
+                background: radial-gradient(circle at 50% 30%, #ffffff 0%, var(--brand-beige) 100%);
+            }
         }
         .nav-link {
             position: relative;
@@ -53,159 +59,225 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        /* Mobile Menu Overlay */
+        #mobile-menu-overlay {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        #mobile-menu-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            display: flex !important; /* Keep flex but hide via opacity */
+        }
+        #mobile-menu-content {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        #mobile-menu-overlay.hidden #mobile-menu-content {
+            transform: translateY(-20px);
+        }
     </style>
 </head>
 <body class="antialiased">
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-white/60 backdrop-blur-lg border-b border-white/20">
+    <nav class="fixed top-0 w-full z-50 px-6 md:px-8 py-4 md:py-6 flex justify-between items-center bg-white/60 backdrop-blur-lg border-b border-white/20">
         <div class="flex items-center space-x-12">
-            <div class="text-2xl font-bold tracking-tighter serif">CC点心</div>
+            <div class="text-xl md:text-2xl font-bold tracking-tighter serif">CC点心</div>
             <div class="hidden md:flex space-x-8 text-sm tracking-widest uppercase">
                 <a href="#" class="nav-link">关于我们</a>
                 <a href="#" class="nav-link">饺子系列</a>
                 <a href="#" class="nav-link">店铺情报</a>
             </div>
         </div>
-        <div class="flex items-center space-x-6 text-sm">
-            <span class="text-gray-400">JP / CN</span>
-            <a href="#" class="border border-dark px-6 py-2 hover:bg-black hover:text-white transition-all duration-300 tracking-widest">在线选购</a>
+        <div class="flex items-center space-x-4 md:space-x-6 text-sm">
+            <span class="hidden sm:inline text-gray-400">JP / CN</span>
+            <a href="#" class="hidden sm:inline-block border border-dark px-6 py-2 hover:bg-black hover:text-white transition-all duration-300 tracking-widest">在线选购</a>
+            <!-- Mobile Menu Toggle -->
+            <button id="menu-toggle" class="md:hidden p-2 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
         </div>
     </nav>
 
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 z-40 bg-white hidden flex-col items-center justify-center">
+        <div id="mobile-menu-content" class="text-center space-y-8">
+            <a href="#" class="block text-2xl serif">关于我们</a>
+            <a href="#" class="block text-2xl serif">饺子系列</a>
+            <a href="#" class="block text-2xl serif">店铺情报</a>
+            <div class="pt-8 space-y-6">
+                <div class="text-gray-400 tracking-widest text-sm">JP / CN</div>
+                <a href="#" class="inline-block border border-dark px-10 py-3 hover:bg-black hover:text-white transition-all tracking-widest">在线选购</a>
+            </div>
+        </div>
+    </div>
+
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center px-8 md:px-24 hero-bg pt-20 overflow-hidden">
-        <div class="max-w-2xl z-10 fade-in">
-            <div class="text-xs tracking-[0.4em] uppercase text-gray-400 mb-6">Artisanal Handmade Jiaozi</div>
-            <h2 class="text-xl md:text-2xl mb-2 serif text-gray-500 font-light">溢れる旨味</h2>
-            <h1 class="text-6xl md:text-8xl mb-8 serif leading-tight text-[#1a1a1a]">至福の<br>一粒</h1>
-            <p class="text-sm md:text-base text-gray-400 leading-relaxed mb-10 max-w-md font-light">
+    <section class="relative min-h-screen flex flex-col md:flex-row items-center px-6 md:px-24 hero-bg pt-32 md:pt-20 overflow-hidden">
+        <div class="w-full md:max-w-2xl z-10 fade-in text-center md:text-left">
+            <div class="text-[10px] md:text-xs tracking-[0.4em] uppercase text-gray-400 mb-4 md:mb-6">Artisanal Handmade Jiaozi</div>
+            <h2 class="text-lg md:text-2xl mb-1 md:mb-2 serif text-gray-500 font-light">溢れる旨味</h2>
+            <h1 class="text-5xl md:text-8xl mb-6 md:mb-8 serif leading-tight text-[#1a1a1a]">至福の<br>一粒</h1>
+            <p class="text-xs md:text-base text-gray-400 leading-relaxed mb-8 md:mb-10 max-w-md mx-auto md:mx-0 font-light px-4 md:px-0">
                 手包みの温もり、溢れ出す素材の旨味。<br>
                 厳選された素材と繊細な手仕事が織りなす、<br>
                 澄み渡る美味しさをお楽しみください。
             </p>
-            <a href="#" class="inline-block bg-[#2D2D2D] text-white px-12 py-4 text-sm tracking-[0.2em] hover:bg-black transition-all shadow-sm">
+            <a href="#" class="inline-block bg-[#2D2D2D] text-white px-10 md:px-12 py-3 md:py-4 text-xs md:text-sm tracking-[0.2em] hover:bg-black transition-all shadow-sm">
                 查看菜单
             </a>
         </div>
-        <div class="absolute right-0 top-1/2 -translate-y-1/2 w-3/5 h-4/5 hidden md:block fade-in" style="animation-delay: 0.3s;">
+        <div class="relative md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2 w-full md:w-3/5 h-64 md:h-4/5 mt-12 md:mt-0 fade-in" style="animation-delay: 0.3s;">
             <img src="assets/hero-jiaozi-bright.png" alt="Handmade Jiaozi" class="w-full h-full object-contain">
         </div>
     </section>
 
     <!-- Seasonal Collection -->
-    <section class="py-32 px-8 md:px-24 bg-white">
-        <div class="text-center mb-20">
-            <div class="text-xs tracking-[0.5em] uppercase text-gray-300 mb-4">Seasonal Collection</div>
-            <h2 class="text-4xl serif text-[#1a1a1a]">季节之彩</h2>
+    <section class="py-20 md:py-32 px-6 md:px-24 bg-white">
+        <div class="text-center mb-12 md:mb-20">
+            <div class="text-[10px] md:text-xs tracking-[0.5em] uppercase text-gray-300 mb-4">Seasonal Collection</div>
+            <h2 class="text-3xl md:text-4xl serif text-[#1a1a1a]">季节之彩</h2>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 md:gap-16">
             <!-- Product 1 -->
             <div class="product-card text-center group">
-                <div class="aspect-[4/5] overflow-hidden mb-8 bg-[#F9F9F9] rounded-sm">
+                <div class="aspect-[4/5] overflow-hidden mb-6 md:mb-8 bg-[#F9F9F9] rounded-sm">
                     <img src="assets/shrimp-jiaozi.png" alt="Shrimp Jiaozi" class="w-full h-full object-cover">
                 </div>
-                <h3 class="text-xl mb-3 serif text-[#1a1a1a]">时令鲜虾水饺</h3>
-                <p class="text-xs text-gray-400 leading-relaxed px-4">
+                <h3 class="text-lg md:text-xl mb-2 md:mb-3 serif text-[#1a1a1a]">时令鲜虾水饺</h3>
+                <p class="text-[11px] md:text-xs text-gray-400 leading-relaxed px-4">
                     晶莹剔透的皮包裹着整颗鲜虾，<br>每一口都是大海的鲜甜。
                 </p>
             </div>
             <!-- Product 2 -->
             <div class="product-card text-center group">
-                <div class="aspect-[4/5] overflow-hidden mb-8 bg-[#F9F9F9] rounded-sm">
+                <div class="aspect-[4/5] overflow-hidden mb-6 md:mb-8 bg-[#F9F9F9] rounded-sm">
                     <img src="assets/pork-cabbage-jiaozi.png" alt="Pork Cabbage Jiaozi" class="w-full h-full object-cover">
                 </div>
-                <h3 class="text-xl mb-3 serif text-[#1a1a1a]">特制猪肉白菜饺</h3>
-                <p class="text-xs text-gray-400 leading-relaxed px-4">
+                <h3 class="text-lg md:text-xl mb-2 md:mb-3 serif text-[#1a1a1a]">特制猪肉白菜饺</h3>
+                <p class="text-[11px] md:text-xs text-gray-400 leading-relaxed px-4">
                     传统比例调配的肉馅与爽脆白菜，<br>还原最纯粹的家常味道。
                 </p>
             </div>
             <!-- Product 3 -->
             <div class="product-card text-center group">
-                <div class="aspect-[4/5] overflow-hidden mb-8 bg-[#F9F9F9] rounded-sm">
+                <div class="aspect-[4/5] overflow-hidden mb-6 md:mb-8 bg-[#F9F9F9] rounded-sm">
                     <img src="assets/egg-chive-jiaozi.png" alt="Egg Chive Jiaozi" class="w-full h-full object-cover">
                 </div>
-                <h3 class="text-xl mb-3 serif text-[#1a1a1a]">经典鸡蛋韭菜水饺</h3>
-                <p class="text-xs text-gray-400 leading-relaxed px-4">
+                <h3 class="text-lg md:text-xl mb-2 md:mb-3 serif text-[#1a1a1a]">经典鸡蛋韭菜水饺</h3>
+                <p class="text-[11px] md:text-xs text-gray-400 leading-relaxed px-4">
                     鲜嫩韭菜与金黄炒蛋的经典组合，<br>清香扑鼻，素雅而不失鲜美。
                 </p>
             </div>
         </div>
 
-        <div class="text-center mt-24">
-            <a href="#" class="text-xs tracking-[0.3em] border-b border-gray-200 pb-2 hover:border-black transition-all duration-300 text-gray-400 hover:text-black">查看全部菜单</a>
+        <div class="text-center mt-16 md:mt-24">
+            <a href="#" class="text-[10px] md:text-xs tracking-[0.3em] border-b border-gray-200 pb-2 hover:border-black transition-all duration-300 text-gray-400 hover:text-black">查看全部菜单</a>
         </div>
     </section>
 
     <!-- Craftsmanship Section -->
-    <section class="py-32 px-8 md:px-24 flex flex-col md:flex-row items-center gap-24 bg-[#FCFAF7]">
+    <section class="py-20 md:py-32 px-6 md:px-24 flex flex-col md:flex-row items-center gap-12 md:gap-24 bg-[#FCFAF7]">
         <div class="w-full md:w-1/2">
-            <div class="relative p-16 bg-white shadow-sm rounded-sm">
+            <div class="relative p-8 md:p-16 bg-white shadow-sm rounded-sm">
                 <img src="assets/logo.png" alt="Craftsmanship" class="w-full h-auto opacity-90">
-                <div class="absolute bottom-10 left-10 text-sm serif italic text-gray-400">「美しさ」を<br>食べる。</div>
+                <div class="absolute bottom-6 md:bottom-10 left-6 md:left-10 text-[10px] md:text-sm serif italic text-gray-400">「美しさ」を<br>食べる。</div>
             </div>
         </div>
-        <div class="w-full md:w-1/2 space-y-10">
-            <div class="text-xs tracking-[0.4em] text-gray-300 uppercase">Our Story</div>
-            <h2 class="text-4xl serif leading-tight text-[#1a1a1a]">职人的手仕事。<br><span class="text-2xl text-gray-400 font-light">洗练された优しさを込めて。</span></h2>
-            <p class="text-sm text-gray-400 leading-loose font-light">
+        <div class="w-full md:w-1/2 space-y-6 md:space-y-10 text-center md:text-left">
+            <div class="text-[10px] md:text-xs tracking-[0.4em] text-gray-300 uppercase">Our Story</div>
+            <h2 class="text-3xl md:text-4xl serif leading-tight text-[#1a1a1a]">职人的手仕事。<br><span class="text-xl md:text-2xl text-gray-400 font-light">洗练された优しさを込めて。</span></h2>
+            <p class="text-[13px] md:text-sm text-gray-400 leading-loose font-light">
                 CC点心は、伝統的な餃子の技法に、現代の感性を融合させた新しいスタイルのレストランです。<br><br>
                 私たちの厨房では、一つひとつ丁寧に皮を延ばし、餡を包んでいます。机械では再現できない、手仕事ならではの食感と味わいを追求。素材本来の優しい色と香りを大切にした饺子は、まるで五感を润すような辉きを放ちます。
             </p>
-            <div class="flex space-x-16 pt-6">
+            <div class="flex justify-center md:justify-start space-x-12 md:space-x-16 pt-4 md:pt-6">
                 <div>
-                    <div class="text-3xl serif text-[#1a1a1a]">0%</div>
-                    <div class="text-[10px] text-gray-300 tracking-[0.3em] uppercase mt-2">Additives</div>
+                    <div class="text-2xl md:text-3xl serif text-[#1a1a1a]">0%</div>
+                    <div class="text-[9px] md:text-[10px] text-gray-300 tracking-[0.3em] uppercase mt-1 md:mt-2">Additives</div>
                 </div>
                 <div>
-                    <div class="text-3xl serif text-[#1a1a1a]">100%</div>
-                    <div class="text-[10px] text-gray-300 tracking-[0.3em] uppercase mt-2">Handmade</div>
+                    <div class="text-2xl md:text-3xl serif text-[#1a1a1a]">100%</div>
+                    <div class="text-[9px] md:text-[10px] text-gray-300 tracking-[0.3em] uppercase mt-1 md:mt-2">Handmade</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-white pt-32 pb-16 px-8 md:px-24 border-t border-gray-50">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-16 mb-24">
-            <div class="col-span-1 md:col-span-1">
-                <div class="text-2xl font-bold serif mb-8 tracking-tighter">CC点心</div>
-                <p class="text-xs text-gray-400 leading-relaxed font-light">
+    <footer class="bg-white pt-20 md:pt-32 pb-12 md:pb-16 px-6 md:px-24 border-t border-gray-50">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 md:gap-16 mb-16 md:mb-24">
+            <div class="col-span-1">
+                <div class="text-xl md:text-2xl font-bold serif mb-6 md:mb-8 tracking-tighter">CC点心</div>
+                <p class="text-[11px] md:text-xs text-gray-400 leading-relaxed font-light">
                     东京 · 银座<br>
                     心を満たす、ハンドメイドの点心。
                 </p>
-                <div class="flex space-x-6 mt-10">
-                    <div class="w-5 h-5 border border-gray-100 rounded-full flex items-center justify-center text-[10px] text-gray-300 hover:border-black hover:text-black transition-all cursor-pointer">IG</div>
-                    <div class="w-5 h-5 border border-gray-100 rounded-full flex items-center justify-center text-[10px] text-gray-300 hover:border-black hover:text-black transition-all cursor-pointer">FB</div>
+                <div class="flex space-x-6 mt-8 md:mt-10">
+                    <div class="w-5 h-5 border border-gray-100 rounded-full flex items-center justify-center text-[9px] text-gray-300 hover:border-black hover:text-black transition-all cursor-pointer">IG</div>
+                    <div class="w-5 h-5 border border-gray-100 rounded-full flex items-center justify-center text-[9px] text-gray-300 hover:border-black hover:text-black transition-all cursor-pointer">FB</div>
                 </div>
             </div>
             <div>
-                <h4 class="text-xs font-bold tracking-[0.4em] mb-8 uppercase text-[#1a1a1a]">导航</h4>
-                <ul class="text-xs text-gray-400 space-y-5 font-light">
+                <h4 class="text-[10px] md:text-xs font-bold tracking-[0.4em] mb-6 md:mb-8 uppercase text-[#1a1a1a]">导航</h4>
+                <ul class="text-[11px] md:text-xs text-gray-400 space-y-4 md:space-y-5 font-light">
                     <li><a href="#" class="hover:text-black transition-all">首页</a></li>
                     <li><a href="#" class="hover:text-black transition-all">饺子菜单</a></li>
                     <li><a href="#" class="hover:text-black transition-all">我们的坚持</a></li>
                     <li><a href="#" class="hover:text-black transition-all">联系我们</a></li>
                 </ul>
             </div>
-            <div class="col-span-1 md:col-span-2">
-                <h4 class="text-xs font-bold tracking-[0.4em] mb-8 uppercase text-[#1a1a1a]">店铺情报</h4>
-                <div class="text-xs text-gray-400 space-y-3 font-light">
+            <div class="col-span-1 sm:col-span-2">
+                <h4 class="text-[10px] md:text-xs font-bold tracking-[0.4em] mb-6 md:mb-8 uppercase text-[#1a1a1a]">店铺情报</h4>
+                <div class="text-[11px] md:text-xs text-gray-400 space-y-2 md:space-y-3 font-light">
                     <p>住所：東京都中央区銀座 5-8-1</p>
                     <p>電話：03-1234-5678</p>
                     <p>時間：11:30 - 22:00 (L.O. 21:00)</p>
                 </div>
             </div>
         </div>
-        <div class="flex flex-col md:flex-row justify-between items-center text-[10px] text-gray-300 tracking-[0.4em] uppercase border-t border-gray-50 pt-16">
+        <div class="flex flex-col md:flex-row justify-between items-center text-[9px] md:text-[10px] text-gray-300 tracking-[0.3em] md:tracking-[0.4em] uppercase border-t border-gray-50 pt-12 md:pt-16 text-center md:text-left">
             <p>© 2026 CC DIM SUM. ALL RIGHTS RESERVED.</p>
-            <div class="flex space-x-12 mt-6 md:mt-0">
+            <div class="flex space-x-8 md:space-x-12 mt-6 md:mt-0">
                 <a href="#" class="hover:text-black transition-all">Privacy Policy</a>
                 <a href="#" class="hover:text-black transition-all">Terms of Use</a>
             </div>
         </div>
     </footer>
+
+    <!-- Mobile Menu Script -->
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu-overlay');
+        const menuIcon = document.getElementById('menu-icon');
+        let isMenuOpen = false;
+
+        menuToggle.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+                menuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12'); // Close icon
+            } else {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = '';
+                menuIcon.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7'); // Hamburger icon
+            }
+        });
+
+        // Close menu on link click
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                isMenuOpen = false;
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = '';
+                menuIcon.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7');
+            });
+        });
+    </script>
 
 </body>
 </html>
