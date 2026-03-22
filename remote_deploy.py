@@ -5,64 +5,8 @@ hostname = "vmsnode.briconbric.com"
 username = "root"
 password = "BtZhY1^3"
 web_root = "/var/www/ccdx"
-nginx_conf_path = "/etc/nginx/sites-available/cc.briconbric.com.conf"
-nginx_link_path = "/etc/nginx/sites-enabled/cc.briconbric.com.conf"
-git_repo = "https://github.com/sunshaoxuan/ccdx.git"
-local_nginx_conf = "/Users/sunsx/Projects/ccdx/cc.briconbric.com.conf"
-
-def deploy():
-    try:
-        # 1. Connect to server
-        print(f"正在连接服务器 {hostname}...")
-        ssh = paramiko.SSHClient()
-        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        ssh.connect(hostname, username=username, password=password)
-        
-        # 2. Prepare environment and code
-        print("正在准备环境并同步代码...")
-        commands = [
-            "apt-get update && apt-get install -y git nginx",
-            "mkdir -p /var/www",
-            f"if [ ! -d '{web_root}/.git' ]; then rm -rf {web_root} && git clone {git_repo} {web_root}; else cd {web_root} && git pull origin main; fi",
-            f"chown -R www-data:www-data {web_root}",
-            f"chmod -R 755 {web_root}"
-        ]
-        
-        for cmd in commands:
-            stdin, stdout, stderr = ssh.exec_command(cmd)
-            exit_status = stdout.channel.recv_exit_status()
-            if exit_status != 0:
-                print(f"执行命令失败: {cmd}")
-                print(stderr.read().decode())
-        
-        # 3. Upload Nginx config
-        print("正在上传 Nginx 配置文件...")
-        sftp = ssh.open_sftp()
-        sftp.put(local_nginx_conf, "/tmp/cc.briconbric.com.conf")
-        sftp.close()
-        
-        # 4. Activate config and restart Nginx
-        print("正在激活配置并重启 Nginx...")
-        final_commands = [
-            f"mv /tmp/cc.briconbric.com.conf {nginx_conf_path}",
-            "mkdir -p /etc/nginx/sites-enabled",
-            f"ln -sf {nginx_conf_path} {nginx_link_path}",
-            "nginx -t && (systemctl restart nginx || service nginx restart)"
-        ]
-        
-        for cmd in final_commands:
-            stdin, stdout, stderr = ssh.exec_command(cmd)
-            exit_status = stdout.channel.recv_exit_status()
-            if exit_status != 0:
-                print(f"执行配置失败: {cmd}")
-                print(stderr.read().decode())
-                return
-
-        print("✅ 部署成功！")
-        ssh.close()
-        
-    except Exception as e:
-        print(f"❌ 部署过程中发生错误: {str(e)}")
+nginx_conf_local = "/Users/sunsx/Projects/ccdx/cc.briconbric.com.conf"
+nginx_conf_remote = "/etc/nginx/sites-available/cc.briconbric.com.conf"
 
 def deploy_fullstack():
     try:
