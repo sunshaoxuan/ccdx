@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CC点心 | 手工饺子 · 至福一滴</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-beige: #F9F6F1;
+            --brand-dark: #333333;
+            --brand-gold: #C5A059;
+        }
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: var(--brand-beige);
+            color: var(--brand-dark);
+        }
+        .serif {
+            font-family: 'Noto Serif SC', serif;
+        }
+        .hero-bg {
+            background: radial-gradient(circle at 70% 50%, #ffffff 0%, var(--brand-beige) 70%);
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--brand-gold);
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .product-card img {
+            transition: transform 0.5s ease;
+        }
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-white/80 backdrop-blur-md">
+        <div class="flex items-center space-x-12">
+            <div class="text-2xl font-bold tracking-tighter serif">CC点心</div>
+            <div class="hidden md:flex space-x-8 text-sm tracking-widest uppercase">
+                <a href="#" class="nav-link">关于我们</a>
+                <a href="#" class="nav-link">饺子系列</a>
+                <a href="#" class="nav-link">店铺情报</a>
+            </div>
+        </div>
+        <div class="flex items-center space-x-6 text-sm">
+            <span class="text-gray-400">JP / CN</span>
+            <a href="#" class="border border-dark px-4 py-1 hover:bg-black hover:text-white transition">在线选购</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center px-8 md:px-24 hero-bg pt-20">
+        <div class="max-w-2xl z-10">
+            <div class="text-xs tracking-[0.3em] uppercase text-gray-500 mb-6">Artisanal Dim Sum</div>
+            <h2 class="text-xl md:text-2xl mb-2 serif text-gray-600">滴る旨味</h2>
+            <h1 class="text-6xl md:text-8xl mb-8 serif leading-tight">至福の<br>一滴</h1>
+            <p class="text-sm md:text-base text-gray-500 leading-relaxed mb-10 max-w-md">
+                皮を破れば溢れ出す、黄金色のスープ。<br>
+                厳選された素材と繊細な手仕事が織りなす、<br>
+                至福のひとときをお楽しみください。
+            </p>
+            <a href="#" class="inline-block bg-[#4A453E] text-white px-10 py-4 text-sm tracking-widest hover:bg-black transition">
+                查看菜单
+            </a>
+        </div>
+        <div class="absolute right-0 top-1/2 -translate-y-1/2 w-1/2 h-4/5 hidden md:block">
+            <img src="/Users/sunsx/.cursor/projects/Users-sunsx-Projects-ccdx/assets/hero-dumpling.png" alt="Hero Dumpling" class="w-full h-full object-contain">
+        </div>
+    </section>
+
+    <!-- Seasonal Collection -->
+    <section class="py-32 px-8 md:px-24 bg-white">
+        <div class="text-center mb-20">
+            <div class="text-xs tracking-[0.4em] uppercase text-gray-400 mb-4">Seasonal Collection</div>
+            <h2 class="text-4xl serif">季节之彩</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <!-- Product 1 -->
+            <div class="product-card text-center">
+                <div class="aspect-square overflow-hidden mb-6 bg-gray-50">
+                    <img src="/Users/sunsx/.cursor/projects/Users-sunsx-Projects-ccdx/assets/dumplings-trio.png" alt="Seasonal Dumpling" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-lg mb-2 serif">时令鲜虾蒸饺</h3>
+                <p class="text-xs text-gray-400 leading-relaxed">
+                    厳選された海老をたっぷり使い、包みたての美味しさを<br>お届けします。
+                </p>
+            </div>
+            <!-- Product 2 -->
+            <div class="product-card text-center">
+                <div class="aspect-square overflow-hidden mb-6 bg-gray-50">
+                    <img src="/Users/sunsx/.cursor/projects/Users-sunsx-Projects-ccdx/assets/dumplings-trio.png" alt="Classic Dumpling" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-lg mb-2 serif">特制猪肉白菜饺</h3>
+                <p class="text-xs text-gray-400 leading-relaxed">
+                    伝統的な製法を守り、ジューシーな肉の旨味を引き<br>出しました。
+                </p>
+            </div>
+            <!-- Product 3 -->
+            <div class="product-card text-center">
+                <div class="aspect-square overflow-hidden mb-6 bg-gray-50">
+                    <img src="/Users/sunsx/.cursor/projects/Users-sunsx-Projects-ccdx/assets/dumplings-trio.png" alt="Chive Dumpling" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-lg mb-2 serif">帆立与韭菜蒸饺</h3>
+                <p class="text-xs text-gray-400 leading-relaxed">
+                    新鮮な帆立とニラの香りが、口いっぱいに広がる<br>一品です。
+                </p>
+            </div>
+        </div>
+
+        <div class="text-center mt-20">
+            <a href="#" class="text-xs tracking-widest border-b border-gray-300 pb-2 hover:border-black transition">查看全部菜单</a>
+        </div>
+    </section>
+
+    <!-- Craftsmanship Section -->
+    <section class="py-32 px-8 md:px-24 flex flex-col md:flex-row items-center gap-20">
+        <div class="w-full md:w-1/2">
+            <div class="relative p-12 bg-[#FDFBF8]">
+                <img src="/Users/sunsx/.cursor/projects/Users-sunsx-Projects-ccdx/assets/logo.png" alt="Craftsmanship" class="w-full h-auto opacity-80">
+                <div class="absolute bottom-8 left-8 text-sm serif italic">「美しさ」を<br>食べる。</div>
+            </div>
+        </div>
+        <div class="w-full md:w-1/2 space-y-8">
+            <div class="text-xs tracking-widest text-gray-400 uppercase">Our Story</div>
+            <h2 class="text-4xl serif leading-tight">职人的手仕事。<br><span class="text-2xl text-gray-400">洗练された优しさを込めて。</span></h2>
+            <p class="text-sm text-gray-500 leading-loose">
+                CC点心は、伝統的な点心の技法に、現代の感性を融合させた新しいスタイルのレストランです。<br><br>
+                私たちの厨房では、一つひとつ丁寧に皮を延ばし、餡を包んでいます。機械では再現できない、手仕事ならではの食感と味わいを追求。素材本来の優しい色と香りを大切にした点心は、まるで五感を潤すような輝きを放ちます。
+            </p>
+            <div class="flex space-x-12 pt-6">
+                <div>
+                    <div class="text-2xl serif">0%</div>
+                    <div class="text-[10px] text-gray-400 tracking-widest uppercase">Additives</div>
+                </div>
+                <div>
+                    <div class="text-2xl serif">100%</div>
+                    <div class="text-[10px] text-gray-400 tracking-widest uppercase">Handmade</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white pt-24 pb-12 px-8 md:px-24 border-t border-gray-100">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+            <div class="col-span-1 md:col-span-1">
+                <div class="text-2xl font-bold serif mb-6">CC点心</div>
+                <p class="text-xs text-gray-400 leading-relaxed">
+                    东京 · 银座<br>
+                    心を満たす、ハンドメイドの点心。
+                </p>
+                <div class="flex space-x-4 mt-8">
+                    <!-- Social Icons Placeholder -->
+                    <div class="w-4 h-4 bg-gray-200 rounded-full"></div>
+                    <div class="w-4 h-4 bg-gray-200 rounded-full"></div>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-xs font-bold tracking-widest mb-6 uppercase">导航</h4>
+                <ul class="text-xs text-gray-400 space-y-4">
+                    <li><a href="#" class="hover:text-black transition">首页</a></li>
+                    <li><a href="#" class="hover:text-black transition">点心菜单</a></li>
+                    <li><a href="#" class="hover:text-black transition">我们的坚持</a></li>
+                    <li><a href="#" class="hover:text-black transition">联系我们</a></li>
+                </ul>
+            </div>
+            <div class="col-span-1 md:col-span-2">
+                <h4 class="text-xs font-bold tracking-widest mb-6 uppercase">店铺情报</h4>
+                <div class="text-xs text-gray-400 space-y-2">
+                    <p>住所：東京都中央区銀座 5-8-1</p>
+                    <p>電話：03-1234-5678</p>
+                    <p>時間：11:30 - 22:00 (L.O. 21:00)</p>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col md:flex-row justify-between items-center text-[10px] text-gray-300 tracking-widest uppercase border-t border-gray-50 pt-12">
+            <p>© 2026 CC DIM SUM. ALL RIGHTS RESERVED.</p>
+            <div class="flex space-x-8 mt-4 md:mt-0">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
