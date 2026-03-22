@@ -85,20 +85,12 @@
             color: var(--brand-dark);
             font-weight: 500;
         }
-        /* Desktop Container Optimization */
-        @media (min-width: 1280px) {
-            .container-custom {
-                max-width: 1200px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-        }
     </style>
 </head>
 <body class="antialiased">
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 px-6 md:px-12 py-4 md:py-5 flex justify-between items-center bg-white/60 backdrop-blur-lg border-b border-white/20">
+    <nav class="fixed top-0 w-full z-50 px-6 md:px-12 py-3 md:py-4 flex justify-between items-center bg-white/60 backdrop-blur-lg border-b border-white/20">
         <div class="flex items-center space-x-12">
             <div class="text-xl md:text-2xl font-bold tracking-tighter serif">CC点心</div>
             <div class="hidden md:flex space-x-8 text-sm tracking-widest uppercase">
@@ -141,154 +133,146 @@
     </div>
 
     <!-- Hero Section -->
-    <section class="relative min-h-[85vh] md:min-h-screen flex flex-col md:flex-row items-center px-6 md:px-16 hero-bg pt-24 md:pt-0 overflow-hidden">
-        <div class="container-custom flex flex-col md:flex-row items-center w-full">
-            <div class="w-full md:w-1/2 z-10 fade-in text-center md:text-left md:pr-12">
-                <div class="text-[10px] md:text-xs tracking-[0.4em] uppercase text-gray-400 mb-4 md:mb-6 i18n" data-zh="Artisanal Handmade Jiaozi" data-jp="職人による手作り餃子">Artisanal Handmade Jiaozi</div>
-                <h2 class="text-lg md:text-2xl mb-1 md:mb-2 serif text-gray-500 font-light i18n" data-zh="溢出的美味" data-jp="溢れる旨味">溢れる旨味</h2>
-                <h1 class="text-5xl md:text-7xl lg:text-8xl mb-6 md:mb-8 serif leading-tight text-[#1a1a1a] i18n" data-zh="至福的一粒" data-jp="至福の一粒">至福の<br>一粒</h1>
-                <p class="text-xs md:text-base text-gray-400 leading-relaxed mb-8 md:mb-10 max-w-md mx-auto md:mx-0 font-light px-4 md:px-0 i18n" 
-                   data-zh="手包的温情，满溢的食材鲜美。严选食材与细腻手作交织，请尽情享受这至福的美味时刻。" 
-                   data-jp="手包みの温もり、溢れ出す素材の旨味. 厳選された素材と繊細な手仕事が織りなす、澄み渡る美味しさをお楽しみください。">
-                    手包みの温もり、溢れ出す素材の旨味。<br>
-                    厳選された素材と繊細な手仕事が織りなす、<br>
-                    澄み渡る美味しさをお楽しみください。
-                </p>
-                <a href="#" class="inline-block bg-[#2D2D2D] text-white px-10 md:px-12 py-3 md:py-4 text-xs md:text-sm tracking-[0.2em] hover:bg-black transition-all shadow-sm i18n" data-zh="查看菜单" data-jp="メニューを見る">
-                    查看菜单
-                </a>
-            </div>
-            <div class="relative w-full md:w-1/2 h-[40vh] md:h-[70vh] mt-8 md:mt-0 fade-in flex items-center justify-center md:justify-end" style="animation-delay: 0.3s;">
-                <img src="assets/hero-jiaozi-bright.png" alt="Handmade Jiaozi" class="w-full h-full object-contain object-center md:object-right scale-110 md:scale-125 origin-center md:origin-right">
-            </div>
+    <section class="relative min-h-[70vh] md:min-h-[85vh] flex flex-col md:flex-row items-center px-6 md:px-16 hero-bg pt-20 md:pt-0 overflow-hidden">
+        <div class="w-full md:w-1/2 z-10 fade-in text-center md:text-left md:pr-12">
+            <div class="text-[10px] md:text-xs tracking-[0.4em] uppercase text-gray-400 mb-3 md:mb-4 i18n" data-zh="Artisanal Handmade Jiaozi" data-jp="職人による手作り餃子">Artisanal Handmade Jiaozi</div>
+            <h2 class="text-lg md:text-2xl mb-1 md:mb-2 serif text-gray-500 font-light i18n" data-zh="溢出的美味" data-jp="溢れる旨味">溢れる旨味</h2>
+            <h1 class="text-5xl md:text-7xl lg:text-8xl mb-4 md:mb-6 serif leading-tight text-[#1a1a1a] i18n" data-zh="至福的一粒" data-jp="至福の一粒">至福の<br>一粒</h1>
+            <p class="text-xs md:text-base text-gray-400 leading-relaxed mb-6 md:mb-8 max-w-md mx-auto md:mx-0 font-light px-4 md:px-0 i18n" 
+               data-zh="手包的温情，满溢的食材鲜美。严选食材与细腻手作交织，请尽情享受这至福的美味时刻。" 
+               data-jp="手包みの温もり、溢れ出す素材の旨味。厳選された素材と繊細な手仕事が織りなす、澄み渡る美味しさをお楽しみください。">
+                手包みの温もり、溢れ出す素材の旨味。<br>
+                厳選された素材と繊細な手仕事が織りなす、<br>
+                澄み渡る美味しさをお楽しみください。
+            </p>
+            <a href="#" class="inline-block bg-[#2D2D2D] text-white px-10 md:px-12 py-3 md:py-4 text-xs md:text-sm tracking-[0.2em] hover:bg-black transition-all shadow-sm i18n" data-zh="查看菜单" data-jp="メニューを見る">
+                查看菜单
+            </a>
+        </div>
+        <div class="relative w-full md:w-1/2 h-[35vh] md:h-[65vh] mt-6 md:mt-0 fade-in flex items-center justify-center md:justify-end" style="animation-delay: 0.3s;">
+            <img src="assets/hero-jiaozi-bright.png" alt="Handmade Jiaozi" class="w-full h-full object-contain object-center md:object-right scale-110 md:scale-125 origin-center md:origin-right">
         </div>
     </section>
 
     <!-- Seasonal Collection -->
-    <section class="py-16 md:py-24 px-6 md:px-16 bg-white">
-        <div class="container-custom">
-            <div class="text-center mb-12 md:mb-16">
-                <div class="text-[10px] md:text-xs tracking-[0.5em] uppercase text-gray-300 mb-3 i18n" data-zh="Seasonal Collection" data-jp="季節のコレクション">Seasonal Collection</div>
-                <h2 class="text-3xl md:text-4xl serif text-[#1a1a1a] i18n" data-zh="季节之彩" data-jp="季節の彩り">季节之彩</h2>
-            </div>
+    <section class="py-12 md:py-16 px-6 md:px-16 bg-white">
+        <div class="text-center mb-10 md:mb-12">
+            <div class="text-[10px] md:text-xs tracking-[0.5em] uppercase text-gray-300 mb-2 i18n" data-zh="Seasonal Collection" data-jp="季節のコレクション">Seasonal Collection</div>
+            <h2 class="text-3xl md:text-4xl serif text-[#1a1a1a] i18n" data-zh="季节之彩" data-jp="季節の彩り">季节之彩</h2>
+        </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
-                <!-- Product 1 -->
-                <div class="product-card text-center group">
-                    <div class="aspect-[4/5] overflow-hidden mb-5 md:mb-6 bg-[#F9F9F9] rounded-sm">
-                        <img src="assets/shrimp-jiaozi.png" alt="Shrimp Jiaozi" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="text-lg md:text-xl mb-2 serif text-[#1a1a1a] i18n" data-zh="时令鲜虾水饺" data-jp="季節の海老水餃子">时令鲜虾水饺</h3>
-                    <p class="text-[11px] md:text-xs text-gray-400 leading-relaxed px-4 i18n" 
-                       data-zh="晶莹剔透的皮包裹着整颗鲜虾，每一口都是大海的鲜甜。" 
-                       data-jp="透明感のある皮に包まれたぷりぷりの海老。一口ごとに海の幸の甘みが広がります。">
-                        晶莹剔透的皮包裹着整颗鲜虾，每一口都是大海的鲜甜。
-                    </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
+            <!-- Product 1 -->
+            <div class="product-card text-center group">
+                <div class="aspect-[4/5] overflow-hidden mb-4 md:mb-5 bg-[#F9F9F9] rounded-sm">
+                    <img src="assets/shrimp-jiaozi.png" alt="Shrimp Jiaozi" class="w-full h-full object-cover">
                 </div>
-                <!-- Product 2 -->
-                <div class="product-card text-center group">
-                    <div class="aspect-[4/5] overflow-hidden mb-5 md:mb-6 bg-[#F9F9F9] rounded-sm">
-                        <img src="assets/pork-cabbage-jiaozi.png" alt="Pork Cabbage Jiaozi" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="text-lg md:text-xl mb-2 serif text-[#1a1a1a] i18n" data-zh="特制猪肉白菜饺" data-jp="特製豚肉白菜餃子">特制猪肉白菜饺</h3>
-                    <p class="text-[11px] md:text-xs text-gray-400 leading-relaxed px-4 i18n" 
-                       data-zh="传统比例调配的肉馅与爽脆白菜，还原最纯粹的家常味道。" 
-                       data-jp="伝統的な黄金比で仕上げた肉餡とシャキシャキの白菜。家庭の味を再現しました。">
-                        传统比例调配的肉馅与爽脆白菜，还原最纯粹的家常味道。
-                    </p>
-                </div>
-                <!-- Product 3 -->
-                <div class="product-card text-center group">
-                    <div class="aspect-[4/5] overflow-hidden mb-5 md:mb-6 bg-[#F9F9F9] rounded-sm">
-                        <img src="assets/egg-chive-jiaozi.png" alt="Egg Chive Jiaozi" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="text-lg md:text-xl mb-2 serif text-[#1a1a1a] i18n" data-zh="经典鸡蛋韭菜水饺" data-jp="定番ニラ玉水餃子">经典鸡蛋韭菜水饺</h3>
-                    <p class="text-[11px] md:text-xs text-gray-400 leading-relaxed px-4 i18n" 
-                       data-zh="鲜嫩韭菜与金黄炒蛋的经典组合，清香扑鼻，素雅而不失鲜美。" 
-                       data-jp="新鮮なニラとふんわり卵の黄金コンビ。香り高く、上品で深みのある味わいです。">
-                        鲜嫩韭菜与金黄炒蛋的经典组合，清香扑鼻，素雅而不失鲜美。
-                    </p>
-                </div>
+                <h3 class="text-lg md:text-xl mb-1 md:mb-2 serif text-[#1a1a1a] i18n" data-zh="时令鲜虾水饺" data-jp="季節の海老水餃子">时令鲜虾水饺</h3>
+                <p class="text-[11px] md:text-xs text-gray-400 leading-relaxed px-4 i18n" 
+                   data-zh="晶莹剔透的皮包裹着整颗鲜虾，每一口都是大海的鲜甜。" 
+                   data-jp="透明感のある皮に包まれたぷりぷりの海老。一口ごとに海の幸の甘みが広がります。">
+                    晶莹剔透的皮包裹着整颗鲜虾，每一口都是大海的鲜甜。
+                </p>
             </div>
+            <!-- Product 2 -->
+            <div class="product-card text-center group">
+                <div class="aspect-[4/5] overflow-hidden mb-4 md:mb-5 bg-[#F9F9F9] rounded-sm">
+                    <img src="assets/pork-cabbage-jiaozi.png" alt="Pork Cabbage Jiaozi" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-lg md:text-xl mb-1 md:mb-2 serif text-[#1a1a1a] i18n" data-zh="特制猪肉白菜饺" data-jp="特製豚肉白菜餃子">特制猪肉白菜饺</h3>
+                <p class="text-[11px] md:text-xs text-gray-400 leading-relaxed px-4 i18n" 
+                   data-zh="传统比例调配的肉馅与爽脆白菜，还原最纯粹的家常味道。" 
+                   data-jp="伝統的な黄金比で仕上げた肉餡とシャキシャキの白菜。家庭の味を再現しました。">
+                    传统比例调配的肉馅与爽脆白菜，还原最纯粹的家常味道。
+                </p>
+            </div>
+            <!-- Product 3 -->
+            <div class="product-card text-center group">
+                <div class="aspect-[4/5] overflow-hidden mb-4 md:mb-5 bg-[#F9F9F9] rounded-sm">
+                    <img src="assets/egg-chive-jiaozi.png" alt="Egg Chive Jiaozi" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-lg md:text-xl mb-1 md:mb-2 serif text-[#1a1a1a] i18n" data-zh="经典鸡蛋韭菜水饺" data-jp="定番ニラ玉水餃子">经典鸡蛋韭菜水饺</h3>
+                <p class="text-[11px] md:text-xs text-gray-400 leading-relaxed px-4 i18n" 
+                   data-zh="鲜嫩韭菜与金黄炒蛋的经典组合，清香扑鼻，素雅而不失鲜美。" 
+                   data-jp="新鮮なニラとふんわり卵の黄金コンビ。香り高く、上品で深みのある味わいです。">
+                    鲜嫩韭菜与金黄炒蛋的经典组合，清香扑鼻，素雅而不失鲜美。
+                </p>
+            </div>
+        </div>
 
-            <div class="text-center mt-12 md:mt-16">
-                <a href="#" class="text-[10px] md:text-xs tracking-[0.3em] border-b border-gray-200 pb-2 hover:border-black transition-all duration-300 text-gray-400 hover:text-black i18n" data-zh="查看全部菜单" data-jp="すべてのメニューを見る">查看全部菜单</a>
-            </div>
+        <div class="text-center mt-10 md:mt-12">
+            <a href="#" class="text-[10px] md:text-xs tracking-[0.3em] border-b border-gray-200 pb-2 hover:border-black transition-all duration-300 text-gray-400 hover:text-black i18n" data-zh="查看全部菜单" data-jp="すべてのメニューを見る">查看全部菜单</a>
         </div>
     </section>
 
     <!-- Craftsmanship Section -->
-    <section class="py-16 md:py-24 px-6 md:px-16 bg-[#FCFAF7]">
-        <div class="container-custom flex flex-col md:flex-row items-center gap-10 md:gap-16">
-            <div class="w-full md:w-1/2">
-                <div class="relative p-6 md:p-12 bg-white shadow-sm rounded-sm overflow-hidden">
-                    <img src="assets/story-jiaozi.png" alt="Handmade Jiaozi Craftsmanship" class="w-full h-auto object-cover opacity-95">
-                    <div class="absolute bottom-6 md:bottom-10 left-6 md:left-10 text-[10px] md:text-sm serif italic text-gray-500 i18n" data-zh="品味「美」" data-jp="「美しさ」を食べる。">「美しさ」を食べる。</div>
-                </div>
+    <section class="py-12 md:py-16 px-6 md:px-16 flex flex-col md:flex-row items-center gap-10 md:gap-16 bg-[#FCFAF7]">
+        <div class="w-full md:w-1/2">
+            <div class="relative p-6 md:p-10 bg-white shadow-sm rounded-sm overflow-hidden">
+                <img src="assets/story-jiaozi.png" alt="Handmade Jiaozi Craftsmanship" class="w-full h-auto object-cover opacity-95">
+                <div class="absolute bottom-6 md:bottom-10 left-6 md:left-10 text-[10px] md:text-sm serif italic text-gray-500 i18n" data-zh="品味「美」" data-jp="「美しさ」を食べる。">「美しさ」を食べる。</div>
             </div>
-            <div class="w-full md:w-1/2 space-y-6 md:space-y-8 text-center md:text-left">
-                <div class="text-[10px] md:text-xs tracking-[0.4em] text-gray-300 uppercase i18n" data-zh="Our Story" data-jp="私たちの物語">Our Story</div>
-                <h2 class="text-3xl md:text-4xl serif leading-tight text-[#1a1a1a] i18n" data-zh="职人的手作。注入洗练的温柔。" data-jp="職人の手仕事。洗練された優しさを込めて。">职人的手仕事。<br><span class="text-xl md:text-2xl text-gray-400 font-light">洗练された优しさを込めて。</span></h2>
-                <p class="text-[13px] md:text-sm text-gray-400 leading-loose font-light i18n" 
-                   data-zh="CC点心是一家将传统饺子技艺与现代感性融合的新型餐厅。在我们的厨房里，每一张皮都经过精心擀制，每一个馅都由手工包制。我们追求机器无法复刻的手作食感与风味。珍视食材本真的色泽与香气，每一只饺子都散发着润泽五感的辉芒。" 
-                   data-jp="CC点心は、伝統的な餃子の技法に、現代の感性を融合させた新しいスタイルのレストランです。私たちの厨房では、一つひとつ丁寧に皮を延ばし、餡を包んでいます。機械では再現できない、手仕事ならではの食感と味わいを追求。素材本来の優しい色と香りを大切にした餃子は、まるで五感を潤すような輝きを放ちます。">
-                    CC点心は、伝統的な餃子の技法に、現代の感性を融合させた新しいスタイルのレストランです。我们的厨房では、一つひとつ丁寧に皮を延ばし、餡を包んでいます。机械では再現できない、手仕事ならではの食感和味わいを追求。素材本来の優しい色と香りを大切にした饺子は、まるで五感を润すような辉きを放ちます。
-                </p>
-                <div class="flex justify-center md:justify-start space-x-12 md:space-x-16 pt-2 md:pt-4">
-                    <div>
-                        <div class="text-2xl md:text-3xl serif text-[#1a1a1a]">0%</div>
-                        <div class="text-[9px] md:text-[10px] text-gray-300 tracking-[0.3em] uppercase mt-1 i18n" data-zh="Additives" data-jp="添加物不使用">Additives</div>
-                    </div>
-                    <div>
-                        <div class="text-2xl md:text-3xl serif text-[#1a1a1a]">100%</div>
-                        <div class="text-[9px] md:text-[10px] text-gray-300 tracking-[0.3em] uppercase mt-1 i18n" data-zh="Handmade" data-jp="職人手作り">Handmade</div>
-                    </div>
+        </div>
+        <div class="w-full md:w-1/2 space-y-5 md:space-y-6 text-center md:text-left">
+            <div class="text-[10px] md:text-xs tracking-[0.4em] text-gray-300 uppercase i18n" data-zh="Our Story" data-jp="私たちの物語">Our Story</div>
+            <h2 class="text-3xl md:text-4xl serif leading-tight text-[#1a1a1a] i18n" data-zh="职人的手作。注入洗练的温柔。" data-jp="職人の手仕事。洗練された優しさを込めて。">职人的手仕事。<br><span class="text-xl md:text-2xl text-gray-400 font-light">洗练された优しさを込めて。</span></h2>
+            <p class="text-[13px] md:text-sm text-gray-400 leading-loose font-light i18n" 
+               data-zh="CC点心是一家将传统饺子技艺与现代感性融合的新型餐厅。在我们的厨房里，每一张皮都经过精心擀制，每一个馅都由手工包制。我们追求机器无法复刻的手作食感与风味。珍视食材本真的色泽与香气，每一只饺子都散发着润泽五感的辉芒。" 
+               data-jp="CC点心は、伝統的な餃子の技法に、現代の感性を融合させた新しいスタイルのレストランです。私たちの厨房では、一つひとつ丁寧に皮を延ばし、餡を包んでいます。機械では再現できない、手仕事ならではの食感と味わいを追求。素材本来の優しい色と香りを大切にした餃子は、まるで五感を潤すような輝きを放ちます。">
+                CC点心は、伝統的な餃子の技法に、現代の感性を融合させた新しいスタイルのレストランです。我们的厨房では、一つひとつ丁寧に皮を延ばし、餡を包んでいます。机械では再現できない、手仕事ならではの食感和味わいを追求。素材本来の優しい色と香りを大切にした饺子は、まるで五感を润すような辉きを放ちます。
+            </p>
+            <div class="flex justify-center md:justify-start space-x-12 md:space-x-16 pt-2 md:pt-4">
+                <div>
+                    <div class="text-2xl md:text-3xl serif text-[#1a1a1a]">0%</div>
+                    <div class="text-[9px] md:text-[10px] text-gray-300 tracking-[0.3em] uppercase mt-1 i18n" data-zh="Additives" data-jp="添加物不使用">Additives</div>
+                </div>
+                <div>
+                    <div class="text-2xl md:text-3xl serif text-[#1a1a1a]">100%</div>
+                    <div class="text-[9px] md:text-[10px] text-gray-300 tracking-[0.3em] uppercase mt-1 i18n" data-zh="Handmade" data-jp="職人手作り">Handmade</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-white pt-16 md:pt-24 pb-12 px-6 md:px-16 border-t border-gray-50">
-        <div class="container-custom">
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 md:gap-16 mb-12 md:mb-16">
-                <div class="col-span-1">
-                    <div class="text-xl md:text-2xl font-bold serif mb-6 tracking-tighter">CC点心</div>
-                    <p class="text-[11px] md:text-xs text-gray-400 leading-relaxed font-light i18n" data-zh="东京 · 银座。满足心灵的手作点心。" data-jp="東京・銀座。心を満たす、ハンドメイドの点心。">
-                        东京 · 银座<br>
-                        心を満たす、ハンドメイドの点心。
-                    </p>
-                    <div class="flex space-x-6 mt-8">
-                        <div class="w-5 h-5 border border-gray-100 rounded-full flex items-center justify-center text-[9px] text-gray-300 hover:border-black hover:text-black transition-all cursor-pointer">IG</div>
-                        <div class="w-5 h-5 border border-gray-100 rounded-full flex items-center justify-center text-[9px] text-gray-300 hover:border-black hover:text-black transition-all cursor-pointer">FB</div>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="text-[10px] md:text-xs font-bold tracking-[0.4em] mb-6 uppercase text-[#1a1a1a] i18n" data-zh="导航" data-jp="ナビゲーション">导航</h4>
-                    <ul class="text-[11px] md:text-xs text-gray-400 space-y-4 font-light">
-                        <li><a href="#" class="hover:text-black transition-all i18n" data-zh="首页" data-jp="ホーム">首页</a></li>
-                        <li><a href="#" class="hover:text-black transition-all i18n" data-zh="饺子菜单" data-jp="餃子メニュー">饺子菜单</a></li>
-                        <li><a href="#" class="hover:text-black transition-all i18n" data-zh="我们的坚持" data-jp="こだわり">我们的坚持</a></li>
-                        <li><a href="#" class="hover:text-black transition-all i18n" data-zh="联系我们" data-jp="お問い合わせ">联系我们</a></li>
-                    </ul>
-                </div>
-                <div class="col-span-1 sm:col-span-2">
-                    <h4 class="text-[10px] md:text-xs font-bold tracking-[0.4em] mb-6 uppercase text-[#1a1a1a] i18n" data-zh="店铺情报" data-jp="店舗情報">店铺情报</h4>
-                    <div class="text-[11px] md:text-xs text-gray-400 space-y-2 font-light i18n" 
-                         data-zh="住所：东京都中央区银座 5-8-1 | 电话：03-1234-5678 | 时间：11:30 - 22:00 (L.O. 21:00)" 
-                         data-jp="住所：東京都中央区銀座 5-8-1 | 電話：03-1234-5678 | 時間：11:30 - 22:00 (L.O. 21:00)">
-                        <p>住所：東京都中央区銀座 5-8-1</p>
-                        <p>電話：03-1234-5678</p>
-                        <p>時間：11:30 - 22:00 (L.O. 21:00)</p>
-                    </div>
+    <footer class="bg-white pt-12 md:pt-16 pb-10 px-6 md:px-16 border-t border-gray-50">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 md:gap-16 mb-10 md:mb-12">
+            <div class="col-span-1">
+                <div class="text-xl md:text-2xl font-bold serif mb-6 tracking-tighter">CC点心</div>
+                <p class="text-[11px] md:text-xs text-gray-400 leading-relaxed font-light i18n" data-zh="东京 · 银座。满足心灵的手作点心。" data-jp="東京・銀座。心を満たす、ハンドメイドの点心。">
+                    东京 · 银座<br>
+                    心を満たす、ハンドメイドの点心。
+                </p>
+                <div class="flex space-x-6 mt-6">
+                    <div class="w-5 h-5 border border-gray-100 rounded-full flex items-center justify-center text-[9px] text-gray-300 hover:border-black hover:text-black transition-all cursor-pointer">IG</div>
+                    <div class="w-5 h-5 border border-gray-100 rounded-full flex items-center justify-center text-[9px] text-gray-300 hover:border-black hover:text-black transition-all cursor-pointer">FB</div>
                 </div>
             </div>
-            <div class="flex flex-col md:flex-row justify-between items-center text-[9px] md:text-[10px] text-gray-300 tracking-[0.3em] md:tracking-[0.4em] uppercase border-t border-gray-50 pt-12 text-center md:text-left">
-                <p>© 2026 CC DIM SUM. ALL RIGHTS RESERVED.</p>
-                <div class="flex space-x-8 md:space-x-12 mt-6 md:mt-0">
-                    <a href="#" class="hover:text-black transition-all">Privacy Policy</a>
-                    <a href="#" class="hover:text-black transition-all">Terms of Use</a>
+            <div>
+                <h4 class="text-[10px] md:text-xs font-bold tracking-[0.4em] mb-6 uppercase text-[#1a1a1a] i18n" data-zh="导航" data-jp="ナビゲーション">导航</h4>
+                <ul class="text-[11px] md:text-xs text-gray-400 space-y-3 font-light">
+                    <li><a href="#" class="hover:text-black transition-all i18n" data-zh="首页" data-jp="ホーム">首页</a></li>
+                    <li><a href="#" class="hover:text-black transition-all i18n" data-zh="饺子菜单" data-jp="餃子メニュー">饺子菜单</a></li>
+                    <li><a href="#" class="hover:text-black transition-all i18n" data-zh="我们的坚持" data-jp="こだわり">我们的坚持</a></li>
+                    <li><a href="#" class="hover:text-black transition-all i18n" data-zh="联系我们" data-jp="お問い合わせ">联系我们</a></li>
+                </ul>
+            </div>
+            <div class="col-span-1 sm:col-span-2">
+                <h4 class="text-[10px] md:text-xs font-bold tracking-[0.4em] mb-6 uppercase text-[#1a1a1a] i18n" data-zh="店铺情报" data-jp="店舗情報">店铺情报</h4>
+                <div class="text-[11px] md:text-xs text-gray-400 space-y-2 font-light i18n" 
+                     data-zh="住所：东京都中央区银座 5-8-1 | 电话：03-1234-5678 | 时间：11:30 - 22:00 (L.O. 21:00)" 
+                     data-jp="住所：東京都中央区銀座 5-8-1 | 電話：03-1234-5678 | 時間：11:30 - 22:00 (L.O. 21:00)">
+                    <p>住所：東京都中央区銀座 5-8-1</p>
+                    <p>電話：03-1234-5678</p>
+                    <p>時間：11:30 - 22:00 (L.O. 21:00)</p>
                 </div>
+            </div>
+        </div>
+        <div class="flex flex-col md:flex-row justify-between items-center text-[9px] md:text-[10px] text-gray-300 tracking-[0.3em] md:tracking-[0.4em] uppercase border-t border-gray-50 pt-10 text-center md:text-left">
+            <p>© 2026 CC DIM SUM. ALL RIGHTS RESERVED.</p>
+            <div class="flex space-x-8 md:space-x-12 mt-6 md:mt-0">
+                <a href="#" class="hover:text-black transition-all">Privacy Policy</a>
+                <a href="#" class="hover:text-black transition-all">Terms of Use</a>
             </div>
         </div>
     </footer>
