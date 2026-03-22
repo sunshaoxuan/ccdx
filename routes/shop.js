@@ -4,6 +4,15 @@ const Product = require('../models/Product');
 const Order = require('../models/Order');
 const { authMiddleware } = require('../middlewares/auth');
 
+// Shop routes
+router.get('/about', (req, res) => {
+    res.render('shop/about');
+});
+
+router.get('/info', (req, res) => {
+    res.render('shop/info');
+});
+
 // Home page
 router.get('/', async (req, res) => {
     try {
