@@ -1,0 +1,57 @@
+<%- include('../../partials/header') %>
+
+<section class="py-20 max-w-2xl mx-auto px-6">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl serif tracking-widest mb-4"><%= __('admin.edit_product') %></h2>
+        <div class="w-12 h-[1px] bg-[#D4B483] mx-auto"></div>
+    </div>
+
+    <form action="/admin/products/edit/<%= product._id %>" method="POST" enctype="multipart/form-data" class="space-y-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+                <label class="block text-[10px] tracking-widest text-gray-400 uppercase mb-2"><%= __('admin.name_zh') %></label>
+                <input type="text" name="name_zh" value="<%= product.name.zh %>" required class="w-full bg-white border border-gray-100 px-4 py-3 text-sm focus:outline-none focus:border-[#D4B483] transition-colors">
+            </div>
+            <div>
+                <label class="block text-[10px] tracking-widest text-gray-400 uppercase mb-2"><%= __('admin.name_jp') %></label>
+                <input type="text" name="name_jp" value="<%= product.name.jp %>" required class="w-full bg-white border border-gray-100 px-4 py-3 text-sm focus:outline-none focus:border-[#D4B483] transition-colors">
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+                <label class="block text-[10px] tracking-widest text-gray-400 uppercase mb-2"><%= __('admin.description_zh') || '中文描述' %></label>
+                <textarea name="description_zh" class="w-full bg-white border border-gray-100 px-4 py-3 text-sm focus:outline-none focus:border-[#D4B483] transition-colors"><%= product.description ? product.description.zh : '' %></textarea>
+            </div>
+            <div>
+                <label class="block text-[10px] tracking-widest text-gray-400 uppercase mb-2"><%= __('admin.description_jp') || '日文描述' %></label>
+                <textarea name="description_jp" class="w-full bg-white border border-gray-100 px-4 py-3 text-sm focus:outline-none focus:border-[#D4B483] transition-colors"><%= product.description ? product.description.jp : '' %></textarea>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+                <label class="block text-[10px] tracking-widest text-gray-400 uppercase mb-2"><%= __('admin.price') %></label>
+                <input type="number" name="price" value="<%= product.price %>" required class="w-full bg-white border border-gray-100 px-4 py-3 text-sm focus:outline-none focus:border-[#D4B483] transition-colors">
+            </div>
+            <div>
+                <label class="block text-[10px] tracking-widest text-gray-400 uppercase mb-2"><%= __('admin.category') %></label>
+                <input type="text" name="category" value="<%= product.category %>" class="w-full bg-white border border-gray-100 px-4 py-3 text-sm focus:outline-none focus:border-[#D4B483] transition-colors">
+            </div>
+        </div>
+
+        <div>
+            <label class="block text-[10px] tracking-widest text-gray-400 uppercase mb-2"><%= __('admin.image') %></label>
+            <div class="flex items-center space-x-6">
+                <img src="<%= product.imageUrl %>" class="w-16 h-16 object-cover border border-gray-100">
+                <input type="file" name="image" class="text-xs text-gray-400 file:mr-4 file:py-2 file:px-4 file:border-0 file:text-[10px] file:tracking-widest file:bg-gray-50 file:text-gray-400 hover:file:bg-[#D4B483] hover:file:text-white transition-all">
+            </div>
+        </div>
+
+        <button type="submit" class="w-full bg-[#2D2D2D] text-white py-4 text-[10px] tracking-[0.2em] hover:bg-[#D4B483] transition-colors duration-500 uppercase">
+            <%= __('admin.save') %>
+        </button>
+    </form>
+</section>
+
+<%- include('../../partials/footer') %>

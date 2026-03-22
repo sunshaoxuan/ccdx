@@ -1,0 +1,29 @@
+<%- include('../partials/header') %>
+
+<section class="py-20 max-w-7xl mx-auto px-6">
+    <div class="flex justify-between items-center mb-16">
+        <div>
+            <h2 class="text-3xl serif tracking-widest mb-2"><%= __('admin.dashboard') %></h2>
+            <p class="text-xs text-gray-400 tracking-widest font-light">ADMINISTRATION PANEL</p>
+        </div>
+        <div class="flex space-x-6">
+            <a href="/admin/products" class="text-xs tracking-widest border-b border-gray-200 pb-1 hover:border-[#D4B483] transition-colors"><%= __('admin.products') %></a>
+            <a href="/admin/orders" class="text-xs tracking-widest border-b border-gray-200 pb-1 hover:border-[#D4B483] transition-colors"><%= __('admin.orders') %></a>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="bg-white border border-gray-50 p-12 text-center">
+            <p class="text-[10px] tracking-widest text-gray-400 uppercase mb-4"><%= __('admin.products') %></p>
+            <p class="text-5xl serif mb-8"><%= productsCount %></p>
+            <a href="/admin/products" class="text-xs tracking-widest text-[#D4B483] hover:text-black transition-colors">VIEW ALL</a>
+        </div>
+        <div class="bg-white border border-gray-50 p-12 text-center">
+            <p class="text-[10px] tracking-widest text-gray-400 uppercase mb-4"><%= __('admin.orders') %></p>
+            <p class="text-5xl serif mb-8"><%= ordersCount %></p>
+            <a href="/admin/orders" class="text-xs tracking-widest text-[#D4B483] hover:text-black transition-colors">VIEW ALL</a>
+        </div>
+    </div>
+</section>
+
+<%- include('../partials/footer') %>

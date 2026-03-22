@@ -1,0 +1,56 @@
+{
+  "nav": {
+    "home": "ホーム",
+    "menu": "餃子シリーズ",
+    "about": "私たちについて",
+    "info": "店舗情報",
+    "login": "ログイン",
+    "logout": "ログアウト",
+    "register": "新規登録",
+    "admin": "管理画面",
+    "cart": "カート",
+    "orders": "注文履歴"
+  },
+  "home": {
+    "hero_title": "至福の一粒",
+    "hero_subtitle": "手作りの温もりを伝え、素材本来の味を再現する",
+    "order_now": "今すぐ注文",
+    "seasonal_title": "季節のおすすめ",
+    "craft_title": "匠の手作り",
+    "craft_subtitle": "一つ一つの餃子に、品質へのこだわりを込めて"
+  },
+  "admin": {
+    "dashboard": "ダッシュボード",
+    "products": "商品管理",
+    "orders": "注文管理",
+    "add_product": "商品追加",
+    "edit_product": "商品編集",
+    "name_zh": "中国語名",
+    "name_jp": "日本語名",
+    "price": "価格",
+    "category": "カテゴリー",
+    "image": "画像",
+    "actions": "操作",
+    "save": "保存",
+    "delete": "削除"
+  },
+  "cart": {
+    "title": "ショッピングカート",
+    "empty": "カートは空です",
+    "total": "合計",
+    "checkout": "レジへ進む",
+    "add_to_cart": "カートに入れる"
+  },
+  "order": {
+    "history": "注文履歴",
+    "id": "注文番号",
+    "date": "日付",
+    "status": "ステータス",
+    "amount": "金額",
+    "pending": "保留中",
+    "paid": "支払い済み",
+    "shipped": "発送済み",
+    "completed": "完了",
+    "cancelled": "キャンセル"
+  }
+}

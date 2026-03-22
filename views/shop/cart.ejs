@@ -1,0 +1,120 @@
+<%- include('../partials/header') %>
+
+<section class="py-20 max-w-4xl mx-auto px-6">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl serif tracking-widest mb-4"><%= __('cart.title') %></h2>
+        <div class="w-12 h-[1px] bg-[#D4B483] mx-auto"></div>
+    </div>
+
+    <div id="cart-container">
+        <!-- Cart items will be rendered here by JS -->
+    </div>
+
+    <div id="cart-summary" class="mt-12 border-t border-gray-100 pt-8 hidden">
+        <div class="flex justify-between items-center mb-8">
+            <span class="text-sm tracking-widest text-gray-400"><%= __('cart.total') %></span>
+            <span id="cart-total" class="text-2xl serif">￥0</span>
+        </div>
+        <button onclick="checkout()" class="w-full bg-[#2D2D2D] text-white py-4 text-xs tracking-[0.2em] hover:bg-[#D4B483] transition-colors duration-500">
+            <%= __('cart.checkout') %>
+        </button>
+    </div>
+
+    <div id="cart-empty" class="text-center py-20 hidden">
+        <p class="text-gray-400 text-sm tracking-widest mb-8"><%= __('cart.empty') %></p>
+        <a href="/menu" class="text-xs tracking-widest border-b border-gray-200 pb-1 hover:border-[#D4B483] transition-colors"><%= __('nav.menu') %></a>
+    </div>
+</section>
+
+<%- include('../partials/footer') %>
+
+<script>
+    function renderCart() {
+        const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        const container = document.getElementById('cart-container');
+        const summary = document.getElementById('cart-summary');
+        const empty = document.getElementById('cart-empty');
+
+        if (cart.length === 0) {
+            container.innerHTML = '';
+            summary.classList.add('hidden');
+            empty.classList.remove('hidden');
+            return;
+        }
+
+        empty.classList.add('hidden');
+        summary.classList.remove('hidden');
+
+        let html = '<div class="space-y-8">';
+        let total = 0;
+
+        cart.forEach((item, index) => {
+            total += item.price * item.quantity;
+            html += `
+                <div class="flex items-center justify-between border-b border-gray-50 pb-8">
+                    <div>
+                        <h3 class="serif text-lg mb-1">${item.name}</h3>
+                        <p class="text-xs text-gray-400">￥${item.price} x ${item.quantity}</p>
+                    </div>
+                    <div class="flex items-center space-x-6">
+                        <div class="flex items-center border border-gray-100">
+                            <button onclick="updateQty(${index}, -1)" class="px-3 py-1 hover:bg-gray-50">-</button>
+                            <span class="px-3 text-sm">${item.quantity}</span>
+                            <button onclick="updateQty(${index}, 1)" class="px-3 py-1 hover:bg-gray-50">+</button>
+                        </div>
+                        <button onclick="removeItem(${index})" class="text-xs text-gray-300 hover:text-red-400">×</button>
+                    </div>
+                </div>
+            `;
+        });
+
+        html += '</div>';
+        container.innerHTML = html;
+        document.getElementById('cart-total').textContent = '￥' + total;
+    }
+
+    function updateQty(index, delta) {
+        let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        cart[index].quantity += delta;
+        if (cart[index].quantity < 1) cart[index].quantity = 1;
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+    }
+
+    function removeItem(index) {
+        let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        cart.splice(index, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+    }
+
+    async function checkout() {
+        <% if (!user) { %>
+            window.location.href = '/login';
+            return;
+        <% } %>
+
+        const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+        try {
+            const response = await fetch('/place-order', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ items: cart, totalAmount: total })
+            });
+            const result = await response.json();
+            if (result.success) {
+                localStorage.removeItem('cart');
+                alert('<%= lang === "zh" ? "订单已提交！请准备现金支付。" : "注文が完了しました！現金をご用意ください。" %>');
+                window.location.href = '/orders';
+            } else {
+                alert('Error: ' + result.message);
+            }
+        } catch (err) {
+            alert('An error occurred during checkout');
+        }
+    }
+
+    renderCart();
+</script>

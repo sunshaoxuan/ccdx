@@ -1,0 +1,46 @@
+<%- include('../partials/header') %>
+
+<section class="py-20 max-w-7xl mx-auto px-6">
+    <div class="flex justify-between items-center mb-16">
+        <h2 class="text-3xl serif tracking-widest"><%= __('admin.products') %></h2>
+        <a href="/admin/products/add" class="bg-[#2D2D2D] text-white px-8 py-3 text-[10px] tracking-widest hover:bg-[#D4B483] transition-colors duration-500">
+            <%= __('admin.add_product') %>
+        </a>
+    </div>
+
+    <div class="overflow-x-auto">
+        <table class="w-full text-left">
+            <thead>
+                <tr class="border-b border-gray-100">
+                    <th class="pb-6 text-[10px] tracking-widest text-gray-400 uppercase font-light"><%= __('admin.image') %></th>
+                    <th class="pb-6 text-[10px] tracking-widest text-gray-400 uppercase font-light"><%= __('admin.name_zh') %></th>
+                    <th class="pb-6 text-[10px] tracking-widest text-gray-400 uppercase font-light"><%= __('admin.name_jp') %></th>
+                    <th class="pb-6 text-[10px] tracking-widest text-gray-400 uppercase font-light"><%= __('admin.price') %></th>
+                    <th class="pb-6 text-[10px] tracking-widest text-gray-400 uppercase font-light text-right"><%= __('admin.actions') %></th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-50">
+                <% products.forEach(product => { %>
+                    <tr>
+                        <td class="py-6">
+                            <img src="<%= product.imageUrl %>" class="w-12 h-12 object-cover">
+                        </td>
+                        <td class="py-6 text-sm font-light"><%= product.name.zh %></td>
+                        <td class="py-6 text-sm font-light"><%= product.name.jp %></td>
+                        <td class="py-6 text-sm font-light">￥<%= product.price %></td>
+                        <td class="py-6 text-right">
+                            <div class="flex justify-end space-x-4">
+                                <a href="/admin/products/edit/<%= product._id %>" class="text-[10px] tracking-widest text-gray-400 hover:text-[#D4B483]">EDIT</a>
+                                <form action="/admin/products/delete/<%= product._id %>" method="POST" onsubmit="return confirm('Confirm delete?')">
+                                    <button type="submit" class="text-[10px] tracking-widest text-gray-400 hover:text-red-400">DELETE</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<%- include('../partials/footer') %>

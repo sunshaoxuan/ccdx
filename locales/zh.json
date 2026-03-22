@@ -1,0 +1,56 @@
+{
+  "nav": {
+    "home": "首页",
+    "menu": "饺子系列",
+    "about": "关于我们",
+    "info": "店铺情报",
+    "login": "登录",
+    "logout": "退出",
+    "register": "注册",
+    "admin": "管理后台",
+    "cart": "购物车",
+    "orders": "订单记录"
+  },
+  "home": {
+    "hero_title": "至福的一粒",
+    "hero_subtitle": "传承手作温度，还原食材本味",
+    "order_now": "立即订购",
+    "seasonal_title": "时令推荐",
+    "craft_title": "匠心手作",
+    "craft_subtitle": "每一只饺子，都是对品质的坚持"
+  },
+  "admin": {
+    "dashboard": "控制面板",
+    "products": "产品管理",
+    "orders": "订单管理",
+    "add_product": "添加产品",
+    "edit_product": "编辑产品",
+    "name_zh": "中文名称",
+    "name_jp": "日文名称",
+    "price": "价格",
+    "category": "分类",
+    "image": "图片",
+    "actions": "操作",
+    "save": "保存",
+    "delete": "删除"
+  },
+  "cart": {
+    "title": "我的购物车",
+    "empty": "购物车是空的",
+    "total": "总计",
+    "checkout": "去结算",
+    "add_to_cart": "加入购物车"
+  },
+  "order": {
+    "history": "历史订单",
+    "id": "订单编号",
+    "date": "日期",
+    "status": "状态",
+    "amount": "金额",
+    "pending": "待处理",
+    "paid": "已支付",
+    "shipped": "已发货",
+    "completed": "已完成",
+    "cancelled": "已取消"
+  }
+}
