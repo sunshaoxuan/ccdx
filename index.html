@@ -8,9 +8,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --brand-beige: #F9F6F1;
-            --brand-dark: #333333;
-            --brand-gold: #C5A059;
+            --brand-beige: #FCFAF7; /* 更亮的米白 */
+            --brand-dark: #2D2D2D;
+            --brand-gold: #D4B483; /* 更明亮的金色 */
         }
         body {
             font-family: 'Noto Sans SC', sans-serif;
@@ -21,7 +21,7 @@
             font-family: 'Noto Serif SC', serif;
         }
         .hero-bg {
-            background: radial-gradient(circle at 70% 50%, #ffffff 0%, var(--brand-beige) 70%);
+            background: radial-gradient(circle at 70% 50%, #ffffff 0%, var(--brand-beige) 100%);
         }
         .nav-link {
             position: relative;
@@ -41,17 +41,24 @@
             width: 100%;
         }
         .product-card img {
-            transition: transform 0.5s ease;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .product-card:hover img {
-            transform: scale(1.05);
+            transform: scale(1.03);
+        }
+        .fade-in {
+            animation: fadeIn 1.2s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body class="antialiased">
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-white/80 backdrop-blur-md">
+    <nav class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-white/60 backdrop-blur-lg border-b border-white/20">
         <div class="flex items-center space-x-12">
             <div class="text-2xl font-bold tracking-tighter serif">CC点心</div>
             <div class="hidden md:flex space-x-8 text-sm tracking-widest uppercase">
@@ -62,140 +69,140 @@
         </div>
         <div class="flex items-center space-x-6 text-sm">
             <span class="text-gray-400">JP / CN</span>
-            <a href="#" class="border border-dark px-4 py-1 hover:bg-black hover:text-white transition">在线选购</a>
+            <a href="#" class="border border-dark px-6 py-2 hover:bg-black hover:text-white transition-all duration-300 tracking-widest">在线选购</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center px-8 md:px-24 hero-bg pt-20">
-        <div class="max-w-2xl z-10">
-            <div class="text-xs tracking-[0.3em] uppercase text-gray-500 mb-6">Artisanal Handmade Jiaozi</div>
-            <h2 class="text-xl md:text-2xl mb-2 serif text-gray-600">溢れる旨味</h2>
-            <h1 class="text-6xl md:text-8xl mb-8 serif leading-tight">至福の<br>一粒</h1>
-            <p class="text-sm md:text-base text-gray-500 leading-relaxed mb-10 max-w-md">
+    <section class="relative min-h-screen flex items-center px-8 md:px-24 hero-bg pt-20 overflow-hidden">
+        <div class="max-w-2xl z-10 fade-in">
+            <div class="text-xs tracking-[0.4em] uppercase text-gray-400 mb-6">Artisanal Handmade Jiaozi</div>
+            <h2 class="text-xl md:text-2xl mb-2 serif text-gray-500 font-light">溢れる旨味</h2>
+            <h1 class="text-6xl md:text-8xl mb-8 serif leading-tight text-[#1a1a1a]">至福の<br>一粒</h1>
+            <p class="text-sm md:text-base text-gray-400 leading-relaxed mb-10 max-w-md font-light">
                 手包みの温もり、溢れ出す素材の旨味。<br>
-                厳选された素材と繊细な手仕事が织りなす、<br>
-                至福のひとときをお楽しみください。
+                厳選された素材と繊細な手仕事が織りなす、<br>
+                澄み渡る美味しさをお楽しみください。
             </p>
-            <a href="#" class="inline-block bg-[#4A453E] text-white px-10 py-4 text-sm tracking-widest hover:bg-black transition">
+            <a href="#" class="inline-block bg-[#2D2D2D] text-white px-12 py-4 text-sm tracking-[0.2em] hover:bg-black transition-all shadow-sm">
                 查看菜单
             </a>
         </div>
-        <div class="absolute right-0 top-1/2 -translate-y-1/2 w-1/2 h-4/5 hidden md:block">
-            <img src="assets/hero-jiaozi.png" alt="Handmade Jiaozi" class="w-full h-full object-contain">
+        <div class="absolute right-0 top-1/2 -translate-y-1/2 w-3/5 h-4/5 hidden md:block fade-in" style="animation-delay: 0.3s;">
+            <img src="assets/hero-jiaozi-bright.png" alt="Handmade Jiaozi" class="w-full h-full object-contain">
         </div>
     </section>
 
     <!-- Seasonal Collection -->
     <section class="py-32 px-8 md:px-24 bg-white">
         <div class="text-center mb-20">
-            <div class="text-xs tracking-[0.4em] uppercase text-gray-400 mb-4">Seasonal Collection</div>
-            <h2 class="text-4xl serif">季节之彩</h2>
+            <div class="text-xs tracking-[0.5em] uppercase text-gray-300 mb-4">Seasonal Collection</div>
+            <h2 class="text-4xl serif text-[#1a1a1a]">季节之彩</h2>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
             <!-- Product 1 -->
-            <div class="product-card text-center">
-                <div class="aspect-square overflow-hidden mb-6 bg-gray-50">
-                    <img src="assets/jiaozi-collection.png" alt="Seasonal Jiaozi" class="w-full h-full object-cover">
+            <div class="product-card text-center group">
+                <div class="aspect-[4/5] overflow-hidden mb-8 bg-[#F9F9F9] rounded-sm">
+                    <img src="assets/shrimp-jiaozi.png" alt="Shrimp Jiaozi" class="w-full h-full object-cover">
                 </div>
-                <h3 class="text-lg mb-2 serif">时令鲜虾水饺</h3>
-                <p class="text-xs text-gray-400 leading-relaxed">
-                    厳選された海老をたっぷり使い、包みたての美味しさを<br>お届けします。
+                <h3 class="text-xl mb-3 serif text-[#1a1a1a]">时令鲜虾水饺</h3>
+                <p class="text-xs text-gray-400 leading-relaxed px-4">
+                    晶莹剔透的皮包裹着整颗鲜虾，<br>每一口都是大海的鲜甜。
                 </p>
             </div>
             <!-- Product 2 -->
-            <div class="product-card text-center">
-                <div class="aspect-square overflow-hidden mb-6 bg-gray-50">
-                    <img src="assets/jiaozi-collection.png" alt="Classic Jiaozi" class="w-full h-full object-cover">
+            <div class="product-card text-center group">
+                <div class="aspect-[4/5] overflow-hidden mb-8 bg-[#F9F9F9] rounded-sm">
+                    <img src="assets/pork-cabbage-jiaozi.png" alt="Pork Cabbage Jiaozi" class="w-full h-full object-cover">
                 </div>
-                <h3 class="text-lg mb-2 serif">特制猪肉白菜饺</h3>
-                <p class="text-xs text-gray-400 leading-relaxed">
-                    伝統的な製法を守り、ジューシーな肉の旨味を引き<br>出しました。
+                <h3 class="text-xl mb-3 serif text-[#1a1a1a]">特制猪肉白菜饺</h3>
+                <p class="text-xs text-gray-400 leading-relaxed px-4">
+                    传统比例调配的肉馅与爽脆白菜，<br>还原最纯粹的家常味道。
                 </p>
             </div>
             <!-- Product 3 -->
-            <div class="product-card text-center">
-                <div class="aspect-square overflow-hidden mb-6 bg-gray-50">
-                    <img src="assets/jiaozi-collection.png" alt="Chive Jiaozi" class="w-full h-full object-cover">
+            <div class="product-card text-center group">
+                <div class="aspect-[4/5] overflow-hidden mb-8 bg-[#F9F9F9] rounded-sm">
+                    <img src="assets/scallop-jiaozi.png" alt="Scallop Jiaozi" class="w-full h-full object-cover">
                 </div>
-                <h3 class="text-lg mb-2 serif">帆立与韭菜水饺</h3>
-                <p class="text-xs text-gray-400 leading-relaxed">
-                    新鮮な帆立とニラの香りが、口いっぱいに広がる<br>一品です。
+                <h3 class="text-xl mb-3 serif text-[#1a1a1a]">帆立贝与韭菜水饺</h3>
+                <p class="text-xs text-gray-400 leading-relaxed px-4">
+                    鲜美帆立贝与嫩韭菜的碰撞，<br>香气浓郁，回味无穷。
                 </p>
             </div>
         </div>
 
-        <div class="text-center mt-20">
-            <a href="#" class="text-xs tracking-widest border-b border-gray-300 pb-2 hover:border-black transition">查看全部菜单</a>
+        <div class="text-center mt-24">
+            <a href="#" class="text-xs tracking-[0.3em] border-b border-gray-200 pb-2 hover:border-black transition-all duration-300 text-gray-400 hover:text-black">查看全部菜单</a>
         </div>
     </section>
 
     <!-- Craftsmanship Section -->
-    <section class="py-32 px-8 md:px-24 flex flex-col md:flex-row items-center gap-20">
+    <section class="py-32 px-8 md:px-24 flex flex-col md:flex-row items-center gap-24 bg-[#FCFAF7]">
         <div class="w-full md:w-1/2">
-            <div class="relative p-12 bg-[#FDFBF8]">
-                <img src="assets/logo.png" alt="Craftsmanship" class="w-full h-auto opacity-80">
-                <div class="absolute bottom-8 left-8 text-sm serif italic">「美しさ」を<br>食べる。</div>
+            <div class="relative p-16 bg-white shadow-sm rounded-sm">
+                <img src="assets/logo.png" alt="Craftsmanship" class="w-full h-auto opacity-90">
+                <div class="absolute bottom-10 left-10 text-sm serif italic text-gray-400">「美しさ」を<br>食べる。</div>
             </div>
         </div>
-        <div class="w-full md:w-1/2 space-y-8">
-            <div class="text-xs tracking-widest text-gray-400 uppercase">Our Story</div>
-            <h2 class="text-4xl serif leading-tight">职人的手仕事。<br><span class="text-2xl text-gray-400">洗练された优しさを込めて。</span></h2>
-            <p class="text-sm text-gray-500 leading-loose">
+        <div class="w-full md:w-1/2 space-y-10">
+            <div class="text-xs tracking-[0.4em] text-gray-300 uppercase">Our Story</div>
+            <h2 class="text-4xl serif leading-tight text-[#1a1a1a]">职人的手仕事。<br><span class="text-2xl text-gray-400 font-light">洗练された优しさを込めて。</span></h2>
+            <p class="text-sm text-gray-400 leading-loose font-light">
                 CC点心は、伝統的な餃子の技法に、現代の感性を融合させた新しいスタイルのレストランです。<br><br>
-                私たちの厨房では、一つひとつ丁寧に皮を延ばし、餡を包んでいます。機械では再現できない、手仕事ならではの食感と味わいを追求。素材本来の優しい色と香りを大切にした餃子は、まるで五感を潤すような輝きを放ちます。
+                私たちの厨房では、一つひとつ丁寧に皮を延ばし、餡を包んでいます。机械では再現できない、手仕事ならではの食感と味わいを追求。素材本来の優しい色と香りを大切にした饺子は、まるで五感を润すような辉きを放ちます。
             </p>
-            <div class="flex space-x-12 pt-6">
+            <div class="flex space-x-16 pt-6">
                 <div>
-                    <div class="text-2xl serif">0%</div>
-                    <div class="text-[10px] text-gray-400 tracking-widest uppercase">Additives</div>
+                    <div class="text-3xl serif text-[#1a1a1a]">0%</div>
+                    <div class="text-[10px] text-gray-300 tracking-[0.3em] uppercase mt-2">Additives</div>
                 </div>
                 <div>
-                    <div class="text-2xl serif">100%</div>
-                    <div class="text-[10px] text-gray-400 tracking-widest uppercase">Handmade</div>
+                    <div class="text-3xl serif text-[#1a1a1a]">100%</div>
+                    <div class="text-[10px] text-gray-300 tracking-[0.3em] uppercase mt-2">Handmade</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-white pt-24 pb-12 px-8 md:px-24 border-t border-gray-100">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+    <footer class="bg-white pt-32 pb-16 px-8 md:px-24 border-t border-gray-50">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-16 mb-24">
             <div class="col-span-1 md:col-span-1">
-                <div class="text-2xl font-bold serif mb-6">CC点心</div>
-                <p class="text-xs text-gray-400 leading-relaxed">
+                <div class="text-2xl font-bold serif mb-8 tracking-tighter">CC点心</div>
+                <p class="text-xs text-gray-400 leading-relaxed font-light">
                     东京 · 银座<br>
                     心を満たす、ハンドメイドの点心。
                 </p>
-                <div class="flex space-x-4 mt-8">
-                    <div class="w-4 h-4 bg-gray-200 rounded-full"></div>
-                    <div class="w-4 h-4 bg-gray-200 rounded-full"></div>
+                <div class="flex space-x-6 mt-10">
+                    <div class="w-5 h-5 border border-gray-100 rounded-full flex items-center justify-center text-[10px] text-gray-300 hover:border-black hover:text-black transition-all cursor-pointer">IG</div>
+                    <div class="w-5 h-5 border border-gray-100 rounded-full flex items-center justify-center text-[10px] text-gray-300 hover:border-black hover:text-black transition-all cursor-pointer">FB</div>
                 </div>
             </div>
             <div>
-                <h4 class="text-xs font-bold tracking-widest mb-6 uppercase">导航</h4>
-                <ul class="text-xs text-gray-400 space-y-4">
-                    <li><a href="#" class="hover:text-black transition">首页</a></li>
-                    <li><a href="#" class="hover:text-black transition">饺子菜单</a></li>
-                    <li><a href="#" class="hover:text-black transition">我们的坚持</a></li>
-                    <li><a href="#" class="hover:text-black transition">联系我们</a></li>
+                <h4 class="text-xs font-bold tracking-[0.4em] mb-8 uppercase text-[#1a1a1a]">导航</h4>
+                <ul class="text-xs text-gray-400 space-y-5 font-light">
+                    <li><a href="#" class="hover:text-black transition-all">首页</a></li>
+                    <li><a href="#" class="hover:text-black transition-all">饺子菜单</a></li>
+                    <li><a href="#" class="hover:text-black transition-all">我们的坚持</a></li>
+                    <li><a href="#" class="hover:text-black transition-all">联系我们</a></li>
                 </ul>
             </div>
             <div class="col-span-1 md:col-span-2">
-                <h4 class="text-xs font-bold tracking-widest mb-6 uppercase">店铺情报</h4>
-                <div class="text-xs text-gray-400 space-y-2">
+                <h4 class="text-xs font-bold tracking-[0.4em] mb-8 uppercase text-[#1a1a1a]">店铺情报</h4>
+                <div class="text-xs text-gray-400 space-y-3 font-light">
                     <p>住所：東京都中央区銀座 5-8-1</p>
                     <p>電話：03-1234-5678</p>
                     <p>時間：11:30 - 22:00 (L.O. 21:00)</p>
                 </div>
             </div>
         </div>
-        <div class="flex flex-col md:flex-row justify-between items-center text-[10px] text-gray-300 tracking-widest uppercase border-t border-gray-50 pt-12">
+        <div class="flex flex-col md:flex-row justify-between items-center text-[10px] text-gray-300 tracking-[0.4em] uppercase border-t border-gray-50 pt-16">
             <p>© 2026 CC DIM SUM. ALL RIGHTS RESERVED.</p>
-            <div class="flex space-x-8 mt-4 md:mt-0">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Use</a>
+            <div class="flex space-x-12 mt-6 md:mt-0">
+                <a href="#" class="hover:text-black transition-all">Privacy Policy</a>
+                <a href="#" class="hover:text-black transition-all">Terms of Use</a>
             </div>
         </div>
     </footer>
