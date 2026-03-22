@@ -40,6 +40,17 @@
             </div>
         </div>
 
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+                <label class="block text-[10px] tracking-widest text-gray-400 uppercase mb-2">规格 (中文)</label>
+                <input type="text" name="spec_zh" value="<%= product.spec ? product.spec.zh : '' %>" class="w-full bg-white border border-gray-100 px-4 py-3 text-sm focus:outline-none focus:border-[#D4B483] transition-colors">
+            </div>
+            <div>
+                <label class="block text-[10px] tracking-widest text-gray-400 uppercase mb-2">規格 (日本語)</label>
+                <input type="text" name="spec_jp" value="<%= product.spec ? product.spec.jp : '' %>" class="w-full bg-white border border-gray-100 px-4 py-3 text-sm focus:outline-none focus:border-[#D4B483] transition-colors">
+            </div>
+        </div>
+
         <div>
             <label class="block text-[10px] tracking-widest text-gray-400 uppercase mb-2"><%= __('admin.image') %></label>
             <div class="flex items-center space-x-6">

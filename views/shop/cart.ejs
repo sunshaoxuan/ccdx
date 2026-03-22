@@ -54,7 +54,7 @@
                 <div class="flex items-center justify-between border-b border-gray-50 pb-8">
                     <div>
                         <h3 class="serif text-lg mb-1">${item.name}</h3>
-                        <p class="text-xs text-gray-400">￥${item.price} x ${item.quantity}</p>
+                        <p class="text-xs text-gray-400">JPY ${item.price} x ${item.quantity}</p>
                     </div>
                     <div class="flex items-center space-x-6">
                         <div class="flex items-center border border-gray-100">
@@ -70,7 +70,7 @@
 
         html += '</div>';
         container.innerHTML = html;
-        document.getElementById('cart-total').textContent = '￥' + total;
+        document.getElementById('cart-total').textContent = 'JPY ' + total;
     }
 
     function updateQty(index, delta) {

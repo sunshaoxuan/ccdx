@@ -10,6 +10,10 @@ const productSchema = new mongoose.Schema({
         jp: { type: String }
     },
     price: { type: Number, required: true },
+    spec: {
+        zh: { type: String },
+        jp: { type: String }
+    },
     imageUrl: { type: String },
     category: { type: String, default: 'jiaozi' },
     isActive: { type: Boolean, default: true },

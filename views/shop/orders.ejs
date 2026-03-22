@@ -33,14 +33,14 @@
                         <% order.items.forEach(item => { %>
                             <div class="flex justify-between items-center text-sm">
                                 <span class="font-light"><%= item.name[lang] || item.name %> x <%= item.quantity %></span>
-                                <span class="text-gray-400">￥<%= item.price * item.quantity %></span>
+                                <span class="text-gray-400">JPY <%= item.price * item.quantity %></span>
                             </div>
                         <% }) %>
                     </div>
                     
                     <div class="flex justify-between items-center pt-6 border-t border-gray-50">
                         <span class="text-xs tracking-widest text-gray-400 uppercase"><%= __('cart.total') %></span>
-                        <span class="text-xl serif">￥<%= order.totalAmount %></span>
+                        <span class="text-xl serif">JPY <%= order.totalAmount %></span>
                     </div>
                 </div>
             <% }) %>
