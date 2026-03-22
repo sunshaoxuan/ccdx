@@ -46,10 +46,11 @@ router.get('/products/add', authMiddleware, adminMiddleware, (req, res) => {
 // Add product action
 router.post('/products/add', authMiddleware, adminMiddleware, upload.single('image'), async (req, res) => {
     try {
-        const { name_zh, name_jp, description_zh, description_jp, price, category } = req.body;
+        const { name_zh, name_jp, description_zh, description_jp, price, category, spec_zh, spec_jp } = req.body;
         const product = new Product({
             name: { zh: name_zh, jp: name_jp },
             description: { zh: description_zh, jp: description_jp },
+            spec: { zh: spec_zh, jp: spec_jp },
             price: parseFloat(price),
             category: category,
             imageUrl: req.file ? `/uploads/${req.file.filename}` : ''
@@ -74,10 +75,11 @@ router.get('/products/edit/:id', authMiddleware, adminMiddleware, async (req, re
 // Edit product action
 router.post('/products/edit/:id', authMiddleware, adminMiddleware, upload.single('image'), async (req, res) => {
     try {
-        const { name_zh, name_jp, description_zh, description_jp, price, category } = req.body;
+        const { name_zh, name_jp, description_zh, description_jp, price, category, spec_zh, spec_jp } = req.body;
         const updateData = {
             name: { zh: name_zh, jp: name_jp },
             description: { zh: description_zh, jp: description_jp },
+            spec: { zh: spec_zh, jp: spec_jp },
             price: parseFloat(price),
             category: category
         };
