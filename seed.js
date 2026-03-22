@@ -28,21 +28,24 @@ async function seed() {
                 {
                     name: { zh: '时令鲜虾水饺', jp: '季節の海老水餃子' },
                     description: { zh: '严选大颗鲜虾，搭配清爽时蔬', jp: '厳選された大きな海老と新鮮な野菜' },
-                    price: 58,
+                    spec: { zh: '1kg', jp: '1kg' },
+                    price: 3300,
                     imageUrl: '/assets/shrimp-jiaozi.png',
                     category: 'jiaozi'
                 },
                 {
                     name: { zh: '经典猪肉白菜水饺', jp: '定番豚肉白菜餃子' },
                     description: { zh: '传统配方，肉质鲜嫩多汁', jp: '伝統的なレシピ、ジューシーな豚肉' },
-                    price: 48,
+                    spec: { zh: '1kg', jp: '1kg' },
+                    price: 2800,
                     imageUrl: '/assets/pork-cabbage-jiaozi.png',
                     category: 'jiaozi'
                 },
                 {
                     name: { zh: '经典鸡蛋韭菜水饺', jp: '定番ニラ玉餃子' },
                     description: { zh: '鲜香韭菜，滑嫩鸡蛋', jp: '香り高いニラとふわふわの卵' },
-                    price: 45,
+                    spec: { zh: '1kg', jp: '1kg' },
+                    price: 2500,
                     imageUrl: '/assets/egg-chive-jiaozi.png',
                     category: 'jiaozi'
                 }
