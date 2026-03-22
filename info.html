@@ -44,19 +44,31 @@
                 <div class="space-y-8">
                     <div>
                         <h3 class="text-xs tracking-widest uppercase text-gray-400 mb-2 i18n" data-zh="地址" data-jp="住所">地址</h3>
-                        <p class="text-lg serif i18n" data-zh="东京都中央区银座 5-8-1" data-jp="東京都中央区銀座 5-8-1">东京都中央区银座 5-8-1</p>
+                        <p class="text-lg serif i18n" 
+                           data-zh="东京都品川区南大井 2-11-4 3A 102" 
+                           data-jp="東京都品川区南大井 2-11-4 3A 102">
+                            东京都品川区南大井 2-11-4 3A 102
+                        </p>
+                        <a href="https://maps.app.goo.gl/vz1GfVLoVsBAL6gQ6" target="_blank" class="text-xs text-brand-gold hover:underline mt-2 inline-block i18n" data-zh="在 Google Maps 中查看" data-jp="Google マップで見る">在 Google Maps 中查看</a>
                     </div>
                     <div>
                         <h3 class="text-xs tracking-widest uppercase text-gray-400 mb-2 i18n" data-zh="电话" data-jp="電話">电话</h3>
-                        <p class="text-lg serif">03-1234-5678</p>
+                        <p class="text-lg serif">03-4500-0510</p>
                     </div>
                     <div>
                         <h3 class="text-xs tracking-widest uppercase text-gray-400 mb-2 i18n" data-zh="营业时间" data-jp="営業時間">营业时间</h3>
-                        <p class="text-lg serif">11:30 - 22:00 (L.O. 21:00)</p>
+                        <div class="text-lg serif space-y-1 i18n" 
+                             data-zh="周一至周三, 周五: 11:30-14:30 / 17:30-22:00<br>周六: 11:30-22:00<br>周日: 11:30-16:00<br>周四公休" 
+                             data-jp="月〜水, 金: 11:30-14:30 / 17:30-22:00<br>土: 11:30-22:00<br>日: 11:30-16:00<br>木曜定休">
+                            周一至周三, 周五: 11:30-14:30 / 17:30-22:00<br>
+                            周六: 11:30-22:00<br>
+                            周日: 11:30-16:00<br>
+                            周四公休
+                        </div>
                     </div>
                 </div>
-                <div class="aspect-square bg-gray-100 rounded-sm flex items-center justify-center text-gray-300 italic">
-                    Map Placeholder
+                <div class="aspect-square bg-gray-100 rounded-sm overflow-hidden flex items-center justify-center">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3244.342441234567!2d139.7345678!3d35.5912345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60186123456789ab%3A0x1234567890abcdef!2zQ0Pngrnlv4M!5e0!3m2!1sja!2sjp!4v1234567890123" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>
