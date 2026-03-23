@@ -19,10 +19,9 @@
             <a href="/" class="text-2xl tracking-widest serif font-bold">CC点心</a>
             <div class="hidden md:flex space-x-8 text-sm tracking-widest font-light">
                 <a href="/" class="hover:text-[#D4B483] transition-colors"><%= __('nav.home') %></a>
-                <a href="/menu" class="hover:text-[#D4B483] transition-colors"><%= __('nav.menu') %></a>
                 <a href="/about" class="hover:text-[#D4B483] transition-colors"><%= __('nav.about') %></a>
+                <a href="/menu" class="hover:text-[#D4B483] transition-colors"><%= __('nav.menu') %></a>
                 <a href="/info" class="hover:text-[#D4B483] transition-colors"><%= __('nav.info') %></a>
-                <a href="/cart" class="hover:text-[#D4B483] transition-colors"><%= __('nav.cart') %></a>
                 <% if (user) { %>
                     <a href="/orders" class="hover:text-[#D4B483] transition-colors"><%= __('nav.orders') %></a>
                     <% if (user.role === 'admin') { %>
@@ -32,6 +31,7 @@
                 <% } else { %>
                     <a href="/login" class="hover:text-[#D4B483] transition-colors"><%= __('nav.login') %></a>
                 <% } %>
+                <a href="/cart" class="hover:text-[#D4B483] transition-colors"><%= __('nav.cart') %></a>
             </div>
             <div class="flex items-center space-x-4">
                 <button onclick="setLang('zh')" class="text-xs hover:text-[#D4B483] <%= lang === 'zh' ? 'font-bold' : '' %>">CN</button>
