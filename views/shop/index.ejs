@@ -78,6 +78,44 @@
     </div>
 </section>
 
+<!-- 专属定制 (新章节) -->
+<section class="py-24 bg-[#FDFBF9]">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row-reverse gap-20 items-center">
+            <div class="w-full md:w-1/2">
+                <div class="overflow-hidden rounded-sm shadow-sm">
+                    <img src="/assets/custom-jiaozi-fillings.png" class="w-full h-auto block hover:scale-105 transition-transform duration-1000">
+                </div>
+            </div>
+            <div class="w-full md:w-1/2">
+                <h2 class="text-3xl serif tracking-widest mb-8 text-[#2C2C2C]">
+                    <%= lang === 'zh' ? '专属定制：还原记忆中的味道' : 'オーダーメイド：思い出の味を再現' %>
+                </h2>
+                <div class="prose prose-lg text-gray-500 leading-loose font-light mb-10">
+                    <% if (lang === 'zh') { %>
+                        <p>每个人心中都有一款无可替代的饺子。或许是儿时奶奶亲手调制的馅料，或者是旅途中偶然邂逅的惊喜。在CC点心，我们为您开启“私人订制”服务。</p>
+                        <p>您可以自由选择：</p>
+                        <ul class="list-none p-0 space-y-2">
+                            <li><span class="text-[#D4B483] mr-2">•</span> 馅料比例：肉菜比例由您掌控</li>
+                            <li><span class="text-[#D4B483] mr-2">•</span> 特殊忌口：无葱蒜、低盐或特定香料定制</li>
+                            <li><span class="text-[#D4B483] mr-2">•</span> 创意搭配：实现您脑海中的独特口味</li>
+                        </ul>
+                    <% } else { %>
+                        <p>誰の心にも、忘れられない特別な餃子の味があります。CC点心では、お客様一人ひとりのための「オーダーメイド」サービスを提供しています。</p>
+                        <p>カスタマイズ可能な内容：</p>
+                        <ul class="list-none p-0 space-y-2">
+                            <li><span class="text-[#D4B483] mr-2">•</span> 餡の黄金比：お好みの肉と野菜のバランス</li>
+                            <li><span class="text-[#D4B483] mr-2">•</span> 特別な配慮：ねぎ・にんにく抜き、減塩など</li>
+                            <li><span class="text-[#D4B483] mr-2">•</span> 自由な発想：あなただけのオリジナルレシピ</li>
+                        </ul>
+                    <% } %>
+                </div>
+                <a href="/info" class="text-xs tracking-[0.2em] border-b border-[#D4B483] pb-1 hover:text-black transition-colors uppercase"><%= lang === 'zh' ? '联系我们开启定制' : 'カスタマイズを相談する' %></a>
+            </div>
+        </div>
+    </div>
+</section>
+
 <%- include('../partials/footer') %>
 
 <script>
