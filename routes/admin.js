@@ -46,7 +46,16 @@ router.get('/products/add', authMiddleware, adminMiddleware, (req, res) => {
         { key: 'cabbage', zh: '白菜', jp: '白菜' },
         { key: 'chives', zh: '韭菜', jp: 'ニラ' },
         { key: 'egg', zh: '鸡蛋', jp: '卵' },
-        { key: 'scallop', zh: '扇贝', jp: 'ホタテ' }
+        { key: 'scallop', zh: '扇贝', jp: 'ホタテ' },
+        { key: 'celery', zh: '芹菜', jp: 'セロリ' },
+        { key: 'shepherds-purse', zh: '荠菜', jp: 'ナズナ' },
+        { key: 'coriander', zh: '香菜', jp: 'パクチー' },
+        { key: 'corn', zh: '玉米', jp: 'トウモロコシ' },
+        { key: 'sauerkraut', zh: '东北酸菜', jp: '酸菜' },
+        { key: 'century-egg', zh: '皮蛋', jp: 'ピータン' },
+        { key: 'beef', zh: '牛肉', jp: '牛肉' },
+        { key: 'mutton', zh: '羊肉', jp: '羊肉' },
+        { key: 'fish', zh: '鱼', jp: '魚' }
     ];
     res.render('admin/products/add', { availableIcons });
 });
@@ -66,7 +75,16 @@ router.post('/products/add', authMiddleware, adminMiddleware, upload.single('ima
                 'cabbage': { zh: '白菜', jp: '白菜', icon: '/assets/icon-cabbage.png' },
                 'chives': { zh: '韭菜', jp: 'ニラ', icon: '/assets/icon-chives.png' },
                 'egg': { zh: '鸡蛋', jp: '卵', icon: '/assets/icon-egg.png' },
-                'scallop': { zh: '扇贝', jp: 'ホタテ', icon: '/assets/icon-scallop.png' }
+                'scallop': { zh: '扇贝', jp: 'ホタテ', icon: '/assets/icon-scallop.png' },
+                'celery': { zh: '芹菜', jp: 'セロリ', icon: '/assets/icon-celery.png' },
+                'shepherds-purse': { zh: '荠菜', jp: 'ナズナ', icon: '/assets/icon-shepherds-purse.png' },
+                'coriander': { zh: '香菜', jp: 'パクチー', icon: '/assets/icon-coriander.png' },
+                'corn': { zh: '玉米', jp: 'トウモロコシ', icon: '/assets/icon-corn.png' },
+                'sauerkraut': { zh: '东北酸菜', jp: '酸菜', icon: '/assets/icon-sauerkraut.png' },
+                'century-egg': { zh: '皮蛋', jp: 'ピータン', icon: '/assets/icon-century-egg.png' },
+                'beef': { zh: '牛肉', jp: '牛肉', icon: '/assets/icon-beef.png' },
+                'mutton': { zh: '羊肉', jp: '羊肉', icon: '/assets/icon-mutton.png' },
+                'fish': { zh: '鱼', jp: '魚', icon: '/assets/icon-fish.png' }
             };
             mainIngredients = ingredientsList.map(key => ({
                 name: { zh: iconMap[key].zh, jp: iconMap[key].jp },
@@ -101,7 +119,16 @@ router.get('/products/edit/:id', authMiddleware, adminMiddleware, async (req, re
             { key: 'cabbage', zh: '白菜', jp: '白菜' },
             { key: 'chives', zh: '韭菜', jp: 'ニラ' },
             { key: 'egg', zh: '鸡蛋', jp: '卵' },
-            { key: 'scallop', zh: '扇贝', jp: 'ホタテ' }
+            { key: 'scallop', zh: '扇贝', jp: 'ホタテ' },
+            { key: 'celery', zh: '芹菜', jp: 'セロリ' },
+            { key: 'shepherds-purse', zh: '荠菜', jp: 'ナズナ' },
+            { key: 'coriander', zh: '香菜', jp: 'パクチー' },
+            { key: 'corn', zh: '玉米', jp: 'トウモロコシ' },
+            { key: 'sauerkraut', zh: '东北酸菜', jp: '酸菜' },
+            { key: 'century-egg', zh: '皮蛋', jp: 'ピータン' },
+            { key: 'beef', zh: '牛肉', jp: '牛肉' },
+            { key: 'mutton', zh: '羊肉', jp: '羊肉' },
+            { key: 'fish', zh: '鱼', jp: '魚' }
         ];
         res.render('admin/products/edit', { product, availableIcons });
     } catch (err) {
@@ -124,7 +151,16 @@ router.post('/products/edit/:id', authMiddleware, adminMiddleware, upload.single
                 'cabbage': { zh: '白菜', jp: '白菜', icon: '/assets/icon-cabbage.png' },
                 'chives': { zh: '韭菜', jp: 'ニラ', icon: '/assets/icon-chives.png' },
                 'egg': { zh: '鸡蛋', jp: '卵', icon: '/assets/icon-egg.png' },
-                'scallop': { zh: '扇贝', jp: 'ホタテ', icon: '/assets/icon-scallop.png' }
+                'scallop': { zh: '扇贝', jp: 'ホタテ', icon: '/assets/icon-scallop.png' },
+                'celery': { zh: '芹菜', jp: 'セロリ', icon: '/assets/icon-celery.png' },
+                'shepherds-purse': { zh: '荠菜', jp: 'ナズナ', icon: '/assets/icon-shepherds-purse.png' },
+                'coriander': { zh: '香菜', jp: 'パクチー', icon: '/assets/icon-coriander.png' },
+                'corn': { zh: '玉米', jp: 'トウモロコシ', icon: '/assets/icon-corn.png' },
+                'sauerkraut': { zh: '东北酸菜', jp: '酸菜', icon: '/assets/icon-sauerkraut.png' },
+                'century-egg': { zh: '皮蛋', jp: 'ピータン', icon: '/assets/icon-century-egg.png' },
+                'beef': { zh: '牛肉', jp: '牛肉', icon: '/assets/icon-beef.png' },
+                'mutton': { zh: '羊肉', jp: '羊肉', icon: '/assets/icon-mutton.png' },
+                'fish': { zh: '鱼', jp: '魚', icon: '/assets/icon-fish.png' }
             };
             mainIngredients = ingredientsList.map(key => ({
                 name: { zh: iconMap[key].zh, jp: iconMap[key].jp },
