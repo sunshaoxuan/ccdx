@@ -21,7 +21,7 @@ async function seed() {
         await admin.save();
         console.log('Admin user updated with password: admin123');
 
-        // Create initial products with ingredients and main ingredients
+        // Create initial products with full ingredients and icons
         const initialProducts = [
             {
                 name: { zh: '时令鲜虾水饺', jp: '季節の海老水餃子' },
@@ -31,8 +31,8 @@ async function seed() {
                 imageUrl: '/assets/shrimp-jiaozi.png',
                 category: 'jiaozi',
                 ingredients: {
-                    zh: '面粉、鲜虾、猪肉、韭菜、生姜、食用盐、芝麻油（不含葱蒜）',
-                    jp: '小麦粉、海老、豚肉、ニラ、生姜、食塩、ごま油（ねぎ・にんにく不使用）'
+                    zh: '面粉、鲜虾、猪肉、韭菜、生姜、食用盐、芝麻油',
+                    jp: '小麦粉、海老、豚肉、ニラ、生姜、食塩、ごま油'
                 },
                 mainIngredients: [
                     { name: 'shrimp', iconUrl: '/assets/icon-shrimp.png' },
@@ -51,7 +51,8 @@ async function seed() {
                     jp: '小麦粉、豚肉、白菜、白ねぎ、生姜、にんにく、醤油、食塩'
                 },
                 mainIngredients: [
-                    { name: 'pork', iconUrl: '/assets/icon-pork.png' }
+                    { name: 'pork', iconUrl: '/assets/icon-pork.png' },
+                    { name: 'cabbage', iconUrl: '/assets/icon-cabbage.png' }
                 ]
             },
             {
@@ -62,15 +63,67 @@ async function seed() {
                 imageUrl: '/assets/egg-chive-jiaozi.png',
                 category: 'jiaozi',
                 ingredients: {
-                    zh: '面粉、韭菜、鸡蛋、虾皮、食用盐、芝麻油（不含肉类、葱蒜）',
-                    jp: '小麦粉、ニラ、卵、干し海老、食塩、ごま油（肉類・ねぎ・にんにく不使用）'
-                }
+                    zh: '面粉、韭菜、鸡蛋、虾皮、食用盐、芝麻油',
+                    jp: '小麦粉、ニラ、卵、干し海老、食塩、ごま油'
+                },
+                mainIngredients: [
+                    { name: 'chives', iconUrl: '/assets/icon-chives.png' },
+                    { name: 'egg', iconUrl: '/assets/icon-egg.png' }
+                ]
+            },
+            {
+                name: { zh: '鲜美扇贝韭菜水饺', jp: 'ホタテニラ餃子' },
+                description: { zh: '严选鲜甜扇贝，搭配鲜香韭菜', jp: '厳選された甘いホタテと香り高いニラ' },
+                spec: { zh: '1kg', jp: '1kg' },
+                price: 3500,
+                imageUrl: '/assets/scallop-chive-jiaozi.png',
+                category: 'jiaozi',
+                ingredients: {
+                    zh: '面粉、扇贝、猪肉、韭菜、生姜、食用盐、芝麻油',
+                    jp: '小麦粉、ホタテ、豚肉、ニラ、生姜、食塩、ごま油'
+                },
+                mainIngredients: [
+                    { name: 'scallop', iconUrl: '/assets/icon-scallop.png' },
+                    { name: 'chives', iconUrl: '/assets/icon-chives.png' }
+                ]
+            },
+            {
+                name: { zh: '饺子全集', jp: '餃子コレクション' },
+                description: { zh: '一次品尝多种口味的完美选择', jp: '様々な味を一度に楽しめる完璧な選択' },
+                spec: { zh: '1.5kg', jp: '1.5kg' },
+                price: 4500,
+                imageUrl: '/assets/jiaozi-collection.png',
+                category: 'jiaozi',
+                ingredients: {
+                    zh: '包含鲜虾、猪肉、白菜、韭菜、鸡蛋等多种口味组合',
+                    jp: '海老、豚肉、白菜、ニラ、卵など、様々な味の詰め合わせ'
+                },
+                mainIngredients: [
+                    { name: 'shrimp', iconUrl: '/assets/icon-shrimp.png' },
+                    { name: 'pork', iconUrl: '/assets/icon-pork.png' },
+                    { name: 'cabbage', iconUrl: '/assets/icon-cabbage.png' }
+                ]
+            },
+            {
+                name: { zh: '故事系列水饺', jp: 'ストーリー餃子' },
+                description: { zh: '承载品牌故事的经典之作', jp: 'ブランドストーリーを込めた定番の逸品' },
+                spec: { zh: '1kg', jp: '1kg' },
+                price: 3200,
+                imageUrl: '/assets/story-jiaozi.png',
+                category: 'jiaozi',
+                ingredients: {
+                    zh: '面粉、优质猪肉、时令蔬菜、特制调料',
+                    jp: '小麦粉、厳選豚肉、旬の野菜、特製調味料'
+                },
+                mainIngredients: [
+                    { name: 'pork', iconUrl: '/assets/icon-pork.png' }
+                ]
             }
         ];
 
         await Product.deleteMany({});
         await Product.insertMany(initialProducts);
-        console.log('Initial products seeded with ingredients and icons');
+        console.log('All products seeded with full ingredients and icons');
 
         console.log('Seeding completed');
         process.exit(0);
