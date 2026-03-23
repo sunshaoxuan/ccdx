@@ -22,8 +22,13 @@
             <div>
                 <p class="text-[10px] tracking-widest text-gray-400 uppercase mb-4">HOURS</p>
                 <p class="text-sm font-light leading-loose">
-                    Mon - Wed, Fri - Sun: 11:00 - 20:00<br>
-                    Thursday: Closed
+                    <% if (lang === 'zh') { %>
+                        11:00 - 20:00<br>
+                        定休日：每周四
+                    <% } else { %>
+                        11:00 - 20:00<br>
+                        定休日：木曜日
+                    <% } %>
                 </p>
             </div>
         </div>
