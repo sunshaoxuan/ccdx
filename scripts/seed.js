@@ -23,6 +23,21 @@ async function seed() {
         await admin.save();
         console.log('Admin user created/reset with password: admin123');
 
+        // 1.5. 重置 Customer 账户
+        console.log('Resetting Customer account...');
+        await User.deleteMany({ username: 'customer' });
+        const customer = new User({
+            username: 'customer',
+            password: 'customer123',
+            role: 'customer',
+            email: 'customer@ccdx.com',
+            realName: '张三',
+            phone: '080-1234-5678',
+            address: '东京都品川区某某街道 1-2-3'
+        });
+        await customer.save();
+        console.log('Customer user created/reset with password: customer123');
+
         // 2. 更新产品数据（保持之前的主料图标和配料表配置）
         const initialProducts = [
             {

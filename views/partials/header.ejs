@@ -25,7 +25,7 @@
                 <a href="/menu" class="hover:text-[#D4B483] transition-colors"><%= __('nav.menu') %></a>
                 <a href="/info" class="hover:text-[#D4B483] transition-colors"><%= __('nav.info') %></a>
                 <% if (user) { %>
-                    <a href="/orders" class="hover:text-[#D4B483] transition-colors"><%= __('nav.orders') %></a>
+                    <a href="/profile" class="hover:text-[#D4B483] transition-colors"><%= lang === 'zh' ? '个人中心' : 'マイページ' %></a>
                     <% if (user.role === 'admin') { %>
                         <a href="/admin" class="hover:text-[#D4B483] transition-colors"><%= __('nav.admin') %></a>
                     <% } %>
@@ -62,7 +62,7 @@
                 <a href="/menu" class="hover:text-[#D4B483] transition-colors"><%= __('nav.menu') %></a>
                 <a href="/info" class="hover:text-[#D4B483] transition-colors"><%= __('nav.info') %></a>
                 <% if (user) { %>
-                    <a href="/orders" class="hover:text-[#D4B483] transition-colors"><%= __('nav.orders') %></a>
+                    <a href="/profile" class="hover:text-[#D4B483] transition-colors"><%= lang === 'zh' ? '个人中心' : 'マイページ' %></a>
                     <% if (user.role === 'admin') { %>
                         <a href="/admin" class="hover:text-[#D4B483] transition-colors"><%= __('nav.admin') %></a>
                     <% } %>

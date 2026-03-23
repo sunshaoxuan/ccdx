@@ -1,0 +1,49 @@
+<%- include('../partials/header') %>
+
+<section class="py-20 max-w-lg mx-auto px-6">
+    <div class="text-center mb-12">
+        <h2 class="text-3xl serif tracking-widest mb-4"><%= lang === 'zh' ? '个人信息' : 'プロフィール' %></h2>
+        <div class="w-12 h-[1px] bg-[#D4B483] mx-auto"></div>
+    </div>
+    
+    <% if (typeof success !== 'undefined' || (typeof req !== 'undefined' && req.query.success)) { %>
+        <div class="bg-green-50 text-green-600 p-4 mb-6 text-sm text-center">
+            <%= lang === 'zh' ? '信息更新成功！' : 'プロフィールを更新しました！' %>
+        </div>
+    <% } %>
+
+    <form action="/profile" method="POST" class="space-y-6">
+        <div>
+            <label class="block text-[10px] tracking-widest text-gray-400 uppercase mb-2"><%= lang === 'zh' ? '用户名' : 'ユーザー名' %></label>
+            <input type="text" value="<%= user.username %>" disabled class="w-full bg-gray-50 border border-gray-100 px-4 py-3 text-sm text-gray-400 cursor-not-allowed">
+        </div>
+        <div>
+            <label class="block text-[10px] tracking-widest text-gray-400 uppercase mb-2"><%= lang === 'zh' ? '真实姓名' : 'お名前' %></label>
+            <input type="text" name="realName" value="<%= user.realName || '' %>" required class="w-full bg-white border border-gray-100 px-4 py-3 text-sm focus:outline-none focus:border-[#D4B483] transition-colors">
+        </div>
+        <div>
+            <label class="block text-[10px] tracking-widest text-gray-400 uppercase mb-2"><%= lang === 'zh' ? '联系电话' : '電話番号' %></label>
+            <input type="text" name="phone" value="<%= user.phone || '' %>" required class="w-full bg-white border border-gray-100 px-4 py-3 text-sm focus:outline-none focus:border-[#D4B483] transition-colors">
+        </div>
+        <div>
+            <label class="block text-[10px] tracking-widest text-gray-400 uppercase mb-2"><%= lang === 'zh' ? '电子邮箱' : 'メールアドレス' %></label>
+            <input type="email" name="email" value="<%= user.email || '' %>" required class="w-full bg-white border border-gray-100 px-4 py-3 text-sm focus:outline-none focus:border-[#D4B483] transition-colors">
+        </div>
+        <div>
+            <label class="block text-[10px] tracking-widest text-gray-400 uppercase mb-2"><%= lang === 'zh' ? '送货地址' : 'お届け先住所' %></label>
+            <textarea name="address" required rows="3" class="w-full bg-white border border-gray-100 px-4 py-3 text-sm focus:outline-none focus:border-[#D4B483] transition-colors"><%= user.address || '' %></textarea>
+        </div>
+        
+        <button type="submit" class="w-full bg-[#2D2D2D] text-white py-4 text-[10px] tracking-[0.2em] hover:bg-[#D4B483] transition-colors duration-500 uppercase">
+            <%= lang === 'zh' ? '保存更改' : '保存する' %>
+        </button>
+    </form>
+    
+    <div class="mt-12 pt-8 border-t border-gray-50 text-center">
+        <a href="/orders" class="text-xs tracking-widest text-[#D4B483] hover:text-black transition-colors uppercase">
+            <%= lang === 'zh' ? '查看我的订单记录' : '注文履歴を確認する' %>
+        </a>
+    </div>
+</section>
+
+<%- include('../partials/footer') %>

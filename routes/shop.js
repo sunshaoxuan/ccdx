@@ -48,6 +48,22 @@ router.get('/orders', authMiddleware, async (req, res) => {
     }
 });
 
+// Profile page
+router.get('/profile', authMiddleware, async (req, res) => {
+    res.render('shop/profile', { user: req.user });
+});
+
+// Update profile action
+router.post('/profile', authMiddleware, async (req, res) => {
+    try {
+        const { realName, phone, address, email } = req.body;
+        await User.findByIdAndUpdate(req.user._id, { realName, phone, address, email });
+        res.redirect('/profile?success=1');
+    } catch (err) {
+        res.status(500).render('error', { message: 'Error updating profile' });
+    }
+});
+
 // Place order
 router.post('/place-order', authMiddleware, async (req, res) => {
     try {
