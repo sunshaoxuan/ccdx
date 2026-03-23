@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const User = require('./models/User');
 const Product = require('./models/Product');
-const bcrypt = require('bcryptjs');
 require('dotenv').config();
 
 async function seed() {
@@ -9,19 +8,22 @@ async function seed() {
         await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/ccdx');
         console.log('Connected to MongoDB for seeding...');
 
-        // Create Admin with password admin123
-        const hashedPassword = await bcrypt.hash('admin123', 10);
-        await User.deleteMany({ role: 'admin' });
+        // 1. 重置 Admin 账户
+        console.log('Resetting Admin account...');
+        await User.deleteMany({ username: 'admin' });
+        
+        // 注意：User 模型有 pre('save') 钩子会自动哈希密码
+        // 所以这里直接传入明文 'admin123'
         const admin = new User({
             username: 'admin',
-            password: hashedPassword,
+            password: 'admin123',
             role: 'admin',
             email: 'admin@ccdx.com'
         });
         await admin.save();
-        console.log('Admin user updated with password: admin123');
+        console.log('Admin user created/reset with password: admin123');
 
-        // Create initial products with full ingredients and localized icons
+        // 2. 更新产品数据（保持之前的主料图标和配料表配置）
         const initialProducts = [
             {
                 name: { zh: '时令鲜虾水饺', jp: '季節の海老水餃子' },
@@ -123,7 +125,7 @@ async function seed() {
 
         await Product.deleteMany({});
         await Product.insertMany(initialProducts);
-        console.log('All products seeded with full ingredients and localized icons');
+        console.log('All products seeded successfully.');
 
         console.log('Seeding completed');
         process.exit(0);
