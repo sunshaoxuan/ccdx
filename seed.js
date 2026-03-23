@@ -48,34 +48,34 @@ async function seed() {
                 category: 'jiaozi'
             },
             {
-                name: { zh: '黑猪肉香菇水饺', jp: '黒豚椎茸餃子' },
-                description: { zh: '严选黑猪肉，搭配香浓香菇', jp: '厳選された黒豚と香り高い椎茸' },
+                name: { zh: '鲜美扇贝韭菜水饺', jp: 'ホタテニラ餃子' },
+                description: { zh: '严选鲜甜扇贝，搭配鲜香韭菜', jp: '厳選された甘いホタテと香り高いニラ' },
                 spec: { zh: '1kg', jp: '1kg' },
                 price: 3500,
-                imageUrl: '/assets/pork-mushroom-jiaozi.png',
+                imageUrl: '/assets/scallop-chive-jiaozi.png',
                 category: 'jiaozi'
             },
             {
-                name: { zh: '牛肉大葱水饺', jp: '牛肉ネギ餃子' },
-                description: { zh: '鲜嫩牛肉，大葱提鲜', jp: '新鮮な牛肉とネギの旨味' },
-                spec: { zh: '1kg', jp: '1kg' },
-                price: 3800,
-                imageUrl: '/assets/beef-onion-jiaozi.png',
+                name: { zh: '饺子全集', jp: '餃子コレクション' },
+                description: { zh: '一次品尝多种口味的完美选择', jp: '様々な味を一度に楽しめる完璧な選択' },
+                spec: { zh: '1.5kg', jp: '1.5kg' },
+                price: 4500,
+                imageUrl: '/assets/jiaozi-collection.png',
                 category: 'jiaozi'
             },
             {
-                name: { zh: '三鲜水饺', jp: '三鮮餃子' },
-                description: { zh: '虾仁、猪肉、鸡蛋的完美结合', jp: '海老、豚肉、卵の完璧な組み合わせ' },
+                name: { zh: '故事系列水饺', jp: 'ストーリー餃子' },
+                description: { zh: '承载品牌故事的经典之作', jp: 'ブランドストーリーを込めた定番の逸品' },
                 spec: { zh: '1kg', jp: '1kg' },
                 price: 3200,
-                imageUrl: '/assets/sanxian-jiaozi.png',
+                imageUrl: '/assets/story-jiaozi.png',
                 category: 'jiaozi'
             }
         ];
 
         await Product.deleteMany({});
         await Product.insertMany(initialProducts);
-        console.log('Initial products seeded with 6 items');
+        console.log('Initial products seeded with 6 items aligned with assets');
 
         console.log('Seeding completed');
         process.exit(0);
