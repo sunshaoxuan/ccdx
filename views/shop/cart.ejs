@@ -1,68 +1,149 @@
 <%- include('../partials/header') %>
 
-<section class="py-20 max-w-4xl mx-auto px-6">
+<section class="py-12 md:py-20 max-w-4xl mx-auto px-6">
     <div class="text-center mb-12">
         <h2 class="text-3xl serif tracking-widest mb-4"><%= __('cart.title') %></h2>
         <div class="w-12 h-[1px] bg-[#D4B483] mx-auto"></div>
     </div>
 
-    <div id="cart-container">
-        <!-- Cart items will be rendered here by JS -->
-    </div>
-
-    <div id="cart-summary" class="mt-12 border-t border-gray-100 pt-8 hidden">
-        <div class="flex justify-between items-center mb-8">
-            <span class="text-sm tracking-widest text-gray-400"><%= __('cart.total') %></span>
-            <span id="cart-total" class="text-2xl serif">￥0</span>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <!-- 购物车商品列表 -->
+        <div id="cart-items-section">
+            <div id="cart-container" class="space-y-8">
+                <!-- Cart items will be rendered here by JS -->
+            </div>
+            
+            <div id="cart-empty" class="text-center py-20 hidden">
+                <p class="text-gray-400 text-sm tracking-widest mb-8"><%= __('cart.empty') %></p>
+                <a href="/menu" class="text-xs tracking-widest border-b border-gray-200 pb-1 hover:border-[#D4B483] transition-colors"><%= __('nav.menu') %></a>
+            </div>
         </div>
-        <button onclick="checkout()" class="w-full bg-[#2D2D2D] text-white py-4 text-xs tracking-[0.2em] hover:bg-[#D4B483] transition-colors duration-500">
-            <%= __('cart.checkout') %>
-        </button>
-    </div>
 
-    <div id="cart-empty" class="text-center py-20 hidden">
-        <p class="text-gray-400 text-sm tracking-widest mb-8"><%= __('cart.empty') %></p>
-        <a href="/menu" class="text-xs tracking-widest border-b border-gray-200 pb-1 hover:border-[#D4B483] transition-colors"><%= __('nav.menu') %></a>
+        <!-- 结算信息 -->
+        <div id="checkout-section" class="hidden">
+            <div class="bg-white p-8 border border-gray-50 shadow-sm sticky top-24">
+                <h3 class="text-sm tracking-widest uppercase mb-8 pb-2 border-b border-gray-50"><%= lang === 'zh' ? '结算信息' : 'お支払い情報' %></h3>
+                
+                <!-- 配送信息 -->
+                <div class="mb-10">
+                    <div class="flex justify-between items-center mb-4">
+                        <label class="text-[10px] tracking-widest text-gray-400 uppercase"><%= lang === 'zh' ? '配送信息' : 'お届け先' %></label>
+                        <% if (user && user.addresses && user.addresses.length > 0) { %>
+                            <button onclick="toggleAddressSelect()" class="text-[8px] tracking-widest text-[#D4B483] uppercase"><%= lang === 'zh' ? '更换地址' : '住所変更' %></button>
+                        <% } %>
+                    </div>
+                    
+                    <div id="delivery-info-display" class="p-4 border border-gray-50 bg-gray-50/50 rounded-sm mb-4">
+                        <!-- JS will fill this -->
+                    </div>
+
+                    <!-- 游客/无地址用户填写表单 -->
+                    <div id="guest-info-form" class="space-y-4 <%= user && user.addresses && user.addresses.length > 0 ? 'hidden' : '' %>">
+                        <input type="text" id="guest-name" placeholder="<%= lang === 'zh' ? '收货人姓名' : 'お名前' %>" class="w-full bg-white border border-gray-100 px-3 py-2 text-sm focus:border-[#D4B483] outline-none">
+                        <input type="text" id="guest-phone" placeholder="<%= lang === 'zh' ? '联系电话' : '電話番号' %>" class="w-full bg-white border border-gray-100 px-3 py-2 text-sm focus:border-[#D4B483] outline-none">
+                        <input type="email" id="guest-email" placeholder="<%= lang === 'zh' ? '电子邮箱' : 'メールアドレス' %>" class="w-full bg-white border border-gray-100 px-3 py-2 text-sm focus:border-[#D4B483] outline-none">
+                        <textarea id="guest-address" placeholder="<%= lang === 'zh' ? '详细送货地址' : 'お届け先住所' %>" rows="2" class="w-full bg-white border border-gray-100 px-3 py-2 text-sm focus:border-[#D4B483] outline-none"></textarea>
+                    </div>
+                </div>
+
+                <!-- 支付方式 -->
+                <div class="mb-10">
+                    <label class="block text-[10px] tracking-widest text-gray-400 uppercase mb-4"><%= lang === 'zh' ? '支付方式' : 'お支払い方法' %></label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="payment" value="wechat" class="hidden peer">
+                            <div class="p-3 border border-gray-100 text-center peer-checked:border-[#D4B483] peer-checked:bg-[#FCFAF7] transition-all">
+                                <span class="text-[10px] tracking-widest uppercase">WeChat Pay</span>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="payment" value="paypay" class="hidden peer">
+                            <div class="p-3 border border-gray-100 text-center peer-checked:border-[#D4B483] peer-checked:bg-[#FCFAF7] transition-all">
+                                <span class="text-[10px] tracking-widest uppercase">PayPay</span>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="payment" value="credit" class="hidden peer">
+                            <div class="p-3 border border-gray-100 text-center peer-checked:border-[#D4B483] peer-checked:bg-[#FCFAF7] transition-all">
+                                <span class="text-[10px] tracking-widest uppercase">Credit Card</span>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="payment" value="cash" checked class="hidden peer">
+                            <div class="p-3 border border-gray-100 text-center peer-checked:border-[#D4B483] peer-checked:bg-[#FCFAF7] transition-all">
+                                <span class="text-[10px] tracking-widest uppercase"><%= lang === 'zh' ? '现金支付' : '現金払い' %></span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-50 pt-6 mb-8">
+                    <div class="flex justify-between items-center">
+                        <span class="text-[10px] tracking-widest text-gray-400 uppercase"><%= __('cart.total') %></span>
+                        <span id="cart-total" class="text-xl serif text-[#D4B483]">JPY 0</span>
+                    </div>
+                </div>
+
+                <button onclick="processCheckout()" class="w-full bg-[#2D2D2D] text-white py-4 text-[10px] tracking-[0.2em] hover:bg-[#D4B483] transition-colors duration-500 uppercase">
+                    <%= lang === 'zh' ? '确认下单' : '注文を確定する' %>
+                </button>
+            </div>
+        </div>
     </div>
 </section>
 
-<%- include('../partials/footer') %>
+<!-- 支付弹窗 (模拟) -->
+<div id="payment-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/60 backdrop-blur-sm p-6">
+    <div class="bg-white max-w-sm w-full p-8 text-center">
+        <h3 id="modal-title" class="text-sm tracking-widest uppercase mb-6"></h3>
+        <div id="modal-content" class="mb-8">
+            <!-- QR Code or Card Form will be here -->
+        </div>
+        <button onclick="confirmPayment()" class="w-full bg-[#2D2D2D] text-white py-3 text-[10px] tracking-[0.2em] uppercase">
+            <%= lang === 'zh' ? '我已完成支付' : '支払いを完了しました' %>
+        </button>
+    </div>
+</div>
 
 <script>
+    let currentOrderData = null;
+
     function renderCart() {
         const cart = JSON.parse(localStorage.getItem('cart') || '[]');
         const container = document.getElementById('cart-container');
-        const summary = document.getElementById('cart-summary');
+        const checkoutSection = document.getElementById('checkout-section');
         const empty = document.getElementById('cart-empty');
 
         if (cart.length === 0) {
             container.innerHTML = '';
-            summary.classList.add('hidden');
+            checkoutSection.classList.add('hidden');
             empty.classList.remove('hidden');
             return;
         }
 
         empty.classList.add('hidden');
-        summary.classList.remove('hidden');
+        checkoutSection.classList.remove('hidden');
 
-        let html = '<div class="space-y-8">';
+        let html = '<div class="space-y-6">';
         let total = 0;
 
         cart.forEach((item, index) => {
             total += item.price * item.quantity;
             html += `
-                <div class="flex items-center justify-between border-b border-gray-50 pb-8">
-                    <div>
-                        <h3 class="serif text-lg mb-1">${item.name}</h3>
-                        <p class="text-xs text-gray-400">JPY ${item.price} x ${item.quantity}</p>
+                <div class="flex items-center justify-between p-4 border border-gray-50 hover:border-gray-100 transition-colors">
+                    <div class="flex-1">
+                        <h3 class="serif text-base mb-1">${item.name}</h3>
+                        <p class="text-[10px] text-gray-400 tracking-widest uppercase">JPY ${item.price} × ${item.quantity}</p>
                     </div>
-                    <div class="flex items-center space-x-6">
-                        <div class="flex items-center border border-gray-100">
-                            <button onclick="updateQty(${index}, -1)" class="px-3 py-1 hover:bg-gray-50">-</button>
-                            <span class="px-3 text-sm">${item.quantity}</span>
-                            <button onclick="updateQty(${index}, 1)" class="px-3 py-1 hover:bg-gray-50">+</button>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center border border-gray-100 bg-white">
+                            <button onclick="updateQty(${index}, -1)" class="px-2 py-1 text-xs hover:bg-gray-50">-</button>
+                            <span class="px-3 text-xs font-medium">${item.quantity}</span>
+                            <button onclick="updateQty(${index}, 1)" class="px-2 py-1 text-xs hover:bg-gray-50">+</button>
                         </div>
-                        <button onclick="removeItem(${index})" class="text-xs text-gray-300 hover:text-red-400">×</button>
+                        <button onclick="removeItem(${index})" class="text-gray-300 hover:text-red-400 transition-colors">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"></path></svg>
+                        </button>
                     </div>
                 </div>
             `;
@@ -70,7 +151,22 @@
 
         html += '</div>';
         container.innerHTML = html;
-        document.getElementById('cart-total').textContent = 'JPY ' + total;
+        document.getElementById('cart-total').textContent = 'JPY ' + total.toLocaleString();
+        
+        updateDeliveryDisplay();
+    }
+
+    function updateDeliveryDisplay() {
+        const display = document.getElementById('delivery-info-display');
+        <% if (user && user.addresses && user.addresses.length > 0) { %>
+            const defaultAddr = <%- JSON.stringify(user.addresses.find(a => a.isDefault) || user.addresses[0]) %>;
+            display.innerHTML = `
+                <p class="text-sm font-medium mb-1">${defaultAddr.realName} <span class="text-xs text-gray-400 ml-2">${defaultAddr.phone}</span></p>
+                <p class="text-xs text-gray-500 leading-relaxed">${defaultAddr.address}</p>
+            `;
+        <% } else { %>
+            display.classList.add('hidden');
+        <% } %>
     }
 
     function updateQty(index, delta) {
@@ -88,33 +184,81 @@
         renderCart();
     }
 
-    async function checkout() {
-        <% if (!user) { %>
-            window.location.href = '/login';
-            return;
-        <% } %>
-
+    async function processCheckout() {
         const cart = JSON.parse(localStorage.getItem('cart') || '[]');
         const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+        
+        let deliveryInfo = null;
+        <% if (!user || !user.addresses || user.addresses.length === 0) { %>
+            deliveryInfo = {
+                realName: document.getElementById('guest-name').value,
+                phone: document.getElementById('guest-phone').value,
+                email: document.getElementById('guest-email').value,
+                address: document.getElementById('guest-address').value
+            };
+            if (!deliveryInfo.realName || !deliveryInfo.phone || !deliveryInfo.address) {
+                alert('<%= lang === "zh" ? "请填写完整的配送信息" : "配送先情報を入力してください" %>');
+                return;
+            }
+        <% } %>
 
+        currentOrderData = { items: cart, totalAmount: total, deliveryInfo, paymentMethod };
+
+        if (paymentMethod === 'cash') {
+            confirmOrder();
+        } else {
+            showPaymentModal(paymentMethod);
+        }
+    }
+
+    function showPaymentModal(method) {
+        const modal = document.getElementById('payment-modal');
+        const title = document.getElementById('modal-title');
+        const content = document.getElementById('modal-content');
+        modal.classList.remove('hidden');
+
+        if (method === 'wechat' || method === 'paypay') {
+            title.textContent = method === 'wechat' ? 'WeChat Pay' : 'PayPay';
+            content.innerHTML = `
+                <div class="bg-gray-50 p-8 inline-block rounded-lg mb-4">
+                    <svg class="w-32 h-32 mx-auto text-gray-200" fill="currentColor" viewBox="0 0 24 24"><path d="M3 3h18v18H3V3zm2 2v14h14V5H5zm2 2h2v2H7V7zm0 4h2v2H7v-2zm0 4h2v2H7v-2zm4-8h2v2h-2V7zm0 4h2v2h-2v-2zm0 4h2v2h-2v-2zm4-8h2v2h-2V7zm0 4h2v2h-2v-2zm0 4h2v2h-2v-2z"/></svg>
+                </div>
+                <p class="text-xs text-gray-400 tracking-widest uppercase"><%= lang === 'zh' ? '请使用手机扫码支付' : 'スマホでスキャンして支払い' %></p>
+            `;
+        } else if (method === 'credit') {
+            title.textContent = 'Credit Card';
+            content.innerHTML = `
+                <div class="space-y-4 text-left">
+                    <input type="text" placeholder="Card Number" class="w-full border border-gray-100 px-3 py-2 text-sm outline-none focus:border-[#D4B483]">
+                    <div class="grid grid-cols-2 gap-4">
+                        <input type="text" placeholder="MM/YY" class="border border-gray-100 px-3 py-2 text-sm outline-none focus:border-[#D4B483]">
+                        <input type="text" placeholder="CVC" class="border border-gray-100 px-3 py-2 text-sm outline-none focus:border-[#D4B483]">
+                    </div>
+                </div>
+            `;
+        }
+    }
+
+    function confirmPayment() {
+        document.getElementById('payment-modal').classList.add('hidden');
+        confirmOrder();
+    }
+
+    async function confirmOrder() {
         try {
             const response = await fetch('/place-order', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ items: cart, totalAmount: total })
+                body: JSON.stringify(currentOrderData)
             });
             const result = await response.json();
             if (result.success) {
                 localStorage.removeItem('cart');
-                alert('<%= lang === "zh" ? "订单已提交！请准备现金支付。" : "注文が完了しました！現金をご用意ください。" %>');
+                alert('<%= lang === "zh" ? "订单已提交成功！" : "注文が完了しました！" %>');
                 window.location.href = '/orders';
             } else {
-                if (result.message.includes('complete your profile')) {
-                    alert('<%= lang === "zh" ? "请先完善您的个人信息（姓名、电话、地址）后再下单。" : "注文する前に、プロフィール（お名前、電話番号、住所）を完成させてください。" %>');
-                    window.location.href = '/profile';
-                } else {
-                    alert('Error: ' + result.message);
-                }
+                alert('Error: ' + result.message);
             }
         } catch (err) {
             alert('An error occurred during checkout');
@@ -123,3 +267,5 @@
 
     renderCart();
 </script>
+
+<%- include('../partials/footer') %>

@@ -8,7 +8,15 @@ const userSchema = new mongoose.Schema({
     email: { type: String },
     realName: { type: String },
     phone: { type: String },
-    address: { type: String },
+    addresses: [{
+        realName: String,
+        phone: String,
+        address: String,
+        isDefault: { type: Boolean, default: false }
+    }],
+    isVerified: { type: Boolean, default: false },
+    verificationToken: String,
+    isGuest: { type: Boolean, default: false },
     createdAt: { type: Date, default: Date.now }
 });
 
