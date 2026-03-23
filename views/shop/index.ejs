@@ -45,13 +45,13 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
         <% products.forEach(product => { %>
             <div class="group">
-                <div class="aspect-[4/5] overflow-hidden mb-6 relative">
+                <div class="aspect-[4/5] overflow-hidden mb-6 relative group">
                     <img src="<%= product.imageUrl || '/assets/shrimp-jiaozi.png' %>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                     <% if (product.mainIngredients && product.mainIngredients.length > 0) { %>
-                        <div class="absolute bottom-2 right-2 flex gap-1">
+                        <div class="absolute bottom-3 right-3 flex gap-2 z-10">
                             <% product.mainIngredients.forEach(ing => { %>
-                                <div class="w-10 h-10 rounded-full bg-white/80 p-1 shadow-sm overflow-hidden">
-                                    <img src="<%= ing.iconUrl %>" class="w-full h-full object-cover rounded-full">
+                                <div class="w-12 h-12 rounded-full bg-white shadow-md border border-gray-100 p-1 overflow-hidden">
+                                    <img src="<%= ing.iconUrl %>" class="w-full h-full object-cover rounded-full" title="<%= ing.name %>">
                                 </div>
                             <% }) %>
                         </div>
