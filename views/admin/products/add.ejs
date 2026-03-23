@@ -51,6 +51,29 @@
             </div>
         </div>
 
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+                <label class="block text-[10px] tracking-widest text-gray-400 uppercase mb-2">配料表 (中文)</label>
+                <input type="text" name="ingredients_zh" class="w-full bg-white border border-gray-100 px-4 py-3 text-sm focus:outline-none focus:border-[#D4B483] transition-colors">
+            </div>
+            <div>
+                <label class="block text-[10px] tracking-widest text-gray-400 uppercase mb-2">原材料 (日本語)</label>
+                <input type="text" name="ingredients_jp" class="w-full bg-white border border-gray-100 px-4 py-3 text-sm focus:outline-none focus:border-[#D4B483] transition-colors">
+            </div>
+        </div>
+
+        <div>
+            <label class="block text-[10px] tracking-widest text-gray-400 uppercase mb-4">主料图标 (多选)</label>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <% availableIcons.forEach(icon => { %>
+                    <label class="flex items-center space-x-3 cursor-pointer group">
+                        <input type="checkbox" name="main_ingredients" value="<%= icon.key %>" class="w-4 h-4 text-[#D4B483] border-gray-200 focus:ring-0">
+                        <span class="text-sm text-gray-500 group-hover:text-black transition-colors"><%= icon.zh %> / <%= icon.jp %></span>
+                    </label>
+                <% }) %>
+            </div>
+        </div>
+
         <div>
             <label class="block text-[10px] tracking-widest text-gray-400 uppercase mb-2"><%= __('admin.image') %></label>
             <input type="file" name="image" required class="w-full text-xs text-gray-400 file:mr-4 file:py-2 file:px-4 file:border-0 file:text-[10px] file:tracking-widest file:bg-gray-50 file:text-gray-400 hover:file:bg-[#D4B483] hover:file:text-white transition-all">

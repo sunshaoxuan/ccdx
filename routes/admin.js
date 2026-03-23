@@ -40,17 +40,46 @@ router.get('/products', authMiddleware, adminMiddleware, async (req, res) => {
 
 // Add product page
 router.get('/products/add', authMiddleware, adminMiddleware, (req, res) => {
-    res.render('admin/products/add');
+    const availableIcons = [
+        { key: 'shrimp', zh: '鲜虾', jp: '海老' },
+        { key: 'pork', zh: '猪肉', jp: '豚肉' },
+        { key: 'cabbage', zh: '白菜', jp: '白菜' },
+        { key: 'chives', zh: '韭菜', jp: 'ニラ' },
+        { key: 'egg', zh: '鸡蛋', jp: '卵' },
+        { key: 'scallop', zh: '扇贝', jp: 'ホタテ' }
+    ];
+    res.render('admin/products/add', { availableIcons });
 });
 
 // Add product action
 router.post('/products/add', authMiddleware, adminMiddleware, upload.single('image'), async (req, res) => {
     try {
-        const { name_zh, name_jp, description_zh, description_jp, price, category, spec_zh, spec_jp } = req.body;
+        const { name_zh, name_jp, description_zh, description_jp, price, category, spec_zh, spec_jp, ingredients_zh, ingredients_jp, main_ingredients } = req.body;
+        
+        // Parse main ingredients
+        let mainIngredients = [];
+        if (main_ingredients) {
+            const ingredientsList = Array.isArray(main_ingredients) ? main_ingredients : [main_ingredients];
+            const iconMap = {
+                'shrimp': { zh: '鲜虾', jp: '海老', icon: '/assets/icon-shrimp.png' },
+                'pork': { zh: '猪肉', jp: '豚肉', icon: '/assets/icon-pork.png' },
+                'cabbage': { zh: '白菜', jp: '白菜', icon: '/assets/icon-cabbage.png' },
+                'chives': { zh: '韭菜', jp: 'ニラ', icon: '/assets/icon-chives.png' },
+                'egg': { zh: '鸡蛋', jp: '卵', icon: '/assets/icon-egg.png' },
+                'scallop': { zh: '扇贝', jp: 'ホタテ', icon: '/assets/icon-scallop.png' }
+            };
+            mainIngredients = ingredientsList.map(key => ({
+                name: { zh: iconMap[key].zh, jp: iconMap[key].jp },
+                iconUrl: iconMap[key].icon
+            }));
+        }
+
         const product = new Product({
             name: { zh: name_zh, jp: name_jp },
             description: { zh: description_zh, jp: description_jp },
             spec: { zh: spec_zh, jp: spec_jp },
+            ingredients: { zh: ingredients_zh, jp: ingredients_jp },
+            mainIngredients: mainIngredients,
             price: parseFloat(price),
             category: category,
             imageUrl: req.file ? `/uploads/${req.file.filename}` : ''
@@ -66,7 +95,15 @@ router.post('/products/add', authMiddleware, adminMiddleware, upload.single('ima
 router.get('/products/edit/:id', authMiddleware, adminMiddleware, async (req, res) => {
     try {
         const product = await Product.findById(req.params.id);
-        res.render('admin/products/edit', { product });
+        const availableIcons = [
+            { key: 'shrimp', zh: '鲜虾', jp: '海老' },
+            { key: 'pork', zh: '猪肉', jp: '豚肉' },
+            { key: 'cabbage', zh: '白菜', jp: '白菜' },
+            { key: 'chives', zh: '韭菜', jp: 'ニラ' },
+            { key: 'egg', zh: '鸡蛋', jp: '卵' },
+            { key: 'scallop', zh: '扇贝', jp: 'ホタテ' }
+        ];
+        res.render('admin/products/edit', { product, availableIcons });
     } catch (err) {
         res.status(500).render('error', { message: 'Error loading product edit page' });
     }
@@ -75,11 +112,32 @@ router.get('/products/edit/:id', authMiddleware, adminMiddleware, async (req, re
 // Edit product action
 router.post('/products/edit/:id', authMiddleware, adminMiddleware, upload.single('image'), async (req, res) => {
     try {
-        const { name_zh, name_jp, description_zh, description_jp, price, category, spec_zh, spec_jp } = req.body;
+        const { name_zh, name_jp, description_zh, description_jp, price, category, spec_zh, spec_jp, ingredients_zh, ingredients_jp, main_ingredients } = req.body;
+        
+        // Parse main ingredients
+        let mainIngredients = [];
+        if (main_ingredients) {
+            const ingredientsList = Array.isArray(main_ingredients) ? main_ingredients : [main_ingredients];
+            const iconMap = {
+                'shrimp': { zh: '鲜虾', jp: '海老', icon: '/assets/icon-shrimp.png' },
+                'pork': { zh: '猪肉', jp: '豚肉', icon: '/assets/icon-pork.png' },
+                'cabbage': { zh: '白菜', jp: '白菜', icon: '/assets/icon-cabbage.png' },
+                'chives': { zh: '韭菜', jp: 'ニラ', icon: '/assets/icon-chives.png' },
+                'egg': { zh: '鸡蛋', jp: '卵', icon: '/assets/icon-egg.png' },
+                'scallop': { zh: '扇贝', jp: 'ホタテ', icon: '/assets/icon-scallop.png' }
+            };
+            mainIngredients = ingredientsList.map(key => ({
+                name: { zh: iconMap[key].zh, jp: iconMap[key].jp },
+                iconUrl: iconMap[key].icon
+            }));
+        }
+
         const updateData = {
             name: { zh: name_zh, jp: name_jp },
             description: { zh: description_zh, jp: description_jp },
             spec: { zh: spec_zh, jp: spec_jp },
+            ingredients: { zh: ingredients_zh, jp: ingredients_jp },
+            mainIngredients: mainIngredients,
             price: parseFloat(price),
             category: category
         };
