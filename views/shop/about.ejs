@@ -1,33 +1,97 @@
 <%- include('../partials/header') %>
 
-<section class="py-20 max-w-4xl mx-auto px-6">
-    <div class="text-center mb-16">
-        <h2 class="text-3xl serif tracking-widest mb-4"><%= __('nav.about') %></h2>
-        <div class="w-12 h-[1px] bg-[#D4B483] mx-auto"></div>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-        <div class="aspect-[4/5] overflow-hidden">
-            <img src="/assets/craftsmanship-jiaozi.png" class="w-full h-full object-cover">
-        </div>
-        <div class="prose prose-lg max-w-none text-gray-500 leading-loose font-light">
+<!-- 关于我们 头部 -->
+<section class="py-20 bg-[#F9F6F2]">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+        <h2 class="text-4xl serif tracking-[0.3em] mb-6"><%= __('nav.about') %></h2>
+        <div class="w-16 h-[1px] bg-[#D4B483] mx-auto mb-10"></div>
+        <p class="text-lg text-gray-500 font-light tracking-widest max-w-2xl mx-auto leading-relaxed">
             <% if (lang === 'zh') { %>
-                <p>CC点心诞生的初衷，是为了找回消失在工业化生产中的“手工温度”。我们相信，每一只饺子都应有它独特的灵魂。</p>
-                <p>在CC点心，我们坚持：</p>
-                <ul class="list-none p-0 space-y-4">
-                    <li><span class="text-[#D4B483] mr-2">1.</span> 现包现做，冷链直达：职人当日手工包制，专业冷链极速送达，锁住鲜美。</li>
-                    <li><span class="text-[#D4B483] mr-2">2.</span> 私人订制，专属口味：支持自定义馅料，为您还原记忆中的味道或实现独特创意。</li>
-                    <li><span class="text-[#D4B483] mr-2">3.</span> 选料精良，源头把控：严选高品质食材，从源头确保每一口都安心、地道。</li>
-                </ul>
+                从一颗麦粒到一只饺子，我们跨越千山万水，只为寻找那份最纯粹的手工温度。
             <% } else { %>
-                <p>CC点心が誕生したきっかけは、工業化の中で失われつつある「手仕事の温もり」を取り戻すことでした。一つ一つの餃子には独自の魂が宿ると信じています。</p>
-                <p>CC点心では、以下のことを約束します：</p>
-                <ul class="list-none p-0 space-y-4">
-                    <li><span class="text-[#D4B483] mr-2">1.</span> 手包み、冷温配送：職人が当日に包み、プロの冷温物流で新鮮なままお届けします。</li>
-                    <li><span class="text-[#D4B483] mr-2">2.</span> オーダーメイド、独自の味：餡のカスタマイズが可能。思い出の味やアイデアを形にします。</li>
-                    <li><span class="text-[#D4B483] mr-2">3.</span> 厳選素材、品質管理：素材を厳選し、徹底した管理で安心の味わいをお届けします。</li>
-                </ul>
+                一粒の麦から一つの餃子まで、私たちは最高の「手仕事の温もり」を求めて、こだわり抜いています。
             <% } %>
+        </p>
+    </div>
+</section>
+
+<!-- 品牌初衷 -->
+<section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row gap-20 items-center">
+            <div class="w-full md:w-1/2">
+                <div class="overflow-hidden rounded-sm shadow-sm">
+                    <img src="/assets/story-jiaozi.png" class="w-full h-auto block hover:scale-105 transition-transform duration-1000">
+                </div>
+            </div>
+            <div class="w-full md:w-1/2">
+                <h3 class="text-2xl serif tracking-widest mb-8 text-[#2C2C2C]">
+                    <% if (lang === 'zh') { %> 品牌初衷：找回消失的温度 <% } else { %> ブランドの原点：失われた温もりを求めて <% } %>
+                </h3>
+                <div class="prose prose-lg text-gray-500 leading-loose font-light">
+                    <% if (lang === 'zh') { %>
+                        <p>在工业化流水线盛行的今天，食物往往变成了冷冰冰的数字和标准。CC点心诞生的初衷，正是为了对抗这种“工业化的冷漠”。</p>
+                        <p>我们相信，每一只饺子都应有它独特的灵魂。这种灵魂来自于指尖捏合时的力度，来自于馅料调配时的心思，更来自于那份想要传递给食客的家常暖意。</p>
+                    <% } else { %>
+                        <p>工業化が進む現代において、食べ物は単なる数字や規格になりつつあります。CC点心が誕生したきっかけは、まさにこの「工業的な冷たさ」への挑戦でした。</p>
+                        <p>一つ一つの餃子には独自の魂が宿ると信じています。その魂は、指先で包む時の力加減、餡を作る時のこだわり、そして食べる人に届けたい「家庭の温もり」から生まれます。</p>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 匠心坚持 -->
+<section class="py-24 bg-[#FDFBF9]">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row-reverse gap-20 items-center">
+            <div class="w-full md:w-1/2">
+                <div class="overflow-hidden rounded-sm shadow-sm">
+                    <img src="/assets/craftsmanship-jiaozi.png" class="w-full h-auto block hover:scale-105 transition-transform duration-1000">
+                </div>
+            </div>
+            <div class="w-full md:w-1/2">
+                <h3 class="text-2xl serif tracking-widest mb-8 text-[#2C2C2C]">
+                    <% if (lang === 'zh') { %> 匠心坚持：现包现做，冷链直达 <% } else { %> 職人のこだわり：手包み、新鮮配送 <% } %>
+                </h3>
+                <div class="prose prose-lg text-gray-500 leading-loose font-light">
+                    <% if (lang === 'zh') { %>
+                        <p>在CC点心，我们拒绝预制，拒绝冷冻。每一只饺子都是由职人在当日手工包制而成。这种坚持虽然增加了成本和时间，但却能最大限度地保留食材的鲜美与面皮的筋道。</p>
+                        <p>为了确保这份鲜美不被打折，我们建立了专业的冷链配送体系，让每一份心意都能以最完美的姿态抵达您的餐桌。</p>
+                    <% } else { %>
+                        <p>CC点心では、作り置きや冷凍を一切行いません。職人がその日に一つ一つ手包みしています。このこだわりは時間もコストもかかりますが、素材の旨味と皮の食感を最大限に引き出すための譲れない一線です。</p>
+                        <p>その鮮度を損なうことなくお届けするため、独自の冷温配送システムを構築。私たちの想いが、最高の状態で皆様の食卓へ届くように努めています。</p>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 选料与订制 -->
+<section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row gap-20 items-center">
+            <div class="w-full md:w-1/2">
+                <div class="overflow-hidden rounded-sm shadow-sm">
+                    <img src="/assets/jiaozi-collection.png" class="w-full h-auto block hover:scale-105 transition-transform duration-1000">
+                </div>
+            </div>
+            <div class="w-full md:w-1/2">
+                <h3 class="text-2xl serif tracking-widest mb-8 text-[#2C2C2C]">
+                    <% if (lang === 'zh') { %> 选料精良：私人订制，专属口味 <% } else { %> 厳選素材：オーダーメイドの味わい <% } %>
+                </h3>
+                <div class="prose prose-lg text-gray-500 leading-loose font-light">
+                    <% if (lang === 'zh') { %>
+                        <p>我们走访各地的优质食材源头，严选高品质猪肉、时令蔬菜和优质面粉。从源头把控，确保每一口都安心、地道。</p>
+                        <p>更重要的是，我们提供私人订制服务。无论您是怀念儿时记忆中的某种特殊味道，还是想要尝试独特的创意馅料，CC点心都能为您实现。因为我们知道，最好的味道，永远是属于您的那一份专属。</p>
+                    <% } else { %>
+                        <p>私たちは各地の生産者を訪ね、高品質な豚肉、旬の野菜、厳選された小麦粉を調達しています。素材の源流から管理することで、安心で本格的な味わいを実現しました。</p>
+                        <p>さらに、オーダーメイドサービスも提供しています。子供の頃の思い出の味や、独自のアイデアによる餡の組み合わせなど、CC点心は皆様のわがままを形にします。最高の味とは、お客様一人ひとりのための特別な一皿であると信じているからです。</p>
+                    <% } %>
+                </div>
+            </div>
         </div>
     </div>
 </section>
