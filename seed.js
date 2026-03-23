@@ -13,7 +13,7 @@ async function seed() {
         const hashedPassword = await bcrypt.hash('admin123', 10);
         await User.deleteMany({ role: 'admin' });
         const admin = new User({
-            username: process.env.ADMIN_USERNAME || 'admin',
+            username: 'admin',
             password: hashedPassword,
             role: 'admin',
             email: 'admin@ccdx.com'
@@ -21,7 +21,7 @@ async function seed() {
         await admin.save();
         console.log('Admin user updated with password: admin123');
 
-        // Create initial products with full ingredients and icons
+        // Create initial products with full ingredients and localized icons
         const initialProducts = [
             {
                 name: { zh: '时令鲜虾水饺', jp: '季節の海老水餃子' },
@@ -35,8 +35,8 @@ async function seed() {
                     jp: '小麦粉、海老、豚肉、ニラ、生姜、食塩、ごま油'
                 },
                 mainIngredients: [
-                    { name: 'shrimp', iconUrl: '/assets/icon-shrimp.png' },
-                    { name: 'pork', iconUrl: '/assets/icon-pork.png' }
+                    { name: { zh: '鲜虾', jp: '海老' }, iconUrl: '/assets/icon-shrimp.png' },
+                    { name: { zh: '猪肉', jp: '豚肉' }, iconUrl: '/assets/icon-pork.png' }
                 ]
             },
             {
@@ -51,8 +51,8 @@ async function seed() {
                     jp: '小麦粉、豚肉、白菜、白ねぎ、生姜、にんにく、醤油、食塩'
                 },
                 mainIngredients: [
-                    { name: 'pork', iconUrl: '/assets/icon-pork.png' },
-                    { name: 'cabbage', iconUrl: '/assets/icon-cabbage.png' }
+                    { name: { zh: '猪肉', jp: '豚肉' }, iconUrl: '/assets/icon-pork.png' },
+                    { name: { zh: '白菜', jp: '白菜' }, iconUrl: '/assets/icon-cabbage.png' }
                 ]
             },
             {
@@ -67,8 +67,8 @@ async function seed() {
                     jp: '小麦粉、ニラ、卵、干し海老、食塩、ごま油'
                 },
                 mainIngredients: [
-                    { name: 'chives', iconUrl: '/assets/icon-chives.png' },
-                    { name: 'egg', iconUrl: '/assets/icon-egg.png' }
+                    { name: { zh: '韭菜', jp: 'ニラ' }, iconUrl: '/assets/icon-chives.png' },
+                    { name: { zh: '鸡蛋', jp: '卵' }, iconUrl: '/assets/icon-egg.png' }
                 ]
             },
             {
@@ -83,8 +83,8 @@ async function seed() {
                     jp: '小麦粉、ホタテ、豚肉、ニラ、生姜、食塩、ごま油'
                 },
                 mainIngredients: [
-                    { name: 'scallop', iconUrl: '/assets/icon-scallop.png' },
-                    { name: 'chives', iconUrl: '/assets/icon-chives.png' }
+                    { name: { zh: '扇贝', jp: 'ホタテ' }, iconUrl: '/assets/icon-scallop.png' },
+                    { name: { zh: '韭菜', jp: 'ニラ' }, iconUrl: '/assets/icon-chives.png' }
                 ]
             },
             {
@@ -99,9 +99,9 @@ async function seed() {
                     jp: '海老、豚肉、白菜、ニラ、卵など、様々な味の詰め合わせ'
                 },
                 mainIngredients: [
-                    { name: 'shrimp', iconUrl: '/assets/icon-shrimp.png' },
-                    { name: 'pork', iconUrl: '/assets/icon-pork.png' },
-                    { name: 'cabbage', iconUrl: '/assets/icon-cabbage.png' }
+                    { name: { zh: '鲜虾', jp: '海老' }, iconUrl: '/assets/icon-shrimp.png' },
+                    { name: { zh: '猪肉', jp: '豚肉' }, iconUrl: '/assets/icon-pork.png' },
+                    { name: { zh: '白菜', jp: '白菜' }, iconUrl: '/assets/icon-cabbage.png' }
                 ]
             },
             {
@@ -116,14 +116,14 @@ async function seed() {
                     jp: '小麦粉、厳選豚肉、旬の野菜、特製調味料'
                 },
                 mainIngredients: [
-                    { name: 'pork', iconUrl: '/assets/icon-pork.png' }
+                    { name: { zh: '猪肉', jp: '豚肉' }, iconUrl: '/assets/icon-pork.png' }
                 ]
             }
         ];
 
         await Product.deleteMany({});
         await Product.insertMany(initialProducts);
-        console.log('All products seeded with full ingredients and icons');
+        console.log('All products seeded with full ingredients and localized icons');
 
         console.log('Seeding completed');
         process.exit(0);

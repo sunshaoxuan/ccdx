@@ -19,7 +19,10 @@ const productSchema = new mongoose.Schema({
         jp: { type: String }
     },
     mainIngredients: [{
-        name: { type: String },
+        name: {
+            zh: { type: String },
+            jp: { type: String }
+        },
         iconUrl: { type: String }
     }],
     imageUrl: { type: String },

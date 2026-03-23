@@ -15,7 +15,7 @@
                         <div class="absolute bottom-3 right-3 flex gap-2 z-10">
                             <% product.mainIngredients.forEach(ing => { %>
                                 <div class="w-12 h-12 rounded-full bg-white shadow-md border border-gray-100 p-1 overflow-hidden">
-                                    <img src="<%= ing.iconUrl %>" class="w-full h-full object-cover rounded-full" title="<%= ing.name %>">
+                                    <img src="<%= ing.iconUrl %>" class="w-full h-full object-cover rounded-full" title="<%= ing.name[lang] %>">
                                 </div>
                             <% }) %>
                         </div>
