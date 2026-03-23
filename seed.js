@@ -28,7 +28,7 @@ async function seed() {
                 description: { zh: '严选大颗鲜虾，搭配清爽时蔬', jp: '厳選された大きな海老と新鮮な野菜' },
                 spec: { zh: '1kg', jp: '1kg' },
                 price: 3300,
-                imageUrl: '/assets/shrimp-pork-jiaozi-with-icons.png',
+                imageUrl: '/assets/shrimp-jiaozi.png',
                 category: 'jiaozi',
                 ingredients: {
                     zh: '面粉、鲜虾、猪肉、韭菜、生姜、食用盐、芝麻油（不含葱蒜）',
