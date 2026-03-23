@@ -14,6 +14,14 @@ const productSchema = new mongoose.Schema({
         zh: { type: String },
         jp: { type: String }
     },
+    ingredients: {
+        zh: { type: String },
+        jp: { type: String }
+    },
+    mainIngredients: [{
+        name: { type: String },
+        iconUrl: { type: String }
+    }],
     imageUrl: { type: String },
     category: { type: String, default: 'jiaozi' },
     isActive: { type: Boolean, default: true },

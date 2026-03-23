@@ -45,16 +45,30 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
         <% products.forEach(product => { %>
             <div class="group">
-                <div class="aspect-[4/5] overflow-hidden mb-6">
+                <div class="aspect-[4/5] overflow-hidden mb-6 relative">
                     <img src="<%= product.imageUrl || '/assets/shrimp-jiaozi.png' %>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <% if (product.mainIngredients && product.mainIngredients.length > 0) { %>
+                        <div class="absolute bottom-2 right-2 flex gap-1">
+                            <% product.mainIngredients.forEach(ing => { %>
+                                <div class="w-10 h-10 rounded-full bg-white/80 p-1 shadow-sm overflow-hidden">
+                                    <img src="<%= ing.iconUrl %>" class="w-full h-full object-cover rounded-full">
+                                </div>
+                            <% }) %>
+                        </div>
+                    <% } %>
                 </div>
                 <h3 class="text-lg serif mb-2"><%= product.name[lang] %></h3>
-                <p class="text-sm text-gray-400 mb-4">
-                    <% if (product.spec && product.spec[lang]) { %>
-                        <span class="mr-2"><%= product.spec[lang] %></span>
+                <div class="text-xs text-gray-400 mb-4 font-light leading-relaxed">
+                    <% if (product.ingredients && product.ingredients[lang]) { %>
+                        <p class="mb-2"><%= lang === 'zh' ? '配料表' : '原材料' %>: <%= product.ingredients[lang] %></p>
                     <% } %>
-                    JPY <%= product.price %>
-                </p>
+                    <p>
+                        <% if (product.spec && product.spec[lang]) { %>
+                            <span class="mr-2"><%= product.spec[lang] %></span>
+                        <% } %>
+                        JPY <%= product.price %>
+                    </p>
+                </div>
                 <button onclick="addToCart('<%= product._id %>', '<%= product.name[lang] %>', <%= product.price %>)" class="text-xs tracking-widest border-b border-gray-200 pb-1 hover:border-[#D4B483] transition-colors"><%= __('cart.add_to_cart') %></button>
             </div>
         <% }) %>

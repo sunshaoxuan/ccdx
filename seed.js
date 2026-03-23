@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const User = require('./models/User');
 const Product = require('./models/Product');
+const bcrypt = require('bcryptjs');
 require('dotenv').config();
 
 async function seed() {
@@ -8,28 +9,35 @@ async function seed() {
         await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/ccdx');
         console.log('Connected to MongoDB for seeding...');
 
-        // Create Admin
-        const adminExists = await User.findOne({ role: 'admin' });
-        if (!adminExists) {
-            const admin = new User({
-                username: process.env.ADMIN_USERNAME || 'admin',
-                password: process.env.ADMIN_PASSWORD || 'admin123',
-                role: 'admin',
-                email: 'admin@ccdx.com'
-            });
-            await admin.save();
-            console.log('Admin user created');
-        }
+        // Create Admin with password admin123
+        const hashedPassword = await bcrypt.hash('admin123', 10);
+        await User.deleteMany({ role: 'admin' });
+        const admin = new User({
+            username: process.env.ADMIN_USERNAME || 'admin',
+            password: hashedPassword,
+            role: 'admin',
+            email: 'admin@ccdx.com'
+        });
+        await admin.save();
+        console.log('Admin user updated with password: admin123');
 
-        // Create initial products
+        // Create initial products with ingredients and main ingredients
         const initialProducts = [
             {
                 name: { zh: '时令鲜虾水饺', jp: '季節の海老水餃子' },
                 description: { zh: '严选大颗鲜虾，搭配清爽时蔬', jp: '厳選された大きな海老と新鮮な野菜' },
                 spec: { zh: '1kg', jp: '1kg' },
                 price: 3300,
-                imageUrl: '/assets/shrimp-jiaozi.png',
-                category: 'jiaozi'
+                imageUrl: '/assets/shrimp-pork-jiaozi-with-icons.png',
+                category: 'jiaozi',
+                ingredients: {
+                    zh: '面粉、鲜虾、猪肉、韭菜、生姜、食用盐、芝麻油（不含葱蒜）',
+                    jp: '小麦粉、海老、豚肉、ニラ、生姜、食塩、ごま油（ねぎ・にんにく不使用）'
+                },
+                mainIngredients: [
+                    { name: 'shrimp', iconUrl: '/assets/icon-shrimp.png' },
+                    { name: 'pork', iconUrl: '/assets/icon-pork.png' }
+                ]
             },
             {
                 name: { zh: '经典猪肉白菜水饺', jp: '定番豚肉白菜餃子' },
@@ -37,7 +45,14 @@ async function seed() {
                 spec: { zh: '1kg', jp: '1kg' },
                 price: 2800,
                 imageUrl: '/assets/pork-cabbage-jiaozi.png',
-                category: 'jiaozi'
+                category: 'jiaozi',
+                ingredients: {
+                    zh: '面粉、猪肉、白菜、大葱、生姜、大蒜、酱油、食用盐',
+                    jp: '小麦粉、豚肉、白菜、白ねぎ、生姜、にんにく、醤油、食塩'
+                },
+                mainIngredients: [
+                    { name: 'pork', iconUrl: '/assets/icon-pork.png' }
+                ]
             },
             {
                 name: { zh: '经典鸡蛋韭菜水饺', jp: '定番ニラ玉餃子' },
@@ -45,37 +60,17 @@ async function seed() {
                 spec: { zh: '1kg', jp: '1kg' },
                 price: 2500,
                 imageUrl: '/assets/egg-chive-jiaozi.png',
-                category: 'jiaozi'
-            },
-            {
-                name: { zh: '鲜美扇贝韭菜水饺', jp: 'ホタテニラ餃子' },
-                description: { zh: '严选鲜甜扇贝，搭配鲜香韭菜', jp: '厳選された甘いホタテと香り高いニラ' },
-                spec: { zh: '1kg', jp: '1kg' },
-                price: 3500,
-                imageUrl: '/assets/scallop-chive-jiaozi.png',
-                category: 'jiaozi'
-            },
-            {
-                name: { zh: '饺子全集', jp: '餃子コレクション' },
-                description: { zh: '一次品尝多种口味的完美选择', jp: '様々な味を一度に楽しめる完璧な選択' },
-                spec: { zh: '1.5kg', jp: '1.5kg' },
-                price: 4500,
-                imageUrl: '/assets/jiaozi-collection.png',
-                category: 'jiaozi'
-            },
-            {
-                name: { zh: '故事系列水饺', jp: 'ストーリー餃子' },
-                description: { zh: '承载品牌故事的经典之作', jp: 'ブランドストーリーを込めた定番の逸品' },
-                spec: { zh: '1kg', jp: '1kg' },
-                price: 3200,
-                imageUrl: '/assets/story-jiaozi.png',
-                category: 'jiaozi'
+                category: 'jiaozi',
+                ingredients: {
+                    zh: '面粉、韭菜、鸡蛋、虾皮、食用盐、芝麻油（不含肉类、葱蒜）',
+                    jp: '小麦粉、ニラ、卵、干し海老、食塩、ごま油（肉類・ねぎ・にんにく不使用）'
+                }
             }
         ];
 
         await Product.deleteMany({});
         await Product.insertMany(initialProducts);
-        console.log('Initial products seeded with 6 items aligned with assets');
+        console.log('Initial products seeded with ingredients and icons');
 
         console.log('Seeding completed');
         process.exit(0);
