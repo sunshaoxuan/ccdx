@@ -109,7 +109,12 @@
                 alert('<%= lang === "zh" ? "订单已提交！请准备现金支付。" : "注文が完了しました！現金をご用意ください。" %>');
                 window.location.href = '/orders';
             } else {
-                alert('Error: ' + result.message);
+                if (result.message.includes('complete your profile')) {
+                    alert('<%= lang === "zh" ? "请先完善您的个人信息（姓名、电话、地址）后再下单。" : "注文する前に、プロフィール（お名前、電話番号、住所）を完成させてください。" %>');
+                    window.location.href = '/profile';
+                } else {
+                    alert('Error: ' + result.message);
+                }
             }
         } catch (err) {
             alert('An error occurred during checkout');

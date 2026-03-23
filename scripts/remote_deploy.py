@@ -17,9 +17,9 @@ def deploy_fullstack():
         
         # 1. 检查并安装 Docker 和 Docker Compose
         print("检查 Docker 环境...")
-        ssh.exec_command("curl -fsSL https://get.docker.com | sh")[1].channel.recv_exit_status()
-        ssh.exec_command("curl -L \"https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)\" -o /usr/local/bin/docker-compose")[1].channel.recv_exit_status()
-        ssh.exec_command("chmod +x /usr/local/bin/docker-compose")[1].channel.recv_exit_status()
+        # 仅在 docker 命令不存在时安装
+        ssh.exec_command("command -v docker >/dev/null 2>&1 || curl -fsSL https://get.docker.com | sh")[1].channel.recv_exit_status()
+        ssh.exec_command("command -v docker-compose >/dev/null 2>&1 || (curl -L \"https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)\" -o /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose)")[1].channel.recv_exit_status()
 
         # 2. 拉取最新代码
         print("更新代码库...")

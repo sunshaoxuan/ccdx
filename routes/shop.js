@@ -68,10 +68,23 @@ router.post('/profile', authMiddleware, async (req, res) => {
 router.post('/place-order', authMiddleware, async (req, res) => {
     try {
         const { items, totalAmount } = req.body;
+        
+        // 获取当前用户的最新配送信息
+        const user = await User.findById(req.user._id);
+        if (!user.realName || !user.phone || !user.address) {
+            return res.status(400).json({ success: false, message: 'Please complete your profile (Name, Phone, Address) before ordering.' });
+        }
+
         const order = new Order({
             userId: req.user._id,
             items: items,
             totalAmount: totalAmount,
+            deliveryInfo: {
+                realName: user.realName,
+                phone: user.phone,
+                address: user.address,
+                email: user.email
+            },
             status: 'pending'
         });
         await order.save();
