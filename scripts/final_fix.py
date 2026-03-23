@@ -39,7 +39,7 @@ def final_fix():
         
         # 4. 初始化数据
         print("\n--- 初始化数据库数据 ---")
-        stdin, stdout, stderr = ssh.exec_command(f"docker exec $(docker ps -qf 'name=app') node seed.js")
+        stdin, stdout, stderr = ssh.exec_command(f"docker exec $(docker ps -qf 'name=app') node scripts/seed.js")
         print(stdout.read().decode())
         
         # 5. 重启 Nginx

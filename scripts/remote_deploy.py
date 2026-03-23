@@ -31,7 +31,7 @@ def deploy_fullstack():
 
         # 4. 运行数据种子脚本 (在容器内运行)
         print("初始化数据库数据...")
-        ssh.exec_command(f"docker exec $(docker ps -qf \"name=app\") node seed.js")[1].channel.recv_exit_status()
+        ssh.exec_command(f"docker exec $(docker ps -qf \"name=app\") node scripts/seed.js")[1].channel.recv_exit_status()
 
         # 5. 更新 Nginx 配置
         print("更新 Nginx 配置...")

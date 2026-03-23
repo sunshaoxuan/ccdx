@@ -19,7 +19,7 @@ def reset_admin_remote():
         
         # 2. 在容器内运行重置脚本
         print("执行重置脚本...")
-        stdin, stdout, stderr = ssh.exec_command(f"docker exec $(docker ps -qf 'name=app') node reset_admin.js")
+        stdin, stdout, stderr = ssh.exec_command(f"docker exec $(docker ps -qf 'name=app') node scripts/reset_admin.js")
         print(stdout.read().decode())
         print(stderr.read().decode())
 
