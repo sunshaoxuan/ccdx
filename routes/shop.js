@@ -59,7 +59,12 @@ router.get('/orders', async (req, res) => {
 
 // Profile page
 router.get('/profile', authMiddleware, async (req, res) => {
-    res.render('shop/profile', { user: req.user });
+    try {
+        const user = await User.findById(req.user._id);
+        res.render('shop/profile', { user });
+    } catch (err) {
+        res.status(500).render('error', { message: 'Error loading profile' });
+    }
 });
 
 // Update profile action
