@@ -19,7 +19,7 @@
     "craft_title": "匠心手作",
     "craft_subtitle": "每一只饺子，都是对品质的坚持"
   },
-  "admin": {
+    "admin": {
     "dashboard": "控制面板",
     "products": "产品管理",
     "orders": "订单管理",
@@ -32,7 +32,8 @@
     "image": "图片",
     "actions": "操作",
     "save": "保存",
-    "delete": "删除"
+    "delete": "删除",
+    "edit": "编辑"
   },
   "cart": {
     "title": "我的购物车",

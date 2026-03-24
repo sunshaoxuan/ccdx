@@ -35,9 +35,9 @@
                         </td>
                         <td class="py-6 text-right">
                             <div class="flex justify-end space-x-4">
-                                <a href="/admin/products/edit/<%= product._id %>" class="text-[10px] tracking-widest text-gray-400 hover:text-[#D4B483]">EDIT</a>
-                                <form action="/admin/products/delete/<%= product._id %>" method="POST" onsubmit="return confirm('Confirm delete?')">
-                                    <button type="submit" class="text-[10px] tracking-widest text-gray-400 hover:text-red-400">DELETE</button>
+                                <a href="/admin/products/edit/<%= product._id %>" class="text-[10px] tracking-widest text-gray-400 hover:text-[#D4B483] uppercase"><%= __('admin.edit') || (lang === 'zh' ? '编辑' : '編集') %></a>
+                                <form action="/admin/products/delete/<%= product._id %>" method="POST" onsubmit="return confirm('<%= lang === 'zh' ? '确定要删除吗？' : '削除してもよろしいですか？' %>')">
+                                    <button type="submit" class="text-[10px] tracking-widest text-gray-400 hover:text-red-400 uppercase"><%= __('admin.delete') || (lang === 'zh' ? '删除' : '削除') %></button>
                                 </form>
                             </div>
                         </td>

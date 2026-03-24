@@ -19,7 +19,7 @@
     "craft_title": "匠の手作り",
     "craft_subtitle": "一つ一つの餃子に、品質へのこだわりを込めて"
   },
-  "admin": {
+    "admin": {
     "dashboard": "ダッシュボード",
     "products": "商品管理",
     "orders": "注文管理",
@@ -32,7 +32,8 @@
     "image": "画像",
     "actions": "操作",
     "save": "保存",
-    "delete": "削除"
+    "delete": "削除",
+    "edit": "編集"
   },
   "cart": {
     "title": "ショッピングカート",
