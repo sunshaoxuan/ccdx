@@ -49,13 +49,14 @@
                 <div class="flex justify-between items-center mb-6 pb-2 border-b border-gray-50">
                     <h3 class="text-sm tracking-widest uppercase"><%= lang === 'zh' ? '地址管理' : '配送先管理' %></h3>
                     <button onclick="toggleAddressForm()" class="text-[10px] tracking-widest text-[#D4B483] hover:text-black transition-colors uppercase">
-                        + <%= lang === 'zh' ? '新增地址' : '新規追加' %>
+                        + <span id="add-btn-text"><%= lang === 'zh' ? '新增地址' : '新規追加' %></span>
                     </button>
                 </div>
 
-                <!-- 新增地址表单 (默认隐藏) -->
+                <!-- 地址表单 (默认隐藏) -->
                 <div id="address-form" class="hidden mb-8 p-4 bg-gray-50 border border-gray-100">
-                    <form action="/profile/address/add" method="POST" class="space-y-4 h-adr">
+                    <h4 id="form-title" class="text-[10px] tracking-widest text-gray-400 uppercase mb-4"><%= lang === 'zh' ? '新增地址' : '新規追加' %></h4>
+                    <form id="adr-form-element" action="/profile/address/add" method="POST" class="space-y-4 h-adr">
                         <span class="p-country-name" style="display:none;">Japan</span>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
@@ -116,6 +117,7 @@
                                         <% } %>
                                     </div>
                                     <div class="flex space-x-3">
+                                        <button onclick="editAddress('<%= JSON.stringify(addr) %>')" class="text-[8px] tracking-widest text-gray-400 hover:text-black uppercase"><%= lang === 'zh' ? '编辑' : '編集' %></button>
                                         <% if (!addr.isDefault) { %>
                                             <form action="/profile/address/default/<%= addr._id %>" method="POST" class="inline">
                                                 <button type="submit" class="text-[8px] tracking-widest text-gray-400 hover:text-[#D4B483] uppercase"><%= lang === 'zh' ? '设为默认' : 'デフォルトに設定' %></button>
@@ -143,11 +145,42 @@
     </div>
 </section>
 
-<script>
-    function toggleAddressForm() {
-        const form = document.getElementById('address-form');
-        form.classList.toggle('hidden');
-    }
-</script>
+    <script>
+        function toggleAddressForm() {
+            const form = document.getElementById('address-form');
+            const title = document.getElementById('form-title');
+            const formElement = document.getElementById('adr-form-element');
+            
+            // Reset to Add mode
+            title.innerText = '<%= lang === "zh" ? "新增地址" : "新規追加" %>';
+            formElement.action = '/profile/address/add';
+            formElement.reset();
+            
+            form.classList.toggle('hidden');
+        }
+
+        function editAddress(addrJson) {
+            const addr = JSON.parse(addrJson);
+            const form = document.getElementById('address-form');
+            const title = document.getElementById('form-title');
+            const formElement = document.getElementById('adr-form-element');
+            
+            title.innerText = '<%= lang === "zh" ? "编辑地址" : "住所を編集" %>';
+            formElement.action = '/profile/address/update/' + addr._id;
+            
+            // Fill form
+            formElement.realName.value = addr.realName;
+            formElement.phone.value = addr.phone;
+            formElement.postalCode.value = addr.postalCode;
+            formElement.prefecture.value = addr.prefecture;
+            formElement.city.value = addr.city;
+            formElement.addressLine1.value = addr.addressLine1;
+            formElement.addressLine2.value = addr.addressLine2 || '';
+            formElement.isDefault.checked = addr.isDefault;
+            
+            form.classList.remove('hidden');
+            form.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
 
 <%- include('../partials/footer') %>

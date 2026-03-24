@@ -107,6 +107,36 @@ router.post('/profile/address/add', authMiddleware, async (req, res) => {
     }
 });
 
+// Update address
+router.post('/profile/address/update/:id', authMiddleware, async (req, res) => {
+    try {
+        const { realName, phone, postalCode, prefecture, city, addressLine1, addressLine2, isDefault } = req.body;
+        const user = await User.findById(req.user._id);
+        const address = user.addresses.id(req.params.id);
+        
+        if (address) {
+            if (isDefault) {
+                user.addresses.forEach(a => a.isDefault = false);
+            }
+            
+            address.realName = realName;
+            address.phone = phone;
+            address.postalCode = postalCode;
+            address.prefecture = prefecture;
+            address.city = city;
+            address.addressLine1 = addressLine1;
+            address.addressLine2 = addressLine2;
+            address.isDefault = isDefault === 'on' || (address.isDefault && !isDefault);
+            
+            await user.save();
+        }
+        res.redirect('/profile');
+    } catch (err) {
+        console.error(err);
+        res.status(500).render('error', { message: 'Error updating address' });
+    }
+});
+
 // Delete address
 router.post('/profile/address/delete/:id', authMiddleware, async (req, res) => {
     try {
