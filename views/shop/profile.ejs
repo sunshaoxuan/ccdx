@@ -1,4 +1,5 @@
 <%- include('../partials/header') %>
+<script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
 
 <section class="py-12 md:py-20 max-w-4xl mx-auto px-6">
     <div class="text-center mb-12">
@@ -54,7 +55,8 @@
 
                 <!-- 新增地址表单 (默认隐藏) -->
                 <div id="address-form" class="hidden mb-8 p-4 bg-gray-50 border border-gray-100">
-                    <form action="/profile/address/add" method="POST" class="space-y-4">
+                    <form action="/profile/address/add" method="POST" class="space-y-4 h-adr">
+                        <span class="p-country-name" style="display:none;">Japan</span>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-[10px] tracking-widest text-gray-400 uppercase mb-1"><%= lang === 'zh' ? '收货人姓名' : 'お名前' %></label>
@@ -65,9 +67,29 @@
                                 <input type="text" name="phone" required class="w-full bg-white border border-gray-100 px-3 py-2 text-sm focus:outline-none focus:border-[#D4B483]">
                             </div>
                         </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[10px] tracking-widest text-gray-400 uppercase mb-1"><%= lang === 'zh' ? '邮政编码 (7位)' : '郵便番号 (7桁)' %></label>
+                                <input type="text" name="postalCode" required class="p-postal-code w-full bg-white border border-gray-100 px-3 py-2 text-sm focus:outline-none focus:border-[#D4B483]" placeholder="1234567">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] tracking-widest text-gray-400 uppercase mb-1"><%= lang === 'zh' ? '都道府县' : '都道府県' %></label>
+                                <input type="text" name="prefecture" required class="p-region w-full bg-white border border-gray-100 px-3 py-2 text-sm focus:outline-none focus:border-[#D4B483]">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[10px] tracking-widest text-gray-400 uppercase mb-1"><%= lang === 'zh' ? '市区町村' : '市区町村' %></label>
+                                <input type="text" name="city" required class="p-locality p-street-address w-full bg-white border border-gray-100 px-3 py-2 text-sm focus:outline-none focus:border-[#D4B483]">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] tracking-widest text-gray-400 uppercase mb-1"><%= lang === 'zh' ? '丁目・番地・号' : '丁目・番地・号' %></label>
+                                <input type="text" name="addressLine1" required class="w-full bg-white border border-gray-100 px-3 py-2 text-sm focus:outline-none focus:border-[#D4B483]">
+                            </div>
+                        </div>
                         <div>
-                            <label class="block text-[10px] tracking-widest text-gray-400 uppercase mb-1"><%= lang === 'zh' ? '详细地址' : 'お届け先住所' %></label>
-                            <textarea name="address" required rows="2" class="w-full bg-white border border-gray-100 px-3 py-2 text-sm focus:outline-none focus:border-[#D4B483]"></textarea>
+                            <label class="block text-[10px] tracking-widest text-gray-400 uppercase mb-1"><%= lang === 'zh' ? '建筑名・房间号' : '建物名・部屋番号' %></label>
+                            <input type="text" name="addressLine2" class="w-full bg-white border border-gray-100 px-3 py-2 text-sm focus:outline-none focus:border-[#D4B483]">
                         </div>
                         <div class="flex items-center space-x-2">
                             <input type="checkbox" name="isDefault" id="isDefault" class="w-4 h-4 text-[#D4B483] border-gray-200 focus:ring-0">
@@ -104,7 +126,10 @@
                                         </form>
                                     </div>
                                 </div>
-                                <p class="text-xs text-gray-500 leading-relaxed"><%= addr.address %></p>
+                                <p class="text-xs text-gray-500 leading-relaxed">
+                                    〒<%= addr.postalCode %> <%= addr.prefecture %><%= addr.city %><%= addr.addressLine1 %><br>
+                                    <%= addr.addressLine2 %>
+                                </p>
                             </div>
                         <% }) %>
                     <% } else { %>

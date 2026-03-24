@@ -81,7 +81,7 @@ router.post('/profile', authMiddleware, async (req, res) => {
 // Add address
 router.post('/profile/address/add', authMiddleware, async (req, res) => {
     try {
-        const { realName, phone, address, isDefault } = req.body;
+        const { realName, phone, postalCode, prefecture, city, addressLine1, addressLine2, isDefault } = req.body;
         const user = await User.findById(req.user._id);
         
         if (isDefault) {
@@ -91,13 +91,18 @@ router.post('/profile/address/add', authMiddleware, async (req, res) => {
         user.addresses.push({ 
             realName, 
             phone, 
-            address, 
+            postalCode,
+            prefecture,
+            city,
+            addressLine1,
+            addressLine2,
             isDefault: isDefault === 'on' || user.addresses.length === 0 
         });
         
         await user.save();
         res.redirect('/profile');
     } catch (err) {
+        console.error(err);
         res.status(500).render('error', { message: 'Error adding address' });
     }
 });

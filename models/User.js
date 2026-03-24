@@ -11,7 +11,11 @@ const userSchema = new mongoose.Schema({
     addresses: [{
         realName: String,
         phone: String,
-        address: String,
+        postalCode: String,
+        prefecture: String,
+        city: String,
+        addressLine1: String, // 丁目・番地・号
+        addressLine2: String, // 建物名・部屋番号
         isDefault: { type: Boolean, default: false }
     }],
     isVerified: { type: Boolean, default: false },
