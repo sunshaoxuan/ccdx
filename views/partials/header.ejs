@@ -79,6 +79,11 @@
     </nav>
 
     <script>
+        function setLang(lang) {
+            document.cookie = `cc-lang=${lang}; path=/; max-age=${60*60*24*30}`;
+            window.location.reload();
+        }
+
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
