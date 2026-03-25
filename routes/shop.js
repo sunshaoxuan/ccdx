@@ -16,7 +16,7 @@ router.get('/info', (req, res) => {
 // Home page
 router.get('/', async (req, res) => {
     try {
-        const products = await Product.find({ isActive: true }).limit(3);
+        const products = await Product.find({ isActive: true });
         res.render('shop/index', { products });
     } catch (err) {
         res.status(500).render('error', { message: 'Error loading home page' });
