@@ -47,82 +47,8 @@
     <div class="max-w-7xl mx-auto px-6">
         <div class="flex flex-col md:flex-row-reverse gap-20 items-center">
             <div class="w-full md:w-1/2">
-                <div class="rounded-sm shadow-sm overflow-hidden bg-[linear-gradient(135deg,#EEF6F8_0%,#FFFFFF_52%,#F5EFE7_100%)] border border-white/70">
-                    <div class="p-8 md:p-10">
-                        <div class="flex items-center justify-between mb-8">
-                            <div>
-                                <p class="text-[10px] tracking-[0.28em] text-slate-400 uppercase mb-2">
-                                    <%= lang === 'zh' ? 'Cold Chain Delivery' : 'Cold Chain Delivery' %>
-                                </p>
-                                <h4 class="text-2xl serif tracking-[0.16em] text-slate-800">
-                                    <%= lang === 'zh' ? '冷链直达' : '冷温配送' %>
-                                </h4>
-                            </div>
-                            <div class="w-14 h-14 rounded-full bg-white/90 border border-slate-100 flex items-center justify-center shadow-sm">
-                                <svg class="w-7 h-7 text-sky-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18M4.93 7.5l14.14 9M4.93 16.5l14.14-9"/>
-                                    <circle cx="12" cy="12" r="2.3" fill="currentColor" stroke="none"/>
-                                </svg>
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-3 gap-3 mb-8">
-                            <div class="bg-white/85 border border-slate-100 px-4 py-4 text-center">
-                                <p class="text-[10px] tracking-[0.22em] text-slate-400 uppercase mb-2"><%= lang === 'zh' ? '温控' : 'Temp' %></p>
-                                <p class="text-sm serif text-slate-800">0-4°C</p>
-                            </div>
-                            <div class="bg-white/85 border border-slate-100 px-4 py-4 text-center">
-                                <p class="text-[10px] tracking-[0.22em] text-slate-400 uppercase mb-2"><%= lang === 'zh' ? '鲜度' : 'Fresh' %></p>
-                                <p class="text-sm serif text-slate-800"><%= lang === 'zh' ? '当日出货' : '当日発送' %></p>
-                            </div>
-                            <div class="bg-white/85 border border-slate-100 px-4 py-4 text-center">
-                                <p class="text-[10px] tracking-[0.22em] text-slate-400 uppercase mb-2"><%= lang === 'zh' ? '送达' : 'Route' %></p>
-                                <p class="text-sm serif text-slate-800"><%= lang === 'zh' ? '直送' : '直送' %></p>
-                            </div>
-                        </div>
-
-                        <div class="relative bg-white/90 border border-slate-100 px-5 py-6">
-                            <div class="absolute left-8 right-8 top-1/2 -translate-y-1/2 border-t border-dashed border-slate-300"></div>
-                            <div class="relative flex items-center justify-between">
-                                <div class="w-16 text-center">
-                                    <div class="w-10 h-10 mx-auto rounded-full bg-[#D4B483]/15 border border-[#D4B483]/25 flex items-center justify-center mb-2">
-                                        <svg class="w-5 h-5 text-[#B98F56]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M7 10c0-3 2.2-5 5-5s5 2 5 5c0 4-5 9-5 9s-5-5-5-9Z"/>
-                                            <circle cx="12" cy="10" r="1.8"/>
-                                        </svg>
-                                    </div>
-                                    <p class="text-[10px] tracking-[0.2em] text-slate-500 uppercase"><%= lang === 'zh' ? '厨房' : 'Kitchen' %></p>
-                                </div>
-                                <div class="w-16 text-center">
-                                    <div class="w-10 h-10 mx-auto rounded-full bg-sky-100 border border-sky-200 flex items-center justify-center mb-2">
-                                        <svg class="w-5 h-5 text-sky-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 7h11v8H3zM14 10h3l3 3v2h-6z"/>
-                                            <circle cx="7.5" cy="17" r="1.5"/>
-                                            <circle cx="17.5" cy="17" r="1.5"/>
-                                        </svg>
-                                    </div>
-                                    <p class="text-[10px] tracking-[0.2em] text-slate-500 uppercase"><%= lang === 'zh' ? '冷链车' : 'Transit' %></p>
-                                </div>
-                                <div class="w-16 text-center">
-                                    <div class="w-10 h-10 mx-auto rounded-full bg-emerald-100 border border-emerald-200 flex items-center justify-center mb-2">
-                                        <svg class="w-5 h-5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 12h16M12 4v16"/>
-                                        </svg>
-                                    </div>
-                                    <p class="text-[10px] tracking-[0.2em] text-slate-500 uppercase"><%= lang === 'zh' ? '餐桌' : 'Table' %></p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mt-6 flex flex-wrap gap-3">
-                            <span class="px-3 py-2 bg-white/85 border border-slate-100 text-[10px] tracking-[0.18em] text-slate-500 uppercase">
-                                <%= lang === 'zh' ? '全程温控记录' : 'Temperature Logged' %>
-                            </span>
-                            <span class="px-3 py-2 bg-white/85 border border-slate-100 text-[10px] tracking-[0.18em] text-slate-500 uppercase">
-                                <%= lang === 'zh' ? '现包后快速配送' : 'Fresh Packed Daily' %>
-                            </span>
-                        </div>
-                    </div>
+                <div class="overflow-hidden rounded-sm shadow-sm border border-white/70 bg-white">
+                    <img src="/assets/cold-chain-delivery-illustration.svg" alt="<%= lang === 'zh' ? '冷链配送示意图' : '冷温配送イメージ' %>" class="w-full h-auto block">
                 </div>
             </div>
             <div class="w-full md:w-1/2">
