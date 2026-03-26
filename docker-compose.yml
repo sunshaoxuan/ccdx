@@ -1,10 +1,9 @@
-version: '3.8'
-
 services:
   app:
     build: .
+    restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "127.0.0.1:3000:3000"
     environment:
       - MONGODB_URI=mongodb://db:27017/ccdx
       - JWT_SECRET=ccdx_secret_key_2026
@@ -17,8 +16,7 @@ services:
 
   db:
     image: mongo:latest
-    ports:
-      - "27017:27017"
+    restart: unless-stopped
     volumes:
       - mongo_data:/data/db
 
