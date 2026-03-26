@@ -2,7 +2,51 @@ const express = require('express');
 const router = express.Router();
 const Product = require('../models/Product');
 const Order = require('../models/Order');
+const User = require('../models/User');
 const { authMiddleware } = require('../middlewares/auth');
+
+function formatAddress(address = {}) {
+    if (!address || typeof address !== 'object') {
+        return '';
+    }
+
+    if (address.address) {
+        return address.address;
+    }
+
+    return [
+        address.postalCode ? `〒${address.postalCode}` : '',
+        address.prefecture,
+        address.city,
+        address.addressLine1,
+        address.addressLine2
+    ].filter(Boolean).join(' ');
+}
+
+function normalizeOrderItems(items = []) {
+    if (!Array.isArray(items)) {
+        return [];
+    }
+
+    return items.map((item) => {
+        const localizedName = typeof item?.name === 'object' && item.name !== null
+            ? {
+                zh: item.name.zh || item.name.jp || '',
+                jp: item.name.jp || item.name.zh || ''
+            }
+            : {
+                zh: item?.name || '',
+                jp: item?.name || ''
+            };
+
+        return {
+            productId: item.productId,
+            name: localizedName,
+            quantity: Number(item.quantity) || 1,
+            price: Number(item.price) || 0
+        };
+    });
+}
 
 // Shop routes
 router.get('/about', (req, res) => {
@@ -34,8 +78,13 @@ router.get('/menu', async (req, res) => {
 });
 
 // Cart page
-router.get('/cart', (req, res) => {
-    res.render('shop/cart');
+router.get('/cart', async (req, res) => {
+    try {
+        const user = req.user ? await User.findById(req.user._id) : null;
+        res.render('shop/cart', { user });
+    } catch (err) {
+        res.status(500).render('error', { message: 'Error loading cart' });
+    }
 });
 
 // Order history
@@ -96,6 +145,7 @@ router.post('/profile/address/add', authMiddleware, async (req, res) => {
             city,
             addressLine1,
             addressLine2,
+            address: formatAddress({ postalCode, prefecture, city, addressLine1, addressLine2 }),
             isDefault: isDefault === 'on' || user.addresses.length === 0 
         });
         
@@ -126,6 +176,7 @@ router.post('/profile/address/update/:id', authMiddleware, async (req, res) => {
             address.city = city;
             address.addressLine1 = addressLine1;
             address.addressLine2 = addressLine2;
+            address.address = formatAddress({ postalCode, prefecture, city, addressLine1, addressLine2 });
             address.isDefault = isDefault === 'on' || (address.isDefault && !isDefault);
             
             await user.save();
@@ -177,8 +228,13 @@ router.post('/profile/address/default/:id', authMiddleware, async (req, res) => 
 router.post('/place-order', async (req, res) => {
     try {
         const { items, totalAmount, deliveryInfo, paymentMethod } = req.body;
+        const normalizedItems = normalizeOrderItems(items);
         let finalUserId;
         let finalDeliveryInfo = deliveryInfo;
+
+        if (!normalizedItems.length) {
+            return res.status(400).json({ success: false, message: 'Cart is empty.' });
+        }
 
         if (req.user) {
             finalUserId = req.user._id;
@@ -192,7 +248,7 @@ router.post('/place-order', async (req, res) => {
                 finalDeliveryInfo = {
                     realName: defaultAddr.realName,
                     phone: defaultAddr.phone,
-                    address: defaultAddr.address,
+                    address: formatAddress(defaultAddr),
                     email: user.email
                 };
             }
@@ -228,8 +284,8 @@ router.post('/place-order', async (req, res) => {
 
         const order = new Order({
             userId: finalUserId,
-            items: items,
-            totalAmount: totalAmount,
+            items: normalizedItems,
+            totalAmount: Number(totalAmount) || 0,
             deliveryInfo: finalDeliveryInfo,
             paymentMethod: paymentMethod || 'cash',
             status: 'pending'

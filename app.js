@@ -6,7 +6,62 @@ const session = require('express-session');
 const i18n = require('i18n');
 require('dotenv').config();
 
+const { optionalAuthMiddleware } = require('./middlewares/auth');
+
 const app = express();
+const DEFAULT_PRODUCT_IMAGE = '/assets/shrimp-jiaozi.png';
+
+function normalizeAssetPath(url, fallback = DEFAULT_PRODUCT_IMAGE) {
+    if (!url || typeof url !== 'string') {
+        return fallback;
+    }
+
+    const normalized = url.trim().replace(/\\/g, '/');
+    if (!normalized) {
+        return fallback;
+    }
+
+    if (/^https?:\/\//i.test(normalized) || normalized.startsWith('data:')) {
+        return normalized;
+    }
+
+    if (normalized.startsWith('/')) {
+        return normalized;
+    }
+
+    if (normalized.startsWith('public/')) {
+        return '/' + normalized.replace(/^public\//, '');
+    }
+
+    if (normalized.startsWith('assets/') || normalized.startsWith('uploads/')) {
+        return '/' + normalized;
+    }
+
+    const assetMatch = normalized.match(/(?:^|\/)(assets|uploads)\/.+$/);
+    if (assetMatch) {
+        return '/' + assetMatch[0].replace(/^\/+/, '');
+    }
+
+    return fallback;
+}
+
+function formatAddress(address = {}) {
+    if (!address || typeof address !== 'object') {
+        return '';
+    }
+
+    if (address.address) {
+        return address.address;
+    }
+
+    return [
+        address.postalCode ? `〒${address.postalCode}` : '',
+        address.prefecture,
+        address.city,
+        address.addressLine1,
+        address.addressLine2
+    ].filter(Boolean).join(' ');
+}
 
 // i18n configuration
 i18n.configure({
@@ -37,6 +92,7 @@ app.use(session({
     cookie: { secure: false } // Set to true if using HTTPS
 }));
 app.use(i18n.init);
+app.use(optionalAuthMiddleware);
 
 // Static files
 app.use(express.static(path.join(__dirname, 'public')));
@@ -51,6 +107,10 @@ app.use((req, res, next) => {
     res.locals.user = req.session.user || null;
     res.locals.lang = req.getLocale();
     res.locals.__ = res.__;
+    res.locals.req = req;
+    res.locals.assetUrl = normalizeAssetPath;
+    res.locals.formatAddress = formatAddress;
+    res.locals.defaultProductImage = DEFAULT_PRODUCT_IMAGE;
     next();
 });
 

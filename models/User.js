@@ -16,6 +16,7 @@ const userSchema = new mongoose.Schema({
         city: String,
         addressLine1: String, // 丁目・番地・号
         addressLine2: String, // 建物名・部屋番号
+        address: String, // Legacy/freeform address kept for checkout compatibility
         isDefault: { type: Boolean, default: false }
     }],
     isVerified: { type: Boolean, default: false },

@@ -23,7 +23,7 @@
                 <% products.forEach(product => { %>
                     <tr>
                         <td class="py-6">
-                            <img src="<%= product.imageUrl %>" class="w-12 h-12 object-cover">
+                            <img src="<%= assetUrl(product.imageUrl, defaultProductImage) %>" onerror="this.onerror=null;this.src='<%= defaultProductImage %>'" class="w-12 h-12 object-cover">
                         </td>
                         <td class="py-6 text-sm font-light"><%= product.name.zh %></td>
                         <td class="py-6 text-sm font-light"><%= product.name.jp %></td>

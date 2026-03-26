@@ -1,0 +1,16 @@
+<%- include('./partials/header') %>
+
+<section class="py-24 max-w-3xl mx-auto px-6 text-center">
+    <p class="text-[10px] tracking-[0.3em] text-gray-400 uppercase mb-6">Something Went Wrong</p>
+    <h1 class="text-3xl serif tracking-widest mb-6">
+        <%= lang === 'zh' ? '页面暂时无法打开' : 'ページを表示できません' %>
+    </h1>
+    <p class="text-sm text-gray-500 font-light leading-loose mb-10">
+        <%= message || (lang === 'zh' ? '系统暂时出现异常，请稍后重试。' : '一時的なエラーが発生しました。しばらくしてからもう一度お試しください。') %>
+    </p>
+    <a href="/" class="inline-block border border-gray-200 px-8 py-3 text-[10px] tracking-[0.2em] hover:bg-black hover:text-white transition-colors uppercase">
+        <%= lang === 'zh' ? '返回首页' : 'ホームに戻る' %>
+    </a>
+</section>
+
+<%- include('./partials/footer') %>

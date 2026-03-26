@@ -99,7 +99,7 @@
         <div>
             <label class="block text-[10px] tracking-widest text-gray-400 uppercase mb-2"><%= __('admin.image') %></label>
             <div class="flex items-center space-x-6">
-                <img src="<%= product.imageUrl %>" class="w-16 h-16 object-cover border border-gray-100">
+                <img src="<%= assetUrl(product.imageUrl, defaultProductImage) %>" onerror="this.onerror=null;this.src='<%= defaultProductImage %>'" class="w-16 h-16 object-cover border border-gray-100">
                 <input type="file" name="image" class="text-xs text-gray-400 file:mr-4 file:py-2 file:px-4 file:border-0 file:text-[10px] file:tracking-widest file:bg-gray-50 file:text-gray-400 hover:file:bg-[#D4B483] hover:file:text-white transition-all">
             </div>
         </div>

@@ -162,7 +162,7 @@
             const defaultAddr = <%- JSON.stringify(user.addresses.find(a => a.isDefault) || user.addresses[0]) %>;
             display.innerHTML = `
                 <p class="text-sm font-medium mb-1">${defaultAddr.realName} <span class="text-xs text-gray-400 ml-2">${defaultAddr.phone}</span></p>
-                <p class="text-xs text-gray-500 leading-relaxed">${defaultAddr.address}</p>
+                <p class="text-xs text-gray-500 leading-relaxed">${defaultAddr.address || '<%= user && user.addresses && user.addresses.length > 0 ? formatAddress(user.addresses.find(a => a.isDefault) || user.addresses[0]).replace(/'/g, "\\\\'") : '' %>'}</p>
             `;
         <% } else { %>
             display.classList.add('hidden');

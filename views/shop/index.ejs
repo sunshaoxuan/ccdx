@@ -46,13 +46,13 @@
         <% products.forEach(product => { %>
             <div class="group">
                 <div class="aspect-[4/5] overflow-hidden mb-6 relative group">
-                    <img src="<%= product.imageUrl || '/assets/shrimp-jiaozi.png' %>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <img src="<%= assetUrl(product.imageUrl, defaultProductImage) %>" onerror="this.onerror=null;this.src='<%= defaultProductImage %>'" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                     <% if (product.mainIngredients && product.mainIngredients.length > 0) { %>
                         <div class="absolute bottom-3 right-3 flex flex-wrap justify-end gap-2 z-10 max-w-[150px]">
                             <% product.mainIngredients.forEach(ing => { %>
                                 <div class="relative group/ing">
                                     <div class="w-10 h-10 rounded-full bg-white shadow-md border border-gray-100 p-1 overflow-hidden">
-                                        <img src="<%= ing.iconUrl %>" class="w-full h-full object-cover rounded-full">
+                                        <img src="<%= assetUrl(ing.iconUrl, '/assets/logo.png') %>" onerror="this.onerror=null;this.src='/assets/logo.png'" class="w-full h-full object-cover rounded-full">
                                     </div>
                                     <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-black/70 text-white text-[10px] rounded opacity-0 group-hover/ing:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
                                         <%= ing.name[lang] %>
